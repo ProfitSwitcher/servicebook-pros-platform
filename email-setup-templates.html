@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Setup & Templates - ServiceBook Pros</title>
+    <link rel="stylesheet" href="email-setup-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="email-setup-container">
+        <!-- Header -->
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fas fa-envelope section-icon"></i>
+                <h2>Email setup</h2>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-secondary" id="testEmailBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Test Email
+                </button>
+                <button class="btn btn-primary" id="saveSettingsBtn">
+                    <i class="fas fa-save"></i>
+                    Save Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Email Domain Configuration -->
+                <div class="config-section">
+                    <h3>Email Domain Configuration</h3>
+                    <div class="domain-input-group">
+                        <label for="customDomain">Custom Domain</label>
+                        <div class="input-with-status">
+                            <input type="text" id="customDomain" placeholder="yourbusiness.com" value="yourbusiness.com">
+                            <div class="status-indicator">
+                                <span class="status verified" id="domainStatus">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified
+                                </span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" id="verifyDomainBtn">Verify Domain</button>
+                    </div>
+                </div>
+
+                <!-- DNS Records -->
+                <div class="config-section">
+                    <h3>DNS Records</h3>
+                    <div class="dns-table">
+                        <div class="dns-header">
+                            <div class="dns-col-type">Type</div>
+                            <div class="dns-col-value">Value</div>
+                            <div class="dns-col-action">Action</div>
+                        </div>
+                        
+                        <div class="dns-row">
+                            <div class="dns-type">SPF</div>
+                            <div class="dns-value">
+                                <code>v=spf1 include:sendgrid.net ~all</code>
+                            </div>
+                            <button class="btn-copy" data-copy="v=spf1 include:sendgrid.net ~all">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                        
+                        <div class="dns-row">
+                            <div class="dns-type">DKIM</div>
+                            <div class="dns-value">
+                                <code>abcXf07pcwYAGQBNu1RBIUC=</code>
+                            </div>
+                            <button class="btn-copy" data-copy="abcXf07pcwYAGQBNu1RBIUC=">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                        
+                        <div class="dns-row">
+                            <div class="dns-type">DMARC</div>
+                            <div class="dns-value">
+                                <code>v=DMARC1; p=none; rua=mailto:dmarc@yourbusiness.com</code>
+                            </div>
+                            <button class="btn-copy" data-copy="v=DMARC1; p=none; rua=mailto:dmarc@yourbusiness.com">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Templates -->
+                <div class="config-section">
+                    <h3>Email Templates</h3>
+                    <div class="template-tabs">
+                        <button class="tab-btn active" data-template="appointment">Appointment Reminder</button>
+                        <button class="tab-btn" data-template="job">Job Completion</button>
+                        <button class="tab-btn" data-template="payment">Payment Reminder</button>
+                    </div>
+                    
+                    <div class="template-editor">
+                        <!-- Rich Text Toolbar -->
+                        <div class="editor-toolbar">
+                            <button class="toolbar-btn" data-command="bold" title="Bold">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button class="toolbar-btn" data-command="italic" title="Italic">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button class="toolbar-btn" data-command="underline" title="Underline">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <div class="toolbar-separator"></div>
+                            <button class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List">
+                                <i class="fas fa-list-ul"></i>
+                            </button>
+                            <button class="toolbar-btn" data-command="insertOrderedList" title="Numbered List">
+                                <i class="fas fa-list-ol"></i>
+                            </button>
+                            <div class="toolbar-separator"></div>
+                            <select class="merge-field-dropdown" id="mergeFields">
+                                <option value="">Insert merge field...</option>
+                                <option value="{customer_name}">Customer Name</option>
+                                <option value="{appointment_time}">Appointment Time</option>
+                                <option value="{job_address}">Job Address</option>
+                                <option value="{technician_name}">Technician Name</option>
+                                <option value="{amount}">Amount</option>
+                                <option value="{company_name}">Company Name</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Template Content Editor -->
+                        <div class="template-content" id="templateEditor" contenteditable="true">
+                            <p>Hi {customer_name},</p>
+                            <p>This is a reminder for your appointment on {appointment_time}. Please let us know if you need to reschedule.</p>
+                            <p>Thank you!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- SendGrid Integration -->
+                <div class="config-section">
+                    <h3>SendGrid Integration</h3>
+                    <div class="integration-status">
+                        <div class="status-item">
+                            <label>Connection Status</label>
+                            <span class="status connected">
+                                <i class="fas fa-check-circle"></i>
+                                Connected
+                            </span>
+                        </div>
+                        <div class="api-key-section">
+                            <label for="sendgridApiKey">API Key</label>
+                            <div class="api-key-input">
+                                <input type="password" id="sendgridApiKey" value="SG.************cz" readonly>
+                                <button class="btn btn-outline btn-sm" id="editApiKey">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Branding -->
+                <div class="config-section">
+                    <h3>Email Branding</h3>
+                    <div class="branding-section">
+                        <!-- Logo Upload -->
+                        <div class="logo-upload">
+                            <label>Company Logo</label>
+                            <div class="upload-area" id="logoUpload">
+                                <div class="logo-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <span>LOGO</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">Upload</button>
+                            </div>
+                        </div>
+
+                        <!-- Company Colors -->
+                        <div class="color-section">
+                            <label>Company Colors</label>
+                            <div class="color-picker-group">
+                                <div class="color-input">
+                                    <input type="color" id="primaryColor" value="#0abdf0">
+                                    <span>#0abdf0</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm" id="resetColors">Reset</button>
+                            </div>
+                        </div>
+
+                        <!-- Email Signature -->
+                        <div class="signature-section">
+                            <label for="emailSignature">Signature</label>
+                            <textarea id="emailSignature" rows="3" placeholder="John Smith, Your Business">John Smith, Your Business</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Preview -->
+                <div class="config-section">
+                    <h3>Email Preview</h3>
+                    <div class="email-preview">
+                        <div class="email-header">
+                            <div class="email-from">
+                                <strong>From:</strong> noreply@yourbusiness.com
+                            </div>
+                            <div class="email-subject">
+                                <strong>Subject:</strong> Appointment Reminder
+                            </div>
+                        </div>
+                        <div class="email-body" id="emailPreview">
+                            <div class="email-logo">
+                                <div class="logo-placeholder-small">LOGO</div>
+                            </div>
+                            <div class="email-content">
+                                <p>Hi John Smith,</p>
+                                <p>This is a reminder for your appointment on March 15, 2024 at 2:00 PM. Please let us know if you need to reschedule.</p>
+                                <p>Thank you!</p>
+                                <div class="email-signature">
+                                    <p>John Smith, Your Business</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Email Modal -->
+    <div class="modal" id="testEmailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Send Test Email</h3>
+                <button class="modal-close" id="closeTestModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="testEmailAddress">Email Address</label>
+                    <input type="email" id="testEmailAddress" placeholder="test@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="testEmailTemplate">Template</label>
+                    <select id="testEmailTemplate">
+                        <option value="appointment">Appointment Reminder</option>
+                        <option value="job">Job Completion</option>
+                        <option value="payment">Payment Reminder</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelTestEmail">Cancel</button>
+                <button class="btn btn-primary" id="sendTestEmail">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Test Email
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="email-setup-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,632 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Indoor Main Panel 125 Amp
+Indoor Main Panel 125 Amp
+1-56 of 56
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+125 Amp Flush Mount Siemens Main Lug Panel 16/32
+
+Pn1632l1125c plug on neutral interior panel w/ cover & no other breakers / wiring or grounding /copper buss
+
+Profit Rhino
+
+T816443
+
+$1,097.35
+
+service
+125 Amp Flush Mount Siemens Es Main Lug Panel 24
+
+S2024l1125 plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816444
+
+$1,090.81
+
+service
+125 Amp Flush Mount Siemens Pn Main Lug Panel 20
+
+Pn2020l1125c plug on neutral interior panel w/ cover & no other breakers / wiring or grounding /copper buss
+
+Profit Rhino
+
+T816445
+
+$1,115.13
+
+service
+125 Amp Flush Mount Siemens Eq Main Lug 4/8
+
+E0408ml1125su interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816447
+
+$818.44
+
+service
+125 Amp Flush Mount Murray Main Lug Panel 12/24
+
+Lc1224l1125 interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816452
+
+$1,051.19
+
+service
+125 Amp Flush Mount Sq D Qo Main Lug 24/24
+
+Qo124l125pgcsrg nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding / surge spd
+
+Profit Rhino
+
+T816453
+
+$1,147.42
+
+service
+125 Amp Flush Mount Siemens Main Lug 24/24
+
+Sn2424l1125 interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816454
+
+$1,089.47
+
+service
+125 Amp Flush Mount Sq D Qo Main Lug Pkg 24/24
+
+Qo124l125pqgcvp interior panel w/ cover & three 20a 1 pole & two 30a 2 pole breakers / no wiring or grounding
+
+Profit Rhino
+
+T816455
+
+$1,205.32
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 2/4
+
+Br24l125sp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816456
+
+$609.90
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 6/12
+
+Br612l125sdp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816457
+
+$810.09
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 32
+
+Brp16l125 interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816458
+
+$1,050.43
+
+service
+125 Amp Flush Mount Sq D Eq Main Lug Panel 8/16
+
+E0816ml1125fcu plug on neutral interior panel w/ cover & no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816432
+
+$1,092.43
+
+service
+125 Amp Flush Mount Sq D Eq Main Lug Pnl 8/16
+
+E0816ml1125s interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816433
+
+$1,055.74
+
+service
+125 Amp Surface Mount Sq D Eq Main Lug Pnl 4/8
+
+W0408ml1125u nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816434
+
+$853.92
+
+service
+125 Amp Flush Mount Siemens Pn Panel 12/24
+
+Pn1224l1125c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816436
+
+$1,098.24
+
+service
+125 Amp Flush Mount Sq D Homeline Panel 24/48
+
+Hom2448l125pqgc plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816437
+
+$1,107.09
+
+service
+125 Amp Flush Mount Eaton Br Panel
+
+Br2024b125 interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816203
+
+$1,231.91
+
+service
+125 Amp Flush Mount Siemens Pl Panel 30/30
+
+P3030b1125cu interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816204
+
+$478.38
+
+service
+125 Amp Surface Mount Sq D Homeline Main Lug 4/8
+
+Hom48l125grb nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816440
+
+$833.52
+
+service
+125 Amp Flush Mount Eaton Ch Main Lug Panel 48
+
+Chp24l125 plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816441
+
+$1,130.03
+
+service
+125 Amp Flush Mount Sq D Qo Main Lug Panel 24
+
+Qo112l125pgc plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816442
+
+$1,072.25
+
+service
+125 Amp Flush Mount Sq D Homeline Panel 12/24
+
+Hom1224m125tc plug on neutral interior convertible main lug panel w/ cover / no main or other breakers included / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812298
+
+$1,047.59
+
+service
+125 Amp Flush Mount Siemens Sn Main Lug 16/32
+
+Sn1632l1125 nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816460
+
+$1,100.76
+
+service
+125 Amp Flush Mount Siemens Eq Main Lug 4/8
+
+E0408ml1125fu interior panel w/ cover & no other breakers / wiring or grounding / for sub feed / max 100 amp breakers
+
+Profit Rhino
+
+T816461
+
+$811.79
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 4/8
+
+Br48l125sp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816465
+
+$805.81
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 6/12
+
+Br612l125sp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816466
+
+$1,003.15
+
+service
+125 Amp Flush Mount Siemens Main Lug 20/20
+
+Sn2020l1125 interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816467
+
+$1,091.06
+
+service
+125 Amp Flush Mount Eaton Ch Main Lug Panel 2/4
+
+Ch2l125sp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816468
+
+$612.34
+
+service
+125 Amp Flush Mount Murray Main Lug 4/8
+
+Lc004nsu interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816469
+
+$609.77
+
+service
+125 Amp Flush Mount Siemens Br Main Lug 6/12
+
+Br612l125sdgp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816471
+
+$1,009.42
+
+service
+125 Amp Flush Mount Siemens Br Main Lug 8/16
+
+Br816l125sgp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816473
+
+$1,048.06
+
+service
+125 Amp Flush Mount Murray Main Lug 4/8
+
+Lc004nfu interior panel w/ cover & no other breakers / wiring or grounding / hub provision only
+
+Profit Rhino
+
+T816474
+
+$801.54
+
+service
+125 Amp Flush Mount Siemens Br Main Lug 8/16
+
+Br816l125fgp interior panel w/ cover & no other breakers / wiring or grounding / w/ground bar
+
+Profit Rhino
+
+T816475
+
+$1,075.87
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+125 Amp Flush Mount Murray Main Lug 6/12
+
+Lc006nsu interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816482
+
+$1,027.54
+
+service
+125 Amp Flush Mount Siemens Br Main Lug 4/8
+
+Br48l125fdp interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816483
+
+$861.17
+
+service
+125 Amp Flush Mount Ge Powermark Main Lug 12/12
+
+Tl12412c nema 3 exterior 3 phase panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816486
+
+$1,139.68
+
+service
+125 Amp Flush Mount Ge Powermark Main Lug 8/16
+
+Tlm812scud interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816488
+
+$1,040.12
+
+service
+125 Amp Flush Mount Homeline Main Lug 20/40
+
+Hom2040l125pgc plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816489
+
+$1,090.57
+
+service
+125 Amp Flush Mount Eaton Br Main Lug 24
+
+Brp12l125 plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816490
+
+$1,047.59
+
+service
+125 Amp Flush Mount Siemens Eq Main Lug 8/16
+
+E0816ml1125fcu interior panel w/ cover & no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816491
+
+$1,069.93
+
+service
+200 Amp Flush Mount Murray Panel 40/40 Copper
+
+Lc4040b1200cu interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816367
+
+$1,720.88
+
+service
+125 Amp Flush Mount Siemens Es Panel 24/24
+
+S2424b1125 interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816418
+
+$1,107.83
+
+service
+125 Amp Flush Mount Siemens Sn Panel 24/24
+
+Sn2424b1125 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816419
+
+$1,155.57
+
+service
+125 Amp Flush Mount Siemens Sn Panel 30/30
+
+Sn3030b1125 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816420
+
+$1,268.85
+
+service
+125 Amp Flush Mount Ge Main Lug Panel 8
+
+Tlm812fcudp interior panel w/ cover / no breakers / wiring or grounding is included
+
+Profit Rhino
+
+T816421
+
+$841.22
+
+service
+125 Amp Flush Mount Ge Main Lug Panel 14/24
+
+Tlm1212ccup interior panel w/ cover / no breakers / wiring or grounding is included
+
+Profit Rhino
+
+T816422
+
+$1,091.53
+
+service
+125 Amp Flush Mount Eaton Br Main Lug Panel 40
+
+Brp20l125g plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816428
+
+$1,091.53
+
+service
+125 Amp Flush Mount Siemens Main Lug Panel 12/24
+
+Sn1224l1125 plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816429
+
+$1,091.89
+
+service
+125 Amp Flush Mount Siemens Main Lug Panel 20/40
+
+Sn2040l1125 plug on neutral interior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816430
+
+$1,078.73
+
+service
+125 Amp Flush Mount Sq D Homeline Main Lug 20/40
+
+Hom2040l125pc interior panel w/ cover / no breakers / wiring or grounding is included
+
+Profit Rhino
+
+T816431
+
+$1,065.41
+
+1-56 of 56
+

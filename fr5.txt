@@ -1,0 +1,215 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Troubleshooting, Code & Repair
+Troubleshooting
+Tracing Shorts
+Tracing Shorts
+1-18 of 18
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Trace Low Voltage Short Lvl1
+
+Simple circuit trace
+
+Profit Rhino
+
+T814631
+
+$100.70
+
+service
+Trace Low Voltage Short Lvl2
+
+Trace a short with basic complexity
+
+Profit Rhino
+
+T814632
+
+$167.20
+
+service
+Trace Low Voltage Short Lvl3
+
+Trace short with medium complexity
+
+Profit Rhino
+
+T814633
+
+$214.70
+
+service
+Trace Low Voltage Short Lvl4
+
+Trace low voltage short with difficult complexity
+
+Profit Rhino
+
+T814634
+
+$262.20
+
+service
+Trace Short In Single Device Box / 1 Gang J-Box
+
+Opening a switch or outlet box or a j-box to trace a short in the box and repair the local short excluding any device replacement sometimes shorts can be found in electrical boxes which require disassembly and inspection then reassembly after the short is repaired
+
+Profit Rhino
+
+T814581
+
+$167.20
+
+service
+Trace Short In Two Device Box Or 2 Gang J-Box
+
+Opening a switch or outlet box or a j-box to trace a short in the box and repair the local short excluding any device replacements sometimes shorts can be found in electrical boxes which require disassembly and inspection then reassembly after the short is repaired
+
+Profit Rhino
+
+T814582
+
+$212.80
+
+service
+Locate Short In Panel With Under 24 Circuits
+
+Locate short in panel with under 24 circuitsopening an electrical to trace a short in the box and repair the local short. This task does not include any repairs, breakers or fuses. Sometimes shorts may occur in an electrical panel which requires opening the panel and locating the short. Once the short has been located the panel and or breakers needs to be re-assembled. This charge does not cover repairing a short or replacing a breaker
+
+Profit Rhino
+
+T814583
+
+$266.00
+
+service
+Locate Short In Panel With Under 40 Circuits
+
+Locate short in panel with under 40 circuitsopening an electrical to trace a short in the box and repair the local short. This task does not include any repairs, breakers or fuses. Sometimes shorts may occur in an electrical panel which requires opening the panel and locating the short. Once the short has been located the panel and or breakers needs to be re-assembled. This charge does not cover repairing a short or replacing a breaker
+
+Profit Rhino
+
+T814584
+
+$364.80
+
+service
+Locate Short In Panel With Under 60 Circuits
+
+Locate short in panel with under 60 circuitsopening an electrical to trace a short in the box and repair the local short. This task does not include any repairs, breakers or fuses. Sometimes shorts may occur in an electrical panel which requires opening the panel and locating the short. Once the short has been located the panel and or breakers needs to be re-assembled. This charge does not cover repairing a short or replacing a breaker
+
+Profit Rhino
+
+T814585
+
+$459.80
+
+service
+Limited Access Tracing Short M1l1
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811940
+
+$269.80
+
+service
+Limited Access Tracing Short M1l2
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811941
+
+$475.00
+
+service
+Limited Access Tracing Short M1l3
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811942
+
+$690.70
+
+service
+Limited Access Tracing Short M1l7
+
+Includes use of circuit tracer
+
+Profit Rhino
+
+T821479
+
+$1,467.80
+
+service
+Limited Access Tracing Short M1l8
+
+Includes use of circuit tracer
+
+Profit Rhino
+
+T821480
+
+$1,657.80
+
+service
+Trace Short In An Electrical Fixture
+
+Does not include large chandeliers or ceiling fans which may require an access surcharge
+
+Profit Rhino
+
+T814591
+
+$262.20
+
+service
+Limited Access Tracing Short M1l4
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811943
+
+$884.50
+
+service
+Limited Access Tracing Short M1l5
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811944
+
+$1,080.20
+
+service
+Limited Access Tracing Short M1l6
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811945
+
+$1,270.20
+
+1-18 of 18
+

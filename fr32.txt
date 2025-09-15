@@ -1,0 +1,280 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Indoor Main Panel 100 Amp
+Indoor Main Panel 100 Amp
+1-24 of 24
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+100 Amp Flush Mount Sq D Qo Panel 8 Sp
+
+Qo816l100s interior load center w/ cover / no other breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812022
+
+$642.62
+
+service
+100 Amp Flush Mount Sq D Homeline Panel 30/60
+
+Hom3060m100pc plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816405
+
+$1,172.79
+
+service
+100 Amp Flush Mount Siemens Pn Panel 30/30
+
+Pn3030b1100c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816406
+
+$1,107.92
+
+service
+100 Amp Flush Mount Siemens Pn Panel 20/20
+
+Pn2020b1100c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816407
+
+$1,073.74
+
+service
+100 Amp Flush Mount Eaton Panel 20/20
+
+Brp10b100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816408
+
+$1,138.14
+
+service
+100 Amp Flush Mount Sq D Qo Panel 24/34
+
+Qo124m100pc plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816409
+
+$1,120.62
+
+service
+100 Amp Flush Mount Eaton Br Panel 60/60
+
+Brp30bc100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816410
+
+$1,122.74
+
+service
+100 Amp Flush Mount Eaton Br Panel 24/24
+
+Brp12b100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816411
+
+$1,091.89
+
+service
+100 Amp Flush Mount Siemens Sn Panel 20/20
+
+Sn2020b1100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816412
+
+$1,113.67
+
+service
+100 Amp Flush Mount Eaton Ch Panel 28/28
+
+Chp14b100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816413
+
+$1,121.37
+
+service
+100 Amp Flush Mount Sq D Homeline Panel 6/12
+
+Hom612l100 interior load center panel w/ cover / no other breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812326
+
+$982.27
+
+service
+100 Amp Flush Mount Sq D Qo Panel 20/24
+
+Qo120m100pc
+
+Profit Rhino
+
+T816156
+
+$1,177.80
+
+service
+100 Amp Flush Mount Sq D Homeline Panel 8/16
+
+Hom816m100tc plug on neutral interior panel w/ cover & main/ no other breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812295
+
+$1,091.83
+
+service
+100 Amp Flush Mount Sq D Homeline Panel 12/24
+
+Hom1224m100tc interior panel w/ cover & main/ no other breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812296
+
+$1,096.73
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+100 Amp Flush Mount Sq D Qo Panel 12/12
+
+Qo112m100c interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816414
+
+$1,118.51
+
+service
+100 Amp Flush Mount Siemens Es Panel 20/24
+
+S2024b1100 interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816415
+
+$1,106.41
+
+service
+100 Amp Flush Mount Eaton Br Panel 24 22 Kaic
+
+Brp12h100 interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816416
+
+$1,110.37
+
+service
+100 Amp Flush Mount Eaton Panel 10/20
+
+Br1020b100s11 interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816417
+
+$1,104.01
+
+1-24 of 24
+

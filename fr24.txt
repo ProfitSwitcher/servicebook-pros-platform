@@ -1,0 +1,126 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Service Entrances & Upgrades
+Underground Service Entrances
+Underground Service Entrances
+1-10 of 10
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Disconnect Or Reconnect Live Service
+
+Includes connectors & testing of service voltage / height under 10 ft or height surcharge may apply good solution for a reconnect or disconnect of live service is to have a professional electrician ensure it is made safe
+
+Profit Rhino
+
+T700206
+
+$188.28
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+Credit Single Pole Standard Breaker
+
+For panel upgrades that include a preset qty of breakers
+
+Profit Rhino
+
+T816072
+
+$21.24
+
+service
+Credit Single Pole Gfci/Afci Breaker
+
+For panel upgrades that include a preset qty of breakers
+
+Profit Rhino
+
+T816073
+
+$127.41
+
+service
+Credit Double Pole Standard Breaker
+
+For panel upgrades that include a preset qty of breakers
+
+Profit Rhino
+
+T816074
+
+$44.73
+
+1-10 of 10
+

@@ -1,0 +1,357 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Exterior Main Panel 200 Amp
+Exterior Main Panel 200 Amp
+1-31 of 31
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+200 Amp Surface Mount Square D Qo Panel 8/16
+
+Square d qo1816m200ftrb feed thru nema 3 exterior panel only / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811998
+
+$1,284.96
+
+service
+200 Amp Surface Mount Sq D Qo Panel 30 Space
+
+Square d qo qo130l200grb nema 3 exterior plug on neutral panel only / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812001
+
+$1,832.87
+
+service
+200 Amp Surface Mount Sq D Homeline Panel 8/16
+
+Hom816m200ftrb nema 3 main lug plug w/ feed thru includes ground bar / no breakers or wiring electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812289
+
+$1,415.07
+
+service
+200 Amp Surface Mount Sq D Homeline Panel 20/40
+
+Hom2040m200rpb nema 3 exterior plug on neutral panel only / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812290
+
+$1,529.32
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+200 Amp Surface Mount Sq D Homeline Panel 30/60
+
+Hom3060m200prb nema 3 exterior plug on neutral panel w/cover / no breakers / wiring or grounding
+
+Profit Rhino
+
+T816328
+
+$1,682.07
+
+service
+200 Amp Surface Mount 4 Space Ge Panel
+
+Thqmv200nre nema 3 exterior panel w/cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816333
+
+$1,249.20
+
+service
+200 Amp Surface Mount 4 Space Ge Panel Feed Thru
+
+U281c1 nema 3 exterior panel w/cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816334
+
+$1,208.93
+
+service
+200 Amp Surface Mount Ge Main Breaker Only
+
+Tqd200nre nema 3 exterior panel w/cover & main / no other breaker slots in panel / wiring or grounding
+
+Profit Rhino
+
+T816335
+
+$1,234.38
+
+service
+200 Amp Surface Mount Ge Panel 32/40
+
+Tm3220rcu nema 3 exterior panel w/cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816337
+
+$1,799.42
+
+service
+200 Amp Surface Mount Load / Meter Panel 40 Circ
+
+03s-lp420-0sr nema 3 leviton combo load center semi flush solar ready w/ main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816339
+
+$1,852.35
+
+service
+200 Amp Surface Mount Eaton Panel 8/16
+
+Br816b200rf nema 3 exterior panel w/cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816340
+
+$1,501.51
+
+service
+200 Amp Surface Mount Siemens Panel 40/60 Copper
+
+Pn4060b1200s14 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper bus
+
+Profit Rhino
+
+T816341
+
+$2,121.01
+
+service
+200 Amp Surface Mount Murray Panel 12/24
+
+Lw1224b1200 nema 3 exterior panel w/cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816343
+
+$1,733.45
+
+service
+200 Amp Surface Mount Siemens Trailer Panel 8/16
+
+Pnw0816b1200tc nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816344
+
+$1,249.20
+
+service
+200 Amp Surface Mount Siemens Panel 20/40 Copper
+
+Pnw2040b1200c nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper bus
+
+Profit Rhino
+
+T816345
+
+$1,785.25
+
+service
+200 Amp Surface Mount Siemens Trailer Panel 4/8
+
+W0404mb1200ct nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816346
+
+$1,231.21
+
+service
+200 Amp Surface Mount Siemens Panel 40/60
+
+Sn4060b1200 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816347
+
+$1,664.02
+
+service
+200 Amp Surface Mount Siemens Panel 20/40
+
+Snw2040b1200 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816348
+
+$1,745.01
+
+service
+200 Amp Surface Mount Siemens Panel 30/48
+
+Snw3048b1200 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816350
+
+$1,811.88
+
+service
+200 Amp Surface Mount Murray Panel 20/40
+
+Lw2040b1200 nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816351
+
+$1,715.37
+
+service
+200 Amp Surface Mount Siemens Panel 40/40 Copper
+
+Pw4040b1200cu nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816352
+
+$1,923.29
+
+service
+200 Amp Surface Mount Siemens Panel 2/2
+
+W0202mb1200cu nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816353
+
+$1,276.47
+
+service
+200 Amp Surface Mount Siemens Panel 24/48
+
+Sn2448b1200 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816354
+
+$1,586.20
+
+service
+200 Amp Surface Mount Siemens Panel 30/48 Copper
+
+Pnw3048b1200c nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816355
+
+$1,819.61
+
+service
+200 Amp Surface Mount Siemens Panel 20/40
+
+Sw2040b1200 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816356
+
+$1,730.19
+
+1-31 of 31
+

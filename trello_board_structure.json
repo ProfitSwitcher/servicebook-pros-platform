@@ -1,0 +1,597 @@
+{
+  "board": {
+    "name": "ServiceBook Pros - Invoice Management API",
+    "description": "Complete project management board for Invoice Management API development, testing, and deployment",
+    "background": "blue",
+    "visibility": "private"
+  },
+  "lists": [
+    {
+      "name": "📋 API Planning & Design",
+      "description": "API design, documentation, and planning tasks",
+      "cards": [
+        {
+          "name": "📊 Database Schema Design",
+          "description": "Design and implement database schema for invoices, line items, and payments",
+          "labels": ["Backend", "Database", "High Priority"],
+          "checklist": [
+            "Create invoices table with auto-incrementing invoice numbers",
+            "Design line_items table with foreign key relationships",
+            "Create payments table with status tracking",
+            "Add database triggers for automatic calculations",
+            "Implement multi-tenant security at database level",
+            "Create indexes for performance optimization",
+            "Add audit trail tables for change tracking"
+          ],
+          "due_date": "2025-01-15",
+          "members": ["Backend Developer", "Database Admin"]
+        },
+        {
+          "name": "🔌 API Endpoint Specification",
+          "description": "Define all API endpoints with request/response formats",
+          "labels": ["Backend", "API Design", "High Priority"],
+          "checklist": [
+            "GET /invoices - List invoices with pagination",
+            "GET /invoices/:id - Get invoice details",
+            "POST /invoices - Create new invoice",
+            "PATCH /invoices/:id - Update invoice",
+            "DELETE /invoices/:id - Delete draft invoice",
+            "POST /invoices/:id/send - Email invoice",
+            "GET /invoices/:id/pdf - Generate PDF",
+            "POST /invoices/:id/duplicate - Duplicate invoice",
+            "Line items management endpoints (4)",
+            "Payment management endpoints (4)",
+            "Integration endpoints (4)"
+          ],
+          "due_date": "2025-01-10",
+          "members": ["API Designer", "Backend Developer"]
+        },
+        {
+          "name": "📝 API Documentation",
+          "description": "Create comprehensive API documentation",
+          "labels": ["Documentation", "Medium Priority"],
+          "checklist": [
+            "OpenAPI/Swagger specification",
+            "Request/response examples",
+            "Authentication documentation",
+            "Error code reference",
+            "Integration guides",
+            "SDK examples",
+            "Postman collection (if needed)",
+            "Developer onboarding guide"
+          ],
+          "due_date": "2025-01-20",
+          "members": ["Technical Writer", "API Designer"]
+        }
+      ]
+    },
+    {
+      "name": "🔧 Backend Development",
+      "description": "Server-side implementation tasks",
+      "cards": [
+        {
+          "name": "🗄️ Database Implementation",
+          "description": "Implement database schema and migrations",
+          "labels": ["Backend", "Database", "High Priority"],
+          "checklist": [
+            "Create migration files for all tables",
+            "Implement database models with Drizzle ORM",
+            "Add foreign key constraints and relationships",
+            "Create database triggers for calculations",
+            "Implement soft delete functionality",
+            "Add database indexes for performance",
+            "Create seed data for testing",
+            "Test database operations"
+          ],
+          "due_date": "2025-01-12",
+          "members": ["Backend Developer", "Database Admin"]
+        },
+        {
+          "name": "🔐 Authentication & Security",
+          "description": "Implement JWT authentication and multi-tenant security",
+          "labels": ["Backend", "Security", "High Priority"],
+          "checklist": [
+            "JWT token validation middleware",
+            "Multi-tenant data isolation",
+            "Role-based access control",
+            "Rate limiting implementation",
+            "Input validation and sanitization",
+            "SQL injection prevention",
+            "CORS configuration",
+            "Security headers implementation"
+          ],
+          "due_date": "2025-01-14",
+          "members": ["Backend Developer", "Security Engineer"]
+        },
+        {
+          "name": "📊 Invoice Management API",
+          "description": "Core invoice CRUD operations",
+          "labels": ["Backend", "API", "High Priority"],
+          "checklist": [
+            "GET /invoices with filtering and pagination",
+            "GET /invoices/:id with full details",
+            "POST /invoices with validation",
+            "PATCH /invoices/:id with business rules",
+            "DELETE /invoices/:id with restrictions",
+            "Automatic invoice number generation",
+            "Real-time total calculations",
+            "Status workflow management"
+          ],
+          "due_date": "2025-01-18",
+          "members": ["Backend Developer"]
+        },
+        {
+          "name": "📄 Invoice Actions API",
+          "description": "Invoice-specific actions (send, PDF, duplicate)",
+          "labels": ["Backend", "API", "Medium Priority"],
+          "checklist": [
+            "POST /invoices/:id/send - Email delivery",
+            "GET /invoices/:id/pdf - PDF generation",
+            "POST /invoices/:id/duplicate - Invoice copying",
+            "Email template system",
+            "PDF generation with branding",
+            "File storage and management",
+            "Email delivery tracking",
+            "Error handling and retries"
+          ],
+          "due_date": "2025-01-22",
+          "members": ["Backend Developer", "DevOps Engineer"]
+        },
+        {
+          "name": "📝 Line Items Management",
+          "description": "Invoice line items CRUD operations",
+          "labels": ["Backend", "API", "Medium Priority"],
+          "checklist": [
+            "POST /invoices/:id/line-items - Add line item",
+            "PATCH /invoices/:id/line-items/:itemId - Update item",
+            "DELETE /invoices/:id/line-items/:itemId - Remove item",
+            "PATCH /invoices/:id/line-items/reorder - Reorder items",
+            "Automatic total recalculation",
+            "Service catalog integration",
+            "Material pricing integration",
+            "Validation and business rules"
+          ],
+          "due_date": "2025-01-20",
+          "members": ["Backend Developer"]
+        },
+        {
+          "name": "💰 Payment Management API",
+          "description": "Payment recording and tracking",
+          "labels": ["Backend", "API", "Medium Priority"],
+          "checklist": [
+            "POST /invoices/:id/payments - Record payment",
+            "GET /invoices/:id/payments - Payment history",
+            "PATCH /invoices/:id/payments/:paymentId - Update payment",
+            "DELETE /invoices/:id/payments/:paymentId - Remove payment",
+            "Automatic balance calculations",
+            "Invoice status updates",
+            "Payment method validation",
+            "Overpayment handling"
+          ],
+          "due_date": "2025-01-24",
+          "members": ["Backend Developer"]
+        },
+        {
+          "name": "🔗 Integration Endpoints",
+          "description": "Integration with other system components",
+          "labels": ["Backend", "Integration", "Medium Priority"],
+          "checklist": [
+            "POST /work-orders/:id/convert-to-invoice",
+            "GET /customers/:id/invoices",
+            "GET /services/:id/pricing",
+            "GET /materials/:id/pricing",
+            "Work order data extraction",
+            "Customer analytics",
+            "Real-time pricing calculations",
+            "Cross-module data synchronization"
+          ],
+          "due_date": "2025-01-26",
+          "members": ["Backend Developer", "Integration Specialist"]
+        }
+      ]
+    },
+    {
+      "name": "🎨 Frontend Development",
+      "description": "User interface implementation tasks",
+      "cards": [
+        {
+          "name": "📋 Invoice Creation Interface",
+          "description": "Split-screen invoice creation UI",
+          "labels": ["Frontend", "UI/UX", "High Priority"],
+          "checklist": [
+            "Split-screen layout design",
+            "Customer information form",
+            "Work order details section",
+            "Line items management table",
+            "Real-time calculations display",
+            "Tax and total calculations",
+            "Form validation and error handling",
+            "Mobile responsive design"
+          ],
+          "due_date": "2025-01-25",
+          "members": ["Frontend Developer", "UI/UX Designer"]
+        },
+        {
+          "name": "📄 Invoice Preview Component",
+          "description": "Real-time invoice preview with professional formatting",
+          "labels": ["Frontend", "UI/UX", "High Priority"],
+          "checklist": [
+            "Professional invoice template",
+            "Company branding integration",
+            "Real-time preview updates",
+            "Print-ready formatting",
+            "PDF preview capability",
+            "Mobile optimization",
+            "Template customization options",
+            "Preview error handling"
+          ],
+          "due_date": "2025-01-27",
+          "members": ["Frontend Developer", "UI/UX Designer"]
+        },
+        {
+          "name": "📊 Invoice Management Dashboard",
+          "description": "Invoice list and management interface",
+          "labels": ["Frontend", "Dashboard", "Medium Priority"],
+          "checklist": [
+            "Invoice list with pagination",
+            "Advanced filtering options",
+            "Search functionality",
+            "Status indicators and badges",
+            "Bulk actions support",
+            "Quick actions menu",
+            "Export capabilities",
+            "Performance optimization"
+          ],
+          "due_date": "2025-01-30",
+          "members": ["Frontend Developer"]
+        },
+        {
+          "name": "💰 Payment Tracking Interface",
+          "description": "Payment recording and history UI",
+          "labels": ["Frontend", "Payments", "Medium Priority"],
+          "checklist": [
+            "Payment recording form",
+            "Payment history display",
+            "Balance calculations",
+            "Payment method selection",
+            "Receipt generation",
+            "Payment status indicators",
+            "Overpayment handling",
+            "Payment analytics"
+          ],
+          "due_date": "2025-02-02",
+          "members": ["Frontend Developer"]
+        },
+        {
+          "name": "📱 Mobile Optimization",
+          "description": "Mobile-friendly invoice management",
+          "labels": ["Frontend", "Mobile", "Medium Priority"],
+          "checklist": [
+            "Responsive design implementation",
+            "Touch-friendly interfaces",
+            "Mobile navigation optimization",
+            "Offline capabilities",
+            "Performance optimization",
+            "Mobile-specific features",
+            "Cross-device synchronization",
+            "Mobile testing"
+          ],
+          "due_date": "2025-02-05",
+          "members": ["Frontend Developer", "Mobile Specialist"]
+        }
+      ]
+    },
+    {
+      "name": "🧪 Testing & QA",
+      "description": "Testing, quality assurance, and validation tasks",
+      "cards": [
+        {
+          "name": "🔧 Unit Testing",
+          "description": "Backend unit tests for all API endpoints",
+          "labels": ["Testing", "Backend", "High Priority"],
+          "checklist": [
+            "Invoice management endpoint tests",
+            "Line items management tests",
+            "Payment management tests",
+            "Authentication and security tests",
+            "Database operation tests",
+            "Business logic validation tests",
+            "Error handling tests",
+            "Performance tests"
+          ],
+          "due_date": "2025-01-28",
+          "members": ["QA Engineer", "Backend Developer"]
+        },
+        {
+          "name": "🌐 Integration Testing",
+          "description": "End-to-end workflow testing",
+          "labels": ["Testing", "Integration", "High Priority"],
+          "checklist": [
+            "Work order to invoice conversion",
+            "Invoice creation to payment workflow",
+            "Email delivery testing",
+            "PDF generation testing",
+            "Multi-tenant security testing",
+            "Cross-module data synchronization",
+            "Third-party integration testing",
+            "Performance under load"
+          ],
+          "due_date": "2025-02-01",
+          "members": ["QA Engineer", "Integration Specialist"]
+        },
+        {
+          "name": "🎯 Frontend Testing",
+          "description": "UI/UX testing and validation",
+          "labels": ["Testing", "Frontend", "Medium Priority"],
+          "checklist": [
+            "Component unit tests",
+            "User interaction testing",
+            "Form validation testing",
+            "Real-time calculation testing",
+            "Mobile responsiveness testing",
+            "Cross-browser compatibility",
+            "Accessibility testing",
+            "Performance testing"
+          ],
+          "due_date": "2025-02-03",
+          "members": ["QA Engineer", "Frontend Developer"]
+        },
+        {
+          "name": "🔒 Security Testing",
+          "description": "Security validation and penetration testing",
+          "labels": ["Testing", "Security", "High Priority"],
+          "checklist": [
+            "Authentication bypass testing",
+            "Authorization testing",
+            "SQL injection testing",
+            "XSS vulnerability testing",
+            "CSRF protection testing",
+            "Rate limiting testing",
+            "Data encryption validation",
+            "Multi-tenant isolation testing"
+          ],
+          "due_date": "2025-02-04",
+          "members": ["Security Engineer", "QA Engineer"]
+        },
+        {
+          "name": "📊 Performance Testing",
+          "description": "Load testing and performance optimization",
+          "labels": ["Testing", "Performance", "Medium Priority"],
+          "checklist": [
+            "API endpoint load testing",
+            "Database performance testing",
+            "PDF generation performance",
+            "Email delivery performance",
+            "Frontend rendering performance",
+            "Mobile performance testing",
+            "Concurrent user testing",
+            "Scalability testing"
+          ],
+          "due_date": "2025-02-06",
+          "members": ["Performance Engineer", "DevOps Engineer"]
+        }
+      ]
+    },
+    {
+      "name": "🚀 Deployment & DevOps",
+      "description": "Deployment, infrastructure, and DevOps tasks",
+      "cards": [
+        {
+          "name": "🏗️ Infrastructure Setup",
+          "description": "Production infrastructure and environment setup",
+          "labels": ["DevOps", "Infrastructure", "High Priority"],
+          "checklist": [
+            "Production server configuration",
+            "Database setup and optimization",
+            "Load balancer configuration",
+            "SSL certificate installation",
+            "Backup and recovery setup",
+            "Monitoring and alerting",
+            "Log aggregation setup",
+            "Security hardening"
+          ],
+          "due_date": "2025-01-30",
+          "members": ["DevOps Engineer", "System Administrator"]
+        },
+        {
+          "name": "🔄 CI/CD Pipeline",
+          "description": "Continuous integration and deployment pipeline",
+          "labels": ["DevOps", "Automation", "High Priority"],
+          "checklist": [
+            "GitHub Actions workflow setup",
+            "Automated testing pipeline",
+            "Code quality checks",
+            "Security scanning",
+            "Automated deployment",
+            "Rollback procedures",
+            "Environment promotion",
+            "Deployment notifications"
+          ],
+          "due_date": "2025-02-01",
+          "members": ["DevOps Engineer"]
+        },
+        {
+          "name": "📊 Monitoring & Analytics",
+          "description": "Production monitoring and analytics setup",
+          "labels": ["DevOps", "Monitoring", "Medium Priority"],
+          "checklist": [
+            "Application performance monitoring",
+            "Error tracking and alerting",
+            "Database performance monitoring",
+            "API usage analytics",
+            "User behavior tracking",
+            "Business metrics dashboard",
+            "Uptime monitoring",
+            "Capacity planning"
+          ],
+          "due_date": "2025-02-05",
+          "members": ["DevOps Engineer", "Data Analyst"]
+        },
+        {
+          "name": "🔐 Security Hardening",
+          "description": "Production security implementation",
+          "labels": ["DevOps", "Security", "High Priority"],
+          "checklist": [
+            "Firewall configuration",
+            "VPN setup for admin access",
+            "Database security hardening",
+            "API rate limiting",
+            "DDoS protection",
+            "Intrusion detection",
+            "Security audit logging",
+            "Compliance validation"
+          ],
+          "due_date": "2025-02-03",
+          "members": ["Security Engineer", "DevOps Engineer"]
+        }
+      ]
+    },
+    {
+      "name": "📚 Documentation",
+      "description": "Documentation and knowledge management",
+      "cards": [
+        {
+          "name": "📖 API Documentation",
+          "description": "Comprehensive API documentation",
+          "labels": ["Documentation", "API", "Medium Priority"],
+          "checklist": [
+            "OpenAPI specification",
+            "Endpoint documentation",
+            "Authentication guide",
+            "Error code reference",
+            "SDK documentation",
+            "Integration examples",
+            "Troubleshooting guide",
+            "FAQ section"
+          ],
+          "due_date": "2025-02-01",
+          "members": ["Technical Writer", "API Designer"]
+        },
+        {
+          "name": "👥 User Documentation",
+          "description": "End-user guides and tutorials",
+          "labels": ["Documentation", "User Guide", "Medium Priority"],
+          "checklist": [
+            "Invoice creation guide",
+            "Payment processing guide",
+            "PDF generation tutorial",
+            "Email delivery setup",
+            "Mobile app usage guide",
+            "Troubleshooting guide",
+            "Video tutorials",
+            "Best practices guide"
+          ],
+          "due_date": "2025-02-08",
+          "members": ["Technical Writer", "UX Designer"]
+        },
+        {
+          "name": "🔧 Developer Documentation",
+          "description": "Technical documentation for developers",
+          "labels": ["Documentation", "Developer", "Medium Priority"],
+          "checklist": [
+            "Architecture overview",
+            "Database schema documentation",
+            "Code style guide",
+            "Development setup guide",
+            "Testing procedures",
+            "Deployment guide",
+            "Contributing guidelines",
+            "Code review checklist"
+          ],
+          "due_date": "2025-02-10",
+          "members": ["Technical Writer", "Lead Developer"]
+        }
+      ]
+    },
+    {
+      "name": "🔄 In Progress",
+      "description": "Currently active tasks",
+      "cards": []
+    },
+    {
+      "name": "👀 Code Review",
+      "description": "Tasks pending code review",
+      "cards": []
+    },
+    {
+      "name": "🧪 Testing",
+      "description": "Tasks in testing phase",
+      "cards": []
+    },
+    {
+      "name": "✅ Done",
+      "description": "Completed tasks",
+      "cards": []
+    }
+  ],
+  "labels": [
+    {
+      "name": "High Priority",
+      "color": "red"
+    },
+    {
+      "name": "Medium Priority",
+      "color": "yellow"
+    },
+    {
+      "name": "Low Priority",
+      "color": "green"
+    },
+    {
+      "name": "Backend",
+      "color": "blue"
+    },
+    {
+      "name": "Frontend",
+      "color": "purple"
+    },
+    {
+      "name": "Database",
+      "color": "orange"
+    },
+    {
+      "name": "API",
+      "color": "sky"
+    },
+    {
+      "name": "Testing",
+      "color": "lime"
+    },
+    {
+      "name": "Security",
+      "color": "pink"
+    },
+    {
+      "name": "DevOps",
+      "color": "black"
+    },
+    {
+      "name": "Documentation",
+      "color": "light_blue"
+    },
+    {
+      "name": "UI/UX",
+      "color": "light_green"
+    },
+    {
+      "name": "Integration",
+      "color": "light_orange"
+    },
+    {
+      "name": "Performance",
+      "color": "light_purple"
+    },
+    {
+      "name": "Mobile",
+      "color": "light_pink"
+    }
+  ],
+  "power_ups": [
+    "Calendar",
+    "Butler (Automation)",
+    "Custom Fields",
+    "Voting",
+    "Card Aging"
+  ]
+}
+

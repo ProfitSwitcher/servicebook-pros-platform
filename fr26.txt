@@ -1,0 +1,313 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Indoor Main Panel 200 Amp
+Indoor Main Panel 200 Amp
+1-27 of 27
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+200 Amp Flush Mount Siemens Panel 30/48
+
+Sn3048b1200 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816369
+
+$1,641.26
+
+service
+200 Amp Flush Mount Eaton Ch Panel 32 W/ Surge
+
+Chec32b200k interior panel w/ cover & main / no other breakers / wiring or grounding / panel equiped w/ surge protection
+
+Profit Rhino
+
+T816370
+
+$1,850.59
+
+service
+200 Amp Flush Mount Sq D Homeline Panel 12/24
+
+Hom1224m200tc interior panel w/cover / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812304
+
+$1,578.12
+
+service
+200 Amp Flush Mount Sq D Homeline Panel 20/40
+
+Hom2040m200c plug on neutral interior panel w/cover / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812305
+
+$1,602.23
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+200 Amp Flush Mount Sq D Homeline Panel 42/84
+
+Hom4284m200pc interior panel w/cover / no breakers / wiring or grounding
+
+Profit Rhino
+
+T816329
+
+$1,653.19
+
+service
+200 Amp Flush Mount Sq D Homeline Panel 40/80
+
+Hom4080m200pqc interior panel w/cover / no breakers / wiring or grounding
+
+Profit Rhino
+
+T816330
+
+$1,595.44
+
+service
+200 Amp Flush Mount Sq D Qo Panel 42/52
+
+Qo142m200pc interior panel plug on neutral w/cover / no breakers / wiring or grounding
+
+Profit Rhino
+
+T816331
+
+$1,825.83
+
+service
+200 Amp Flush Mount Sq D Qo Panel 40/40
+
+Qo140m200c interior panel w/cover / no breakers / wiring or grounding
+
+Profit Rhino
+
+T816332
+
+$1,833.95
+
+service
+200 Amp Flush Mount Siemens Panel 20/40
+
+Sn2040b1200 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816342
+
+$1,639.14
+
+service
+200 Amp Flush Mount Siemens Gen Ready 30/42
+
+W3042b1200gen nema 3 interior panel w/ cover & main / no other breakers / wiring or grounding / no transfer switch included
+
+Profit Rhino
+
+T816349
+
+$1,991.48
+
+service
+200 Amp Flush Mount Eaton Panel 80 Space
+
+Brp40b200 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816357
+
+$1,610.84
+
+service
+200 Amp Flush Mount Siemens Panel 40/40 Copper
+
+Pn4040b1200c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816358
+
+$1,717.49
+
+service
+200 Amp Flush Mount Square D Qo Panel 42/52
+
+Qo142m200pc plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816359
+
+$1,825.83
+
+service
+200 Amp Flush Mount Siemens Panel 40/40
+
+Sn4040b1200 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816360
+
+$1,675.14
+
+service
+200 Amp Flush Mount Ge Panel 32/40
+
+Tm3220ccup interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816361
+
+$1,551.32
+
+service
+200 Amp Flush Mount Eaton Panel 40 Space
+
+Brp20b200 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816362
+
+$1,574.27
+
+service
+200 Amp Flush Mount Siemens Panel 30/48 Copper
+
+Pn3048b1200c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816363
+
+$1,699.50
+
+service
+200 Amp Flush Mount Eaton Ch Panel 42 W/ Surge
+
+Chsur42b200l2 interior panel w/ cover & main / no other breakers / wiring or grounding / panel equiped w/ surge protection
+
+Profit Rhino
+
+T816364
+
+$2,231.74
+
+service
+200 Amp Flush Mount Siemens Panel 20/40 Copper
+
+Pn2040b1200c plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816365
+
+$1,634.90
+
+service
+200 Amp Flush Mount Siemens Panel 30/48
+
+Sn3048b1100 plug on neutral interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816366
+
+$1,537.50
+
+service
+200 Amp Flush Mount Siemens Panel 40/40
+
+P4040b1200cu interior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816368
+
+$1,666.67
+
+1-27 of 27
+

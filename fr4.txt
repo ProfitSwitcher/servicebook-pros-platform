@@ -1,0 +1,192 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Troubleshooting, Code & Repair
+Code Violations
+Code Violations
+1-16 of 16
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Ground Ungrounded Outlet Or Switch First
+
+Ground source must be available in box or wiring proper grounding is required to prevent shock or fatal electrocution. If a device or switch is ungrounded it requires immediate attention
+
+Profit Rhino
+
+T811274
+
+$172.20
+
+service
+Ground Ungrounded Outlet Or Switch Each Added
+
+Ground source must be available in box or wiring proper grounding is required to prevent shock or fatal electrocution. If a device or switch is ungrounded it requires immediate attention
+
+Profit Rhino
+
+T811275
+
+$100.00
+
+service
+Live Wire Cap Off & Termination In Box
+
+1 or 2 gang plastic box w blank plate we will terminate your electrical wiring in a safe manner inside your existing junction box. If a junction box does not exist we may charge to add one
+
+Profit Rhino
+
+T811968
+
+$175.20
+
+service
+Quad Metal Blank Ss
+
+Covers keep the elements out and minimizes safety hazards
+
+Profit Rhino
+
+T812190
+
+$104.84
+
+service
+#6 Bare Copper Wire First 10 Feet
+
+Bare copper wire is typically used in grounding electrical systems
+
+Profit Rhino
+
+T816044
+
+$261.50
+
+service
+#6 Bare Copper Wire Each Added Foot
+
+Bare copper wire is typically used in grounding electrical systems
+
+Profit Rhino
+
+T816045
+
+$74.60
+
+service
+Free Air Splice Repair Up To 30 Amps
+
+2 boxes and jumper free air splices are where electrical wires have been connected outside of a junction box. These connections are a code violation and present a possible shock hazard. We will create a new splice inside an approved junction box and test the circuit for proper operation
+
+Profit Rhino
+
+T811956
+
+$281.80
+
+service
+Free Air Splice Repair Up To 30 Amps (Aluminum)
+
+3 boxes and jumper free air splices are where electrical wires have been connected outside of a junction box. These connections are a code violation and present a possible shock hazard. We will create a new splice inside an approved junction box and test the circuit for proper operation
+
+Profit Rhino
+
+T811957
+
+$304.80
+
+service
+Add Extra Box For Free Splice
+
+Sometimes we may need extra material to complete your repair. This is one example of additional items we may need because the splice we are making can't be contained in one box or a second box is required at the other end of a spliced wire
+
+Profit Rhino
+
+T811958
+
+$115.00
+
+service
+Free Air Splice Repair Up To 50 Amps
+
+2 boxes and jumper free air splices are where electrical wires have been connected outside of a junction box. These connections are a code violation and present a possible shock hazard. We will create a new splice inside an approved junction box and test the circuit for proper operation
+
+Profit Rhino
+
+T811959
+
+$394.30
+
+service
+Free Air Splice Repair Up To 50 Amps (Aluminum)
+
+3 boxes and jumper free air splices are where electrical wires have been connected outside of a junction box. These connections are a code violation and present a possible shock hazard. We will create a new splice inside an approved junction box and test the circuit for proper operation
+
+Profit Rhino
+
+T811960
+
+$449.30
+
+service
+Add Extra Box For Free Splice (Aluminum)
+
+When repairing a splice that is exposed to the elements we will use a PVC weatherproof box
+
+Profit Rhino
+
+T811961
+
+$140.00
+
+service
+2 Prong Outlet Replacement No Ground
+
+2 prong outlet replacement only may require change to afgf outlet many cords today have a ground prong and will not work with older two prong outlets. We will change your outlet however this does not necessarily make the outlet grounded if a ground wire is not in the outlet box. We will alert you to any issues like this and explain your options to properly ground your outlets
+
+Profit Rhino
+
+T811962
+
+$129.56
+
+service
+2 Prong Outlet To Afci/Gfci No Ground
+
+Remove 2 prong outlet and replace with afci/gfci outlet many cords today have a ground prong and will not work with older two prong outlets. We will change your 2 prong outlet to an afci/gfci outlet however this does not mean a ground wire is present in the outlet box. We will alert you to any issues like this and explain your options to properly ground your outlets including the use of a afci/gfci breaker to cover the entire circuit
+
+Profit Rhino
+
+T811963
+
+$202.70
+
+service
+Install Two 6-8 Ft Ground Rods & Clamps #6
+
+2 ground rods 20 ft # 6 bare two ground rods wired to an electrical service are a code requirement and needed for your safety. If your service is not correctly grounded per code, we will install a new grounding system with rods, wire and rod clamps
+
+Profit Rhino
+
+T811965
+
+$526.02
+
+service
+Install Two 6-8 Ft Ground Rods & Clamps #4
+
+Soft soil / up to 5/8 in x 8 ft rods & clamps w/ 20 ft #4 bare wire two ground rods wired to an electrical service are a code requirement and needed for your safety. If your service is not correctly grounded or the grounding system has become damaged we will install a new ground rods and connect to the grounding wire per code
+
+Profit Rhino
+
+T811691
+
+$537.82
+
+1-16 of 16
+

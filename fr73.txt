@@ -1,0 +1,1507 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Trenching
+Trenching
+1-8 of 8
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+24 In Trench Per 10 Ft In Medium Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812132
+
+$769.50
+
+service
+24 In Trench Per 10 Ft In Hard Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812133
+
+$1,155.20
+
+service
+24 In Trench Per 10 Ft In Rocky/Root Filled Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812134
+
+$1,352.80
+
+service
+18 In Trench Per 10 Ft In Soft Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812127
+
+$475.00
+
+service
+18 In Trench Per 10 Ft In Medium Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812128
+
+$670.70
+
+service
+18 In Trench Per 10 Ft In Hard Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812129
+
+$1,060.20
+
+service
+18 In Trench Per 10 Ft In Rocky/Root Filled Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812130
+
+$1,250.20
+
+service
+24 In Trench Per 10 Ft In Soft Soil
+
+Dig and fill manually
+
+Profit Rhino
+
+T812131
+
+$575.70
+
+1-8 of 8
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Cleaning
+Cleaning
+1-3 of 3
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Treat Ant Nest
+
+Pests can be a nuisance and/or danger to the tech and/or homeowner
+
+Profit Rhino
+
+T812282
+
+$90.50
+
+service
+Treat Wasp Nest
+
+Pests can be a nuisance and/or danger to the tech and/or homeowner
+
+Profit Rhino
+
+T812283
+
+$137.80
+
+service
+Remove Spiders From Panel
+
+Pests can be a nuisance and/or danger to the tech and/or homeowner
+
+Profit Rhino
+
+T812284
+
+$156.80
+
+1-3 of 3
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Non Specific Work
+Non Specific Work
+1-8 of 8
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Non Specific Repair Level 1
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812267
+
+$137.80
+
+service
+Non Specific Repair Level 2
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812268
+
+$187.20
+
+service
+Non Specific Repair Level 3
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812269
+
+$238.50
+
+service
+Non Specific Repair Level 4
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812270
+
+$289.80
+
+service
+Non Specific Repair Level 5
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812271
+
+$343.00
+
+service
+Non Specific Repair Level 6
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812272
+
+$394.30
+
+service
+Non Specific Repair Level 7
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812273
+
+$443.70
+
+service
+Non Specific Repair Level 8
+
+Sometimes we come across a labor-only task that doesn’t have it’s own “repair” in the system
+
+Profit Rhino
+
+T812274
+
+$495.00
+
+1-8 of 8
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Helpers & Parts Acquisition
+Helpers & Parts Acquisition
+1-8 of 8
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Emergency Supply House Charge
+
+Fee to open supply house after hours or on weekends or holidays some supply houses will open for us after hours, on weekends or holidays, for an extra charge. We have no control over this fee and in some cases it means we may have to travel to a supply house that is farther than normal if it is the only supplier that offers emergency after hour pick up of parts
+
+Profit Rhino
+
+T814637
+
+$269.80
+
+service
+Second Man On Job 1/4 Day
+
+Another tech can help move larger equipment, appliances, needed for manual labor like trenching, or to complete the job efficiently and safely
+
+Profit Rhino
+
+T812275
+
+$475.00
+
+service
+Second Man On Job 1/2 Day
+
+Another tech can help move larger equipment, appliances, needed for manual labor like trenching, or to complete the job efficiently and safely
+
+Profit Rhino
+
+T812276
+
+$864.50
+
+service
+Second Man On Job 3/4 Day
+
+Another tech can help move larger equipment, appliances, needed for manual labor like trenching, or to complete the job efficiently and safely
+
+Profit Rhino
+
+T812277
+
+$1,250.20
+
+service
+Second Man On Job Full Day
+
+Another tech can help move larger equipment, appliances, needed for manual labor like trenching, or to complete the job efficiently and safely
+
+Profit Rhino
+
+T812278
+
+$1,637.80
+
+service
+Parts Courier To Deliver To Job
+
+If we need a special runner to deliver parts or pick them up at a supply house we must charge for that service
+
+Profit Rhino
+
+T812279
+
+$218.50
+
+service
+Leave Job To Retrieve Parts
+
+We are unable to bill for our vehicle, time, or work inefficiency when driving to collect parts for your job. We use this charge to cover those times
+
+Profit Rhino
+
+T812280
+
+$269.80
+
+service
+Special Order Shipping And Proccessing
+
+Special order shipping and proccessing
+
+Profit Rhino
+
+T812281
+
+$152.80
+
+1-8 of 8
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Access & Height Issues
+Access & Height Issues
+1-19 of 19
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Ceiling Cut 14 - 20 Ft Add On And Call Office
+
+2nd man doing any work on a ceiling over 12 ft high requires taller ladders, adds more risk to the work and complicates all work we are doing. We have a charge to cover these situations
+
+Profit Rhino
+
+T812046
+
+$475.00
+
+service
+Closed Wall Add On
+
+Used when task is not accessible open wall used when there is limited or no open access through a wall, we must charge to open a wall or ceiling for access
+
+Profit Rhino
+
+T700172
+
+$190.00
+
+service
+Add For Tight Attic Access On Fan Install
+
+Reduced attic access or limited space where we are working complicates any installation so we have a separate fee for this situation
+
+Profit Rhino
+
+T812262
+
+$269.80
+
+service
+Limited Access Tracing Short M1l1
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811940
+
+$269.80
+
+service
+Limited Access Tracing Short M1l2
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811941
+
+$475.00
+
+service
+Limited Access Tracing Short M1l3
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811942
+
+$690.70
+
+service
+Complicated Or Restricted Work Access M1l8
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811955
+
+$1,657.80
+
+service
+Jobs Requiring 12 Ft Ladder
+
+If 2nd man is required see helpers & part aquisition under miscellaneous electrical ladders always add risk to the job and increase the work required to complete your job
+
+Profit Rhino
+
+T700286
+
+$136.80
+
+service
+Jobs Requiring 16 Ft Ladder
+
+If 2nd man is required see helpers & part aquisition under miscellaneous electrical ladders always add risk to the job and increase the work required to complete your job
+
+Profit Rhino
+
+T700285
+
+$174.80
+
+service
+Limited Access Tracing Short M1l4
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811943
+
+$884.50
+
+service
+Limited Access Tracing Short M1l5
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811944
+
+$1,080.20
+
+service
+Limited Access Tracing Short M1l6
+
+Includes use of circuit tracer shorts can be difficult to trace is access is limited. This is a charge used where we have complicated access to wiring, panels or boxes
+
+Profit Rhino
+
+T811945
+
+$1,270.20
+
+service
+Complicated Or Restricted Work Access M1l1
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811948
+
+$269.80
+
+service
+Complicated Or Restricted Work Access M1l2
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811949
+
+$475.00
+
+service
+Complicated Or Restricted Work Access M1l3
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811950
+
+$690.70
+
+service
+Complicated Or Restricted Work Access M1l4
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811951
+
+$884.50
+
+service
+Complicated Or Restricted Work Access M1l5
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811952
+
+$1,080.20
+
+service
+Complicated Or Restricted Work Access M1l6
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811953
+
+$1,270.20
+
+service
+Complicated Or Restricted Work Access M1l7
+
+If the area that needs service is difficult to get to, we must add for the complication that is involved in working in a limited space
+
+Profit Rhino
+
+T811954
+
+$1,467.80
+
+1-19 of 19
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Equipment Rental
+Equipment Rental
+1-10 of 10
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+1/2 Day Heavy Equipment Rental
+
+Backhoe or large scissor lift / delivery to jobsite might require a surcharge
+
+Profit Rhino
+
+T811793
+
+$525.00
+
+service
+Full Day Light Equipment Rental
+
+Trenche or auger or small lift / delivery to jobsite might require a surcharge sometimes we may need to rent specialized equipment to complete our work. This fee coveres the rental of such equipment
+
+Profit Rhino
+
+T811794
+
+$800.00
+
+service
+Portable Generator Use For Up To One Day
+
+We may need to shut down power at your location for an extended period of time. While power is off we can provide a generator for your minimum electrical requirements such as medical equipment or refrigerator or freezer
+
+Profit Rhino
+
+T811795
+
+$269.80
+
+service
+Pickup & Delivery Of Rental Equipment To Site
+
+Some rental services may charge to pick up or deliver their equipment to your job or we may have to use our own trucks to deliver and return the equipment. This charge covers those expenses
+
+Profit Rhino
+
+T811796
+
+$475.00
+
+service
+Use Of Trencher (Half Day)
+
+Tool usage fee sometimes wiring or conduit need to be buried in the ground, and we will use a powered device to dig the ditch for wire burial in longer runs. In most cases renting a trencher is a lower cost than paying for workers to dig ditched especially in harder root or rocky soil
+
+Profit Rhino
+
+T811797
+
+$269.80
+
+service
+Use Of Trencher (Full Day)
+
+Sometimes wiring or conduit need to be buried in the ground, and we will use a powered device to dig the ditch for wire burial in longer runs. In most cases renting a trencher is a lower cost than paying for workers to dig ditched especially in harder root or rocky soil
+
+Profit Rhino
+
+T811798
+
+$475.00
+
+service
+Power Auger Use (Half Day)
+
+Augers are used for drilling holes in wood or the ground. This is a specialized piece of equipment we may need to rent for installing posts for lighting or other reasons
+
+Profit Rhino
+
+T811799
+
+$269.80
+
+service
+Power Auger Use (Full Day)
+
+Augers are used for drilling holes in wood or the ground. This is a specialized piece of equipment we may need to rent for installing posts for lighting or other reasons
+
+Profit Rhino
+
+T811800
+
+$475.00
+
+service
+Company Owned Lift (Half Day)
+
+Company owned lift (half day)
+
+Profit Rhino
+
+T811801
+
+$269.80
+
+service
+Company Owned Lift (Full Day)
+
+Company owned lift (full day)
+
+Profit Rhino
+
+T811802
+
+$475.00
+
+1-10 of 10
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Aluminum To Copper Repairs
+Aluminum To Copper Repairs
+1-7 of 7
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Pigtail Aluminum To Copper Wire In Panel Lvl2
+
+Multiple circuits with 6 in #12 thhn / 2 purple wire nuts when aluminum wire shows signs of overheating at termination points we may offer to create a copper pigtail. Replacing your aluminum wire may be a better long term idea, our tech can discuss the costs with you
+
+Profit Rhino
+
+T813483
+
+$253.50
+
+service
+Install Alumiconn Per Switch
+
+This specialized wiring connector helps prevent corrosion to aluminum wire and is the best method to connect wires of different materials on one circuit that is using an aluminum conductor
+
+Profit Rhino
+
+T813485
+
+$189.20
+
+service
+15 Amp Co/Alr Duplex Receptacle Replacement
+
+Electrical outlets may need to be replaced due to wear and tear. Using a defective outlet may result in shock or fire and should be addressed immediately
+
+Profit Rhino
+
+T813486
+
+$135.88
+
+service
+Install Alumiconn Per Outlet
+
+Outlet must have unobstructed access this specialized wiring connector helps prevent corrosion to aluminum wire and is the best method to connect wires of different materials on one circuit that is using an aluminum conductor
+
+Profit Rhino
+
+T813484
+
+$200.60
+
+service
+15 Amp Co/Alr 1 Pole Switch Replacement
+
+15 amp co/alr 1 pole switch replacement
+
+Profit Rhino
+
+T813487
+
+$140.24
+
+service
+15 Amp Co/Alr 3 Way Switch Replacement
+
+Switches turn current on and off to various fixtures and occasionally need replaced due to wear and tear or to be upgraded to higher quality or better features
+
+Profit Rhino
+
+T813488
+
+$148.21
+
+service
+Pigtail Aluminum To Copper Wire In Panel Lvl1
+
+Single circuit with 6 in #12 thhn / 2 purple wire nuts when aluminum wire shows signs of overheating at termination points we may offer to create a copper pigtail. Replacing your aluminum wire may be a better long term idea, our tech can discuss the costs with you
+
+Profit Rhino
+
+T811964
+
+$185.12
+
+1-7 of 7
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Miscellaneous Electrical Repairs
+Miscellaneous Electrical Repairs
+1-17 of 17
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Replace Fan Or Light Pull Chain Switch
+
+Good solution for an incandescent lamp holder or ceiling fan where in wall wiring is not practical, featuring a sturdy, nickel-plated screw shell and a medium-size base
+
+Profit Rhino
+
+T700287
+
+$186.80
+
+service
+Single Pole Pull Chain Switch
+
+Pull chain switches are an economical switch that does not require in wall wiring
+
+Profit Rhino
+
+T812146
+
+$137.40
+
+service
+Live Wire Cap Off & Termination In Box
+
+1 or 2 gang plastic box w blank plate we will terminate your electrical wiring in a safe manner inside your existing junction box. If a junction box does not exist we may charge to add one
+
+Profit Rhino
+
+T811968
+
+$175.20
+
+service
+Reverse Polarity On One Device
+
+If the neutral wire is connected to where the hot wire should go an outlet is always on even if the appliance is off which creates a higher chance of electrical shock. We will correct the wiring to be correct and test the outlet when we are done
+
+Profit Rhino
+
+T813509
+
+$117.80
+
+service
+Replace Gasket On Weatherproof Cover & Seal
+
+Weatherproof covers keep the elements out and minimizes safety hazards
+
+Profit Rhino
+
+T814051
+
+$90.50
+
+service
+Disconnect Or Reconnect Live Service
+
+Includes connectors & testing of service voltage / height under 10 ft or height surcharge may apply good solution for a reconnect or disconnect of live service is to have a professional electrician ensure it is made safe
+
+Profit Rhino
+
+T700206
+
+$188.28
+
+service
+Replace Cord Plug End Female
+
+Plug end only cord plugs can get damaged and need to replaced. If not, they can cause malfunctions and/or safety hazards
+
+Profit Rhino
+
+T814087
+
+$145.76
+
+service
+Conceal Customers Wire In Wall To 7 Ft
+
+Includes two old work low voltage brackets and two white brush plates / snake customer provided hdmi cable through boxes need wires concealed? we can do that for you!
+
+Profit Rhino
+
+T700133
+
+$151.80
+
+service
+1/2 In Acc Nm Strain Relief Cord Connector
+
+Each
+
+Profit Rhino
+
+T816303
+
+$86.40
+
+service
+3/4 In Acc Nm Strain Relief Cord Connector
+
+Each
+
+Profit Rhino
+
+T816304
+
+$90.08
+
+service
+Seal Top Of Meter Ring W/ Silicon
+
+Water should not enter a meter can as it presents a shock or electrocution risk and can damage the electrical meter leading to wrong consumption readings. We will seal your meter can with a long-lasting weatherproof silicon as an alternative to replacement
+
+Profit Rhino
+
+T813505
+
+$141.20
+
+service
+Add Suspended Ceiling Support Wires For Light
+
+Suspended ceilings can handle a limited amount of weight. We can add extra support when installing fixtures to prevent your suspended ceiling from bowing or collapsing
+
+Profit Rhino
+
+T814038
+
+$129.80
+
+service
+Replace Cord Plug End Male
+
+Plug end only cord plugs can get damaged and need to replaced. If not, they can cause malfunctions and/or safety hazards
+
+Profit Rhino
+
+T814086
+
+$141.92
+
+service
+Separate Neutrals From Grounds In Panel
+
+Ground bar in panel not included all electrical circuits must be bonded with the neutral wires separated from the ground wires to prevent the risk of electrocution and to ensure the circuit protection devices function as designed
+
+Profit Rhino
+
+T813502
+
+$281.80
+
+service
+Eliminate Switch Or Outlet & Cover W/ Plate
+
+Wall plates protect the switch/outlet and give the wall a more finished look
+
+Profit Rhino
+
+T813510
+
+$122.80
+
+service
+4 X 2 Ft 4 Bulb Drop In White Acrylic Lens
+
+Lens only lay in fixture lenses can bow or become cracked or discolored with age. We will replace your lens with a new white acrylic prismatic lens
+
+Profit Rhino
+
+T811237
+
+$168.89
+
+service
+4 Ft 2 Bulb Wrap Around Prismatic Lens Only
+
+Lens only
+
+Profit Rhino
+
+T811238
+
+$198.45
+
+1-17 of 17
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Time Clocks Digital
+Time Clocks Digital
+1-13 of 13
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+40 Amp 120/240/277 Voltage Detecting 7 Day Timer
+
+Timers are used for a variety of applications from controlling when lighting turns on and off to controlling water heaters and sprinkler systems
+
+Profit Rhino
+
+T811848
+
+$395.46
+
+service
+40 Amp Industrial Digital 7 Day Timer
+
+11080 Watts timers are used for a variety of applications from controlling when lighting turns on and off to controlling water heaters and sprinkler systems
+
+Profit Rhino
+
+T811849
+
+$476.38
+
+service
+40 Amp Digital 24 Hour Gen Purpose Timer
+
+11080 Watts timers are used for a variety of applications from controlling when lighting turns on and off to controlling water heaters and sprinkler systems
+
+Profit Rhino
+
+T811850
+
+$437.96
+
+service
+Reprogram 7 Day Timer Or Instruct Customer
+
+Sometimes a thermostat just needs to be reprogrammed
+
+Profit Rhino
+
+T813480
+
+$167.20
+
+service
+Digital Water Heater 30a 240v Dpst Time Clock
+
+Digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813863
+
+$441.94
+
+service
+Digital 30a 24 Hour 2 X Spst Time Clock
+
+Up to 28 events / 2 circuit w/ daylight savings adjustment / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813867
+
+$580.07
+
+service
+Digital 24 Hour 20 Amp 120v Exterior Time Clock
+
+Digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813862
+
+$578.89
+
+service
+Install Customer Provided Timer
+
+Need this installed? we can do that for you!
+
+Profit Rhino
+
+T812263
+
+$175.20
+
+service
+Digital 30a 7 Day 2 X Spst Time Clock
+
+Up to 28 events / 2 circuit w/ daylight savings adjustment / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813869
+
+$723.06
+
+service
+Digital 30a 7 Day Spst Astronomic Time Clock
+
+Up to 28 events / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813865
+
+$664.22
+
+service
+Digital 30a 7 Day 2 X Spst Astronomic Time Clock
+
+Up to 28 events / 2 circuit / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813870
+
+$772.90
+
+service
+Digital 30a 24 Hour Spst Time Clock
+
+Up to 28 events / 1 circuit w/ daylight savings adjustment / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813866
+
+$587.87
+
+service
+Digital 30a 7 Day Spst Time Clock
+
+Up to 28 events / 1 circuit w/ daylight savings adjustment / indoor or outdoor use / 120/277v digital time clocks are accurate and easier to adjust and change than older mechanical time clocks. We will install one of these new timers and initially program it for you
+
+Profit Rhino
+
+T813868
+
+$673.22
+
+1-13 of 13
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Time Clocks Mechanical
+Time Clocks Mechanical
+1-16 of 16
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+40 Amp 24 Hour Mechanical Dpst 240v Timer
+
+11080 Watts timers are used for a variety of applications from controlling when lighting turns on and off to controlling water heaters and sprinkler systems
+
+Profit Rhino
+
+T811851
+
+$466.02
+
+service
+40 Amp 24 Hour Mech Dpst 240v Timer W/ Skipper
+
+5000 Watts timers are used for a variety of applications from controlling when lighting turns on and off to controlling water heaters and sprinkler systems
+
+Profit Rhino
+
+T811852
+
+$641.77
+
+service
+Mechanical 24 Hour 120/277v Timer W/ Skipper
+
+40 amp / 10 on/off per day / nema3 enclosure / t170 series timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813861
+
+$539.00
+
+service
+Mechanical 24 Hour 240v Exterior Time Clock Dpst
+
+40 amp timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813859
+
+$407.72
+
+service
+Mechanical 24 Hour 240v Interior Time Clock Dpst
+
+40 amp timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813858
+
+$392.90
+
+service
+Replace Mechanical Timer Mechanisim
+
+Timer mechanisms are the internal workings of a mechanical clock that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanism is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T812250
+
+$321.16
+
+service
+Install Customer Provided Timer
+
+Need this installed? we can do that for you!
+
+Profit Rhino
+
+T812263
+
+$175.20
+
+service
+Mechanical 40a 60 Min Mech Water Heater Timer
+
+Indoor use only timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813856
+
+$373.54
+
+service
+40 Amp Mech Timer 24 Hour Nema Enclosed
+
+To replace existing defective time clock. Dpdt good solution for new or replacement timer mechanism, ideal for residential, commercial and industrial uses. Device comes standard with one "on" and "off" tripper and allows for up to a dozen "on/off" operations daily. Device leads industry in hp ratings
+
+Profit Rhino
+
+T700226
+
+$287.20
+
+service
+Mechanical 40a 7 Day Exter Time Clock (Tb7000)
+
+120v 4pst 2 events per day on/off timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813873
+
+$602.53
+
+service
+Mechanical 20a 7 Day Inter Compact Timer
+
+42 on/off per week / 120v timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813871
+
+$545.36
+
+service
+Mechanical 40a 7 Day Inter Time Clock (Tb7000)
+
+120v 4pst 2 events per day on/off timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813872
+
+$541.12
+
+service
+Mechanical 24 Hour 120v Outdoor Time Clock Spst
+
+40 amp timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813857
+
+$402.58
+
+service
+Mechanical 40a 7 Day Inter Time Clock (Tb8000)
+
+240v 2pst 2 events per day on/off timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813874
+
+$562.30
+
+service
+Mechanical 24 Hour 120/480v Timer W/ Skipper
+
+40 amp / 10 on/off per day / nema3 enclosure / t1400 series timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813860
+
+$583.47
+
+service
+Mechanical All Purpose 40a Auto Voltage Timer
+
+24 hour indoor or outdoor use 120/277v w/ battery back up / dpdt timer clocks that can break or get corroded and need to either be replaced or the entire timer needs replaced. Replacing a mechanical timer is the lowest priced alternative but you may want to consider installing one of the more accurate digital timers on the market today
+
+Profit Rhino
+
+T813864
+
+$379.66
+
+1-16 of 16
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Miscellaneous Electrical
+Transformers & Power Packs
+Transformers & Power Packs
+1-12 of 12
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+20 Amp 120/277 Heavy Duty Switchpack Transformer
+
+Compatible with magnetic or electronic ballasts components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814100
+
+$272.02
+
+service
+3000va @ 277v Mark 10 Powerline Extender
+
+Components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814106
+
+$574.52
+
+service
+20 Amp 120/277v Power Pack W/ HVAC Relay
+
+For levitron occupancy sensors fluorescent or incandescent components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814103
+
+$286.52
+
+service
+20 Amp 24v Power Pack W/ Dry Contact Relay
+
+For levitron occupancy sensors components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814101
+
+$286.54
+
+service
+Economy Transformer 50 Va 120/240v
+
+Steps to 24v transformers convert power to different voltages and type of current. We will replace your transformer with the correct sized unit to get your device up and running again
+
+Profit Rhino
+
+T814116
+
+$223.15
+
+service
+20 Amp Standard Occupancy Sensor Power Pack
+
+Occupancy sensor auto or manual on local switch with latching relay components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814102
+
+$272.02
+
+service
+10 Watt 12 Volt A/C Electronic Transformer
+
+Components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T813431
+
+$353.70
+
+service
+Tri Volt Transformer 8/16/24v Dc At 20va 120v
+
+Transformers are subject to overheating and electrical spikes and may need replaced from time to time. They take household current and change it from alternating to direct low voltage current for many control circuits or use by low voltage lighting
+
+Profit Rhino
+
+T814114
+
+$249.65
+
+service
+Economy Transformer 75 Va 120/240v
+
+Steps to 24v transformers convert power to different voltages and type of current. We will replace your transformer with the correct sized unit to get your device up and running again
+
+Profit Rhino
+
+T814117
+
+$338.00
+
+service
+1920va @ 120v Mark 10 Powerline Extender
+
+Components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814105
+
+$483.47
+
+service
+120v/277 To 15v Dc Power Relay Pack
+
+For up to 14 occupancy sensors components such as this fail sometimes due to age and amount of use. It is a necessary part of your system and must be replaced to bring your fixture back to operation
+
+Profit Rhino
+
+T814104
+
+$244.80
+
+service
+Economy Transformer 40 Va 120v
+
+Steps to 24v transformers convert power to different voltages and type of current. We will replace your transformer with the correct sized unit to get your device up and running again
+
+Profit Rhino
+
+T814115
+
+$209.38
+
+1-12 of 12
+

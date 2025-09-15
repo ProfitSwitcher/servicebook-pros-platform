@@ -1,0 +1,302 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Exterior Main Panel 125 Amp
+Exterior Main Panel 125 Amp
+1-26 of 26
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+125 Amp Surface Mount Siemens Pn Panel 30/30
+
+Pn3030b1125c nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816402
+
+$1,165.57
+
+service
+125 Amp Surface Mount Siemens Sn Panel 30/30
+
+Sn3030b1125 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816403
+
+$1,278.85
+
+service
+125 Amp Surface Mount Sq D Homeline Panel 24/48
+
+Hom2448m125prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816404
+
+$1,248.24
+
+service
+125 Amp Surface Mount Ge Main Lug Panel 8/16
+
+Tlm812rcu2p nema 3 exterior goldmark panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816446
+
+$1,087.08
+
+service
+125 Amp Surface Mount Siemens Sn Main Lug 12/24
+
+Snw1224l1125 nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816448
+
+$1,125.25
+
+service
+125 Amp Flush Mount Ge Main Lug Panel 4/8
+
+Tpl412cp ge powermark plus interior non metalic panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816449
+
+$801.14
+
+service
+125 Amp Surface Mount Sq D Qo Main Lug 12/24
+
+Qo112l125pgrb nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816450
+
+$1,143.01
+
+service
+125 Amp Surface Mount Siemens Pn Main Lug 40/40
+
+Pn4040l1125c nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816451
+
+$1,183.76
+
+service
+125 Amp Surface Mount Homeline Main Lug 24/48
+
+Hom2448l125pqcs sq d nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding / surge spd
+
+Profit Rhino
+
+T816459
+
+$1,177.38
+
+service
+125 Amp Surface Mount Non Metalic Main Lug 4/8
+
+Tpl412rp nema 3 ge powermark plus exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816435
+
+$850.22
+
+service
+125 Amp Surface Mount Eaton Main Lug Panel 4/8
+
+Brc48l125rp nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816438
+
+$831.34
+
+service
+125 Amp Nema 3 Sq D Homeline Panel 8/16
+
+Electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812285
+
+$1,090.55
+
+service
+125 Amp Surface Mount Murray Main Lug 12/24
+
+Lw1224l1125 nema 3 exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816462
+
+$1,113.87
+
+service
+125 Amp Surface Mount Siemens Sn Main Lug 40/40
+
+Sn4040l1125 nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816463
+
+$1,130.74
+
+service
+125 Amp Surface Mount Eaton Ch Main Lug 4/8
+
+Ch4l125rp nema 3 exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816464
+
+$845.79
+
+service
+125 Amp Eaton Ch Pon Main Lug Kit
+
+Chsf2125 with panel change or added charge needed if stand alone task
+
+Profit Rhino
+
+T816470
+
+$314.19
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+service
+125 Amp Surface Mount Eaton Main Lug Panel 2
+
+Ch2l125rse2p nema 3 exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816484
+
+$665.16
+
+service
+125 Amp Surface Mount Siemens Pn Main Lug 12/24
+
+Pnw1224l1125c nema 3 plug on neutral exterior panel w/ cover & no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816485
+
+$1,136.72
+
+service
+125 Amp Surface Mount Homeline Main Lug 20/40
+
+Hom2040l125prb nema 3 plug on neutral sq d exterior panel w/ cover & no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816487
+
+$1,129.55
+
+service
+125 Amp Ext Sq D Homeline Mlo Load Center
+
+12/24 sp includes ground bar / no breakers or wiring electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812321
+
+$1,094.87
+
+1-26 of 26
+

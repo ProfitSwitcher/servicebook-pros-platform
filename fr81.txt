@@ -1,0 +1,596 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Auto Transfer Switches
+Auto Transfer Switches
+1-8 of 8
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+100 Amp 1 Ph Nema 3r Auto Transfer Switch
+
+Used with nexus or evolution controllers - not included / can manage up to 4 a/c units transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811110
+
+$1,054.22
+
+service
+Generac 120/240v 100 Amp Transfer Switch
+
+Transfer switch only / does not include wiring to generator or panel transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811821
+
+$1,614.01
+
+service
+Generac 120/208v 200 Amp Transfer Switch
+
+Transfer switch only / does not include wiring to generator or panel transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811822
+
+$2,307.34
+
+service
+Generac 277/480v 100 Amp Transfer Switch
+
+Transfer switch only / does not include wiring to generator or panel transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811823
+
+$1,949.78
+
+service
+Generac 277/480v 400 Amp Transfer Switch
+
+Transfer switch only / does not include wiring to generator or panel transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811824
+
+$4,229.42
+
+service
+50 Amp 12 Circuit Auto Indoor Transfer Switch
+
+Wiring not included transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811108
+
+$1,325.04
+
+service
+200 Amp 1 Ph Nema 3r Auto Transfer Switch
+
+Used with nexus or evolution controllers - not included / can manage up to 4 a/c units transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811116
+
+$1,457.15
+
+service
+Nema 3r Limited Circuit Auto Transfer Switch
+
+16 circuit / no main required in panel / does not include wiring or breakers transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811117
+
+$1,293.80
+
+1-8 of 8
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Manual Transfer Switches
+Manual Transfer Switches
+1-9 of 9
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+150 Amp Ez Connect Manual Transfer Switch
+
+With generator inlet / does not include cord transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811111
+
+$1,467.96
+
+service
+200 Amp Utility / Generator Transfer Switch
+
+Interior / exterior non-fused wiring not included transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811112
+
+$980.65
+
+service
+200 Amp Ez Connect Manual Transfer Switch
+
+With generator inlet / does not include cord transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811113
+
+$1,467.05
+
+service
+30 Amp Meter Mounted Transfer Switch W/O Surge
+
+For 200 amp service / with 20 ft power cord / contact utility company for specs & guidelines transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811106
+
+$1,458.80
+
+service
+30 Amp Meter Mounted Transfer Switch 75ka Surge
+
+For 200 amp service / with 20 ft power cord / contact utility company for specs & guidelines transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811107
+
+$1,623.80
+
+service
+100 Amp Utility / Generator Transfer Switch
+
+Interior use only non-fused wiring not included transfer switches are used to switch between utility provided power and generator provided emergency power. This is a standard device used when your generator will be directly wired to your homes electrical system
+
+Profit Rhino
+
+T811109
+
+$682.75
+
+service
+30 Amp Non Fused 6 Circuit Generator Kit W/ Cord
+
+Manual transfer by plug in / includes 10 ft cord and outdoor plug in box / does not include wiring to main panel generators can be used as a source of electricity during a power outage
+
+Profit Rhino
+
+T811099
+
+$930.14
+
+service
+30 Amp Non Fused 6 Circuit Generator Kit
+
+W/o cord manual transfer / hard wired 6 ft to generator / does not include wiring to main panel generators can be used as a source of electricity during a power outage
+
+Profit Rhino
+
+T811100
+
+$1,056.15
+
+service
+30 Amp Non Fused 10 Circuit Generator Kit
+
+W/ cord manual transfer by plug in / includes 10 ft cord and outdoor plug in box / does not include wiring to main panel generators can be used as a source of electricity during a power outage
+
+Profit Rhino
+
+T811101
+
+$1,155.20
+
+1-9 of 9
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Maintenance
+Maintenance
+1-4 of 4
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Standard Generator Maintenance 7-22kw
+
+Plugs / oil change / oil filter / fuel filter & test start w/ battery check decorative lighting can modernize and/or upgrade the look of a room
+
+Profit Rhino
+
+T811810
+
+$609.60
+
+service
+Generac 60kw Maintenance Kit
+
+Plugs / oil change / oil filter / fuel filter & test start w/ battery check generators use engines like autos that require regular maintenance to keep them at peak performance
+
+Profit Rhino
+
+T811811
+
+$687.04
+
+service
+Generac 45kw Maintenance Kit
+
+Plugs / oil change / oil filter / fuel filter & test start w/ battery check generators use engines like autos that require regular maintenance to keep them at peak performance
+
+Profit Rhino
+
+T811812
+
+$784.74
+
+service
+Generac Powerpact Maintenance Kit
+
+Battery warming pad cranckcase heater & breather warmer generators use engines like autos that require regular maintenance to keep them at peak performance
+
+Profit Rhino
+
+T811818
+
+$827.75
+
+1-4 of 4
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Installation
+Installation
+1-6 of 6
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Install Customers Air Cooled Generator 16 - 22kw
+
+Provide control wire & conduit & power wiring to cust transfer switch need this installed? we can do that for you!
+
+Profit Rhino
+
+T811807
+
+$2,709.55
+
+service
+Credit For Cust Supplied Generator Pad
+
+Credit for cust supplied generator pad
+
+Profit Rhino
+
+T811808
+
+$523.25
+
+service
+Install Customers Generator Cold Weather Kit
+
+Need this installed? we can do that for you!
+
+Profit Rhino
+
+T811809
+
+$269.80
+
+service
+30 Amp Circuit From Main Panel 10 Ft Exterior
+
+Does not include termination box / includes up to 10 ft of wire and PVC
+
+Profit Rhino
+
+T811104
+
+$471.40
+
+service
+30 Amp Circuit From Panel To Outlet Box Interior
+
+Does not include power box / includes up to 10 ft of wire and conduit
+
+Profit Rhino
+
+T811105
+
+$492.22
+
+service
+Install Customers Air Cooled Generator 7 - 11kw
+
+Provide control wire & conduit & power wiring to cust transfer switch need this installed? we can do that for you!
+
+Profit Rhino
+
+T811806
+
+$2,668.05
+
+1-6 of 6
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Accessories
+Accessories
+1-7 of 7
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Generator Battery Replacement 7-22kw
+
+Starting batteries can grow weak with age and require replacement. We will provide the correct battery for your generator to ensure it will start when you need it to
+
+Profit Rhino
+
+T811813
+
+$393.77
+
+service
+Generac Battery Charger
+
+Generator batteries can lose charge over time and in extreme weather conditions. This charger helps keep your battery at peak charge and performance
+
+Profit Rhino
+
+T811814
+
+$357.77
+
+service
+Generac Load Shed Monitor (Ppm)
+
+Smart management module load shed monitors prevent frequency or current drops that can damage sensitive electronics by reducing the generator output
+
+Profit Rhino
+
+T811815
+
+$557.07
+
+service
+Generac Wireless Remote Monitor
+
+See what your generator is doing and be alerted to issues from the comfort of your home or office by a remote monitoring center
+
+Profit Rhino
+
+T811816
+
+$705.30
+
+service
+Generac Mobile Link Adapter
+
+For liquid cooled generator a mobile generator application allows you to connect via cellular to your generator from wherever you may be, providing the ultimate peace of mind
+
+Profit Rhino
+
+T811817
+
+$336.50
+
+service
+Generac Extreme Cold Weather Kit
+
+For 5.4 & 3 liter engines colder climates may require a cold weather kit to ensure your generator starts every time in very cold weather
+
+Profit Rhino
+
+T811819
+
+$567.66
+
+service
+Generac Remote Monitor Adapter
+
+For liquid cooled generator
+
+Profit Rhino
+
+T811820
+
+$329.24
+
+1-7 of 7
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Load Centers & Interlock Switches
+Load Centers & Interlock Switches
+1-5 of 5
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+200 Amp Generator Ready Load Center
+
+W/ main 60 amp interior use only / interlinked with 60 amp generator breaker / 38 full size breakers not included electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811114
+
+$1,230.27
+
+service
+200 Amp Generator Ready Load Center
+
+W/ main 30 amp interior use only / interlinked with 30 amp generator breaker / 38 full size breakers not included electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811115
+
+$1,102.62
+
+service
+Leviton Manual Transfer Interlock Switch
+
+Add on to existing panel change switches turn current on and off to various fixtures and occasionally need replaced due to wear and tear or to be upgraded to higher quality or better features
+
+Profit Rhino
+
+T815119
+
+$325.60
+
+service
+Square D 100a - 225a Generator Interlock Switch
+
+Does not include breakers / for homeline or qo panels / nippled to panel interlock switches allow your electrical service to manually be switched from the power grid to your generator
+
+Profit Rhino
+
+T811118
+
+$388.90
+
+service
+Eaton Br Load Center Generator Interlock Switch
+
+Does not include breakers / for panels with csr/BWH mains / nippled to panel interlock switches allow your electrical service to manually be switched from the power grid to your generator
+
+Profit Rhino
+
+T811119
+
+$404.86
+
+1-5 of 5
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Generators
+Cords & Plugs
+Cords & Plugs
+1-5 of 5
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+30 Amp Nema 3p Power Outlet Box Only
+
+Connect to existing wiring
+
+Profit Rhino
+
+T811102
+
+$415.20
+
+service
+30 Amp Nema 3p Power Outlet Box W/ 25 Ft Cord
+
+Connect to existing wiring this plug is used for atvs and other electric outdoors vehicles that need to be charged
+
+Profit Rhino
+
+T811103
+
+$570.92
+
+service
+Transfer Switch Power Cord 30 Amp 25 Ft
+
+Cords can wear out or get damaged and need to replaced. If not, they can cause malfunctions and/or safety hazards
+
+Profit Rhino
+
+T811096
+
+$240.72
+
+service
+Transfer Switch Power Cord 30 Amp 40 Ft
+
+10/4 with l14-30 transfer switch wire similar to conntek 20601-040 cords can wear out or get damaged and need to replaced. If not, they can cause malfunctions and/or safety hazards
+
+Profit Rhino
+
+T811097
+
+$259.08
+
+service
+Transfer Switch Cord Fan Style 25 Ft 30 Amp
+
+Similar to champion 100437 for l14-30r outlet to 4 household outlets cords can wear out or get damaged and need to replaced. If not, they can cause malfunctions and/or safety hazards
+
+Profit Rhino
+
+T811098
+
+$271.57
+
+1-5 of 5
+

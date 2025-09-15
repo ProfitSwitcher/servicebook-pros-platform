@@ -1,0 +1,203 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Exterior Main Panel 150 Amp
+Exterior Main Panel 150 Amp
+1-17 of 17
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+150 Amp Surface Mount Sq D Qo Panel 8/16
+
+Qo1816m150ftrb nema 3 exterior panel only / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811995
+
+$1,696.07
+
+service
+150 Amp Surface Mount Sq D Qo Panel 20/30
+
+Qo13030m150rb nema3 exterior panel only / no breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811997
+
+$1,914.01
+
+service
+150 Amp Surface Mount Ge Panel 16/32
+
+Tm1615rcu nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816371
+
+$1,468.20
+
+service
+150 Amp Surface Mount Sq D Qo Panel 30/30
+
+Qo130m150prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816372
+
+$1,678.01
+
+service
+150 Amp Surface Mount Siemens Sn Panel 30/48
+
+Snw3048b1150 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816373
+
+$1,592.08
+
+service
+150 Amp Surface Mount Siemens Panel 30/30
+
+Sn3030b1150 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816375
+
+$1,401.50
+
+service
+150 Amp Surface Mount Ge Panel 8/16
+
+Tm815rcuflp nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816376
+
+$1,400.44
+
+service
+150 Amp Surface Mount Sq D Homeline Panel 30/60
+
+Hom3060m150prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816377
+
+$1,648.99
+
+service
+150 Amp Surface Mount Siemens Panel 2/2
+
+W0202mb1150cu nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816378
+
+$1,490.05
+
+service
+150 Amp Surface Mount Siemens Es Panel 30/40
+
+Sw3040b1150 nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816379
+
+$1,558.30
+
+service
+150 Ampsq D Homeline Panel 8/16 Feed Thru
+
+Hom816m150ftrb nema 3 electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T812287
+
+$1,454.09
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+1-17 of 17
+

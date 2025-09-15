@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceBook Pros - Company Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading { opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="min-h-screen flex items-center justify-center">
+            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-blue-600">ServiceBook Pros</h1>
+                    <p class="text-gray-600 mt-2">Multi-Tenant Pricing Management</p>
+                </div>
+                
+                <div class="bg-gray-100 p-4 rounded mb-6">
+                    <h3 class="font-semibold mb-2">Demo Accounts:</h3>
+                    <div class="text-sm space-y-1">
+                        <div><strong>Elite Electrical:</strong> elite_admin / elite123</div>
+                        <div><strong>Coastal Electric:</strong> coastal_admin / coastal123</div>
+                    </div>
+                </div>
+
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+                        <input type="text" id="username" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                        <input type="password" id="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                    </div>
+                    <button type="submit" id="loginBtn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Sign In
+                    </button>
+                </form>
+                
+                <div id="loginError" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded hidden"></div>
+                <div id="loginSuccess" class="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded hidden"></div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboardScreen" class="hidden">
+            <nav class="bg-blue-600 text-white p-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-bold">ServiceBook Pros Dashboard</h1>
+                    <div class="flex items-center space-x-4">
+                        <span id="companyName" class="text-sm"></span>
+                        <button id="logoutBtn" class="bg-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-800">Logout</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container mx-auto p-6">
+                <!-- Company Info Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Company Information</h2>
+                    <div id="companyInfo" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Company details will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Pricing Management -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Pricing Management</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-blue-800">Labor Rate</h3>
+                            <p id="laborRate" class="text-2xl font-bold text-blue-600">$0/hour</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-green-800">Tax Rate</h3>
+                            <p id="taxRate" class="text-2xl font-bold text-green-600">0%</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-purple-800">Company Code</h3>
+                            <p id="companyCode" class="text-lg font-bold text-purple-600">-</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <button id="updateRatesBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                            Update Labor Rate
+                        </button>
+                        <button id="manageTaxBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 ml-2">
+                            Manage Tax Rates
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Multi-Tenant Demo -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Multi-Tenant Isolation Demo</h2>
+                    <p class="text-gray-600 mb-4">This dashboard shows only YOUR company's data. Other companies cannot see your pricing or settings.</p>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-yellow-800 mb-2">🔐 Data Isolation Features:</h3>
+                        <ul class="text-sm text-yellow-700 space-y-1">
+                            <li>✅ Your company data is completely isolated</li>
+                            <li>✅ Custom labor rates affect only your pricing</li>
+                            <li>✅ Tax rates are specific to your location</li>
+                            <li>✅ Service customizations are private to your company</li>
+                            <li>✅ Other companies cannot access your information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://lnh8imcweg7v.manus.space/api';
+        let currentUser = null;
+        let currentCompany = null;
+
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const dashboardScreen = document.getElementById('dashboardScreen');
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+        const loginSuccess = document.getElementById('loginSuccess');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Dashboard Elements
+        const companyName = document.getElementById('companyName');
+        const companyInfo = document.getElementById('companyInfo');
+        const laborRate = document.getElementById('laborRate');
+        const taxRate = document.getElementById('taxRate');
+        const companyCode = document.getElementById('companyCode');
+
+        // Event Listeners
+        loginForm.addEventListener('submit', handleLogin);
+        logoutBtn.addEventListener('click', handleLogout);
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            loginBtn.textContent = 'Signing In...';
+            loginBtn.disabled = true;
+            hideMessages();
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    currentUser = data.user;
+                    currentCompany = data.primary_company;
+                    
+                    showSuccess('Login successful! Loading dashboard...');
+                    setTimeout(() => {
+                        showDashboard();
+                    }, 1000);
+                } else {
+                    showError(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('Network error. Please try again.');
+            } finally {
+                loginBtn.textContent = 'Sign In';
+                loginBtn.disabled = false;
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            currentCompany = null;
+            showLogin();
+        }
+
+        function showLogin() {
+            loginScreen.classList.remove('hidden');
+            dashboardScreen.classList.add('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            hideMessages();
+        }
+
+        function showDashboard() {
+            loginScreen.classList.add('hidden');
+            dashboardScreen.classList.remove('hidden');
+            populateDashboard();
+        }
+
+        function populateDashboard() {
+            if (!currentUser || !currentCompany) return;
+
+            // Update company name in nav
+            companyName.textContent = `${currentUser.first_name} ${currentUser.last_name} - ${currentCompany.company_name}`;
+
+            // Update pricing info
+            laborRate.textContent = `$${currentCompany.default_labor_rate}/hour`;
+            taxRate.textContent = `${(currentCompany.default_tax_rate * 100).toFixed(2)}%`;
+            companyCode.textContent = currentCompany.company_code;
+
+            // Update company info
+            companyInfo.innerHTML = `
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Company Name</label>
+                    <p class="mt-1 text-sm text-gray-900">${currentCompany.company_name}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Location</label>
+                    <p class="mt-1 text-sm text-gray-900">${currentCompany.city}, ${currentCompany.state} ${currentCompany.zip_code}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Contact Email</label>
+                    <p class="mt-1 text-sm text-gray-900">${currentCompany.contact_email}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Contact Phone</label>
+                    <p class="mt-1 text-sm text-gray-900">${currentCompany.contact_phone}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Subscription</label>
+                    <p class="mt-1 text-sm text-gray-900">${currentCompany.subscription_plan} (${currentCompany.subscription_status})</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Created</label>
+                    <p class="mt-1 text-sm text-gray-900">${new Date(currentCompany.created_at).toLocaleDateString()}</p>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            loginError.textContent = message;
+            loginError.classList.remove('hidden');
+            loginSuccess.classList.add('hidden');
+        }
+
+        function showSuccess(message) {
+            loginSuccess.textContent = message;
+            loginSuccess.classList.remove('hidden');
+            loginError.classList.add('hidden');
+        }
+
+        function hideMessages() {
+            loginError.classList.add('hidden');
+            loginSuccess.classList.add('hidden');
+        }
+
+        // Initialize
+        showLogin();
+    </script>
+</body>
+</html>
+

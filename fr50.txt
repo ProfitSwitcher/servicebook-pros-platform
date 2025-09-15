@@ -1,0 +1,296 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Breakers & Fuses
+Voltage Monitors & Motor Protectors
+Voltage Monitors & Motor Protectors
+1-9 of 9
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Icm441c 3 Phase Monitor
+
+3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814132
+
+$631.41
+
+service
+Icm493 1 Phase Digital Line Monitor W/ Arrestor
+
+95 - 280v set point adjustable 0 - 720 sec delay / built in 40a contactor / 5 bank surge suppressor line monitors protect electrical devices by measuring incoming current for spikes or drops in power that a surge suppressor will not catch and preventing a device from running with an unsafe power level
+
+Profit Rhino
+
+T814130
+
+$1,083.77
+
+service
+Icm491c 1 Ph Line Voltage Monitor
+
+Line monitors protect electrical devices by measuring incoming current for spikes or drops in power that a surge suppressor will not catch and preventing a device from running with an unsafe power level
+
+Profit Rhino
+
+T814127
+
+$376.95
+
+service
+Icm450c 3 Phase Line Voltage Monitor
+
+3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814126
+
+$658.90
+
+service
+Tpmp2 3 Phase Motor Protector
+
+3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814131
+
+$368.23
+
+service
+Icm492c 1 Phase Digital Line Monitor
+
+95 - 280v set point adjustable 0 - 720 sec delay line monitors protect electrical devices by measuring incoming current for spikes or drops in power that a surge suppressor will not catch and preventing a device from running with an unsafe power level
+
+Profit Rhino
+
+T814129
+
+$453.06
+
+service
+Icm401c 3 Ph Loss Of Phase Or Reversal Monitor
+
+Also can use icm402c / 190 to 600vac on/off fault indicator / spdt 20a 3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814133
+
+$400.00
+
+service
+Icm400c 3 Ph Line Voltage Monitor
+
+3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814125
+
+$438.12
+
+service
+Icm455 3 Phase Voltage Monitor
+
+190 to 600vac triac relay 3 phase protectors detect a loss of phase or drop in power that can damage a connected motor. The controller shuts down the motor to prevent damage. This is a good investment to protect expensive 3 phase motors
+
+Profit Rhino
+
+T814128
+
+$874.80
+
+1-9 of 9
+
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Breakers & Fuses
+Miscellaneous Breaker Items
+Miscellaneous Breaker Items
+1-15 of 15
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+Emergency Supply House Charge
+
+Fee to open supply house after hours or on weekends or holidays some supply houses will open for us after hours, on weekends or holidays, for an extra charge. We have no control over this fee and in some cases it means we may have to travel to a supply house that is farther than normal if it is the only supplier that offers emergency after hour pick up of parts
+
+Profit Rhino
+
+T814637
+
+$269.80
+
+service
+Test Up To 6 Arfi Or Gfci Breakers
+
+Gfci outlets should be regularly tested. Gfci outlets protect you from receiving a shock from a short in any electrical device plugged in the outlet. Gfci is required by code in garages, certain kitchen and bath areas and anywhere an outlet is used outside the home
+
+Profit Rhino
+
+T811261
+
+$117.80
+
+service
+Test Up To 12 Arfi Or Gfci Outlets
+
+Gfci outlets should be regularly tested. Gfci outlets protect you from receiving a shock from a short in any electrical device plugged in the outlet. Gfci is required by code in garages, certain kitchen and bath areas and anywhere an outlet is used outside the home
+
+Profit Rhino
+
+T811262
+
+$167.20
+
+service
+Credit To Replace Breaker With Other Repairs
+
+Removal of breaker must be part of first repair
+
+Profit Rhino
+
+T811675
+
+$129.20
+
+service
+Credit For Each Additional Breaker Replaced
+
+Credit for each additional breaker replaced
+
+Profit Rhino
+
+T811676
+
+$117.80
+
+service
+Leviton Manual Transfer Interlock Switch
+
+Add on to existing panel change switches turn current on and off to various fixtures and occasionally need replaced due to wear and tear or to be upgraded to higher quality or better features
+
+Profit Rhino
+
+T815119
+
+$325.60
+
+service
+Leviton Terminal Covers For Main Breaker
+
+Add on to existing panel change
+
+Profit Rhino
+
+T815124
+
+$126.04
+
+service
+Thermal Reading On Electrical Panel
+
+Take ambient temp and record temp by taking digital temp of all breakers under load breakers have a maximum rated temperatures. Using a temperature gun we can determine if a breaker is overheating which may be a sign of a failing breaker or a electrical circuit with tool high of an amperage draw. Over amping circuits will require additional diagnosis and repair
+
+Profit Rhino
+
+T811264
+
+$167.20
+
+service
+Breaker Clean And Exercise Up To 12
+
+Pull all breakers off main buss and inspect connections / reset breakers and exercise breaker to inpect for issues breaker connections in an electrical panel can get corroded and dirty and need to be cleaned. This helps ensure longer life for the breaker and minimize safety hazards
+
+Profit Rhino
+
+T811265
+
+$274.80
+
+service
+Breaker Clean And Exercise Up To 24
+
+Pull all breakers off main buss and inspect connections / reset breakers and exercise breaker to inpect for issues breaker connections in an electrical panel can get corroded and dirty and need to be cleaned. This helps ensure longer life for the breaker and minimize safety hazards
+
+Profit Rhino
+
+T811266
+
+$379.30
+
+service
+Breaker Clean And Exercise Up To 36
+
+Pull all breakers off main buss and inspect connections / reset breakers and exercise breaker to inpect for issues breaker connections in an electrical panel can get corroded and dirty and need to be cleaned. This helps ensure longer life for the breaker and minimize safety hazards
+
+Profit Rhino
+
+T811267
+
+$480.00
+
+service
+Breaker Clean And Exercise Up To 48
+
+Pull all breakers off main buss and inspect connections / reset breakers and exercise breaker to inpect for issues breaker connections in an electrical panel can get corroded and dirty and need to be cleaned. This helps ensure longer life for the breaker and minimize safety hazards
+
+Profit Rhino
+
+T811268
+
+$580.70
+
+service
+Thorough Panel Tune Up
+
+Inspect panel / grounding & bond / breakers / check breaker temps / label circuits as needed / confirm no double taps or wrong size breakers we will inspect your entire electrical panel for evidence of overheating, loose connections, improper wiring and we will test that all breakers cycle correctly
+
+Profit Rhino
+
+T811269
+
+$274.80
+
+service
+Parts Courier To Deliver To Job
+
+If we need a special runner to deliver parts or pick them up at a supply house we must charge for that service
+
+Profit Rhino
+
+T812279
+
+$218.50
+
+service
+Leave Job To Retrieve Parts
+
+We are unable to bill for our vehicle, time, or work inefficiency when driving to collect parts for your job. We use this charge to cover those times
+
+Profit Rhino
+
+T812280
+
+$269.80
+
+1-15 of 15
+

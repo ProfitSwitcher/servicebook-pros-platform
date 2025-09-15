@@ -1,0 +1,214 @@
+Price book
+Services
+Electrical
+Profit Rhino - Electrical
+Panels & Sub Panels
+Exterior Main Panel 100 Amp
+Exterior Main Panel 100 Amp
+1-18 of 18
+
+Services
+Description
+Managed by
+Task code
+Base pricing
+service
+100 Amp Surface Mount Sq D Qo Panel 24/34
+
+Qo124m100prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816390
+
+$1,238.62
+
+service
+100 Amp Surface Mount Sq D Qo Panel 20/24
+
+Qo120m100prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816391
+
+$1,189.91
+
+service
+100 Amp Surface Mount Siemens Sn Panel 20/20
+
+Snw2020b1100 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816392
+
+$1,109.77
+
+service
+100 Amp Surface Mount Murray Trailer Panel 2/4
+
+Lw102nlunema 3 exterior panel w/ cover / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816393
+
+$675.95
+
+service
+100 Amp Surface Mount Siemens Sn Panel 30/30
+
+Sn3030b1100 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816394
+
+$1,153.83
+
+service
+100 Amp Surface Mount Siemens Pn Panel 20/40
+
+Pn2040b1100c nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816395
+
+$1,185.68
+
+service
+100 Amp Surface Mount Siemens Sn Panel 12/24
+
+Snw1224b1100 nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816396
+
+$1,151.80
+
+service
+100 Amp Surface Mount Sq D Homeline Panel 20/24
+
+Hom2040m100prb nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816397
+
+$1,238.00
+
+service
+100 Amp Surface Mount Siemens Pn Panel 16/32
+
+Pnw1632b1100c nema 3 plug on neutral exterior panel w/ cover & main / no other breakers / wiring or grounding / copper buss
+
+Profit Rhino
+
+T816398
+
+$1,108.24
+
+service
+100 Amp Surface Mount Eaton Trailer Panel 2/4
+
+Br2b100rp nema 3 exterior panel w/ cover / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816399
+
+$712.01
+
+service
+100 Amp Surface Mount Murray Panel 12/24
+
+Lw1224b1100 nema 3 exterior panel w/ cover & main / no other breakers / wiring or grounding
+
+Profit Rhino
+
+T816401
+
+$1,206.49
+
+service
+100 Amp Surface Mount Sq D Qo Panel 20/20
+
+Qo120m100rb nema 3 exterior panel w/ cover & main/ no other breakers / wiring or grounding electrical panels are changed for many reasons but the primary reasons are at the time of a service upgrade or if there are not sufficient spaces to add a circuit to the existing panel or replacement breakers for the existing panel are obsolete
+
+Profit Rhino
+
+T811992
+
+$1,236.50
+
+service
+Additional Single Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816476
+
+$21.17
+
+service
+Additional Double Pole Std Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816477
+
+$41.58
+
+service
+Additional Single Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816478
+
+$112.86
+
+service
+Additional Double Pole Afci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816479
+
+$201.11
+
+service
+Additional Single Pole Gfci Breaker 15 - 20 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816480
+
+$142.56
+
+service
+Additional Double Pole Gfci Breaker 15 - 60 Amp
+
+Any listed panel / if combo or specialty shunt breaker price seperately from breakers category
+
+Profit Rhino
+
+T816481
+
+$271.65
+
+1-18 of 18
+
