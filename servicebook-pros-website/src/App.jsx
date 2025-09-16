@@ -61,9 +61,8 @@ function App() {
               </a>
             </nav>
             <div className="flex space-x-4">
-  <Button variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>Login</Button>
-  <Button onClick={(e) => handleNavClick(e, 'contact')}>Book Demo</Button>
-</div>
+              <Button variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>Login</Button>
+              <Button onClick={(e) => handleNavClick(e, 'contact')}>Book Demo</Button>
 
             </div>
           </div>
@@ -84,11 +83,11 @@ function App() {
             and lead generation - all in one affordable solution.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" 
+              onClick={(e) => handleNavClick(e, 'pricing')}>
+                Start Free Trial
             </Button>
-            <Button size="lg" variant="outline">
+            <Button size="lg" variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>
               Watch Demo
             </Button>
           </div>
@@ -373,7 +372,7 @@ function App() {
                     <span>Lead tracking</span>
                   </li>
                 </ul>
-                <Button className="w-full mt-6">Get Started</Button>
+                <Button className="w-full mt-6" onClick={(e) => handleNavClick(e, 'contact')}>Get Started</Button>
               </CardContent>
             </Card>
 
@@ -411,7 +410,7 @@ function App() {
                     <span>Email marketing</span>
                   </li>
                 </ul>
-                <Button className="w-full mt-6">Get Started</Button>
+                <Button className="w-full mt-6" onClick={(e) => handleNavClick(e, 'contact')}>Get Started</Button>
               </CardContent>
             </Card>
 
@@ -446,7 +445,7 @@ function App() {
                     <span>Complete lead generation suite</span>
                   </li>
                 </ul>
-                <Button className="w-full mt-6">Get Started</Button>
+                <Button className="w-full mt-6" onClick={(e) => handleNavClick(e, 'contact')}>Get Started</Button>
               </CardContent>
             </Card>
           </div>
@@ -537,13 +536,12 @@ function App() {
             Join hundreds of contractors who have increased their average ticket by 80% with ServiceBook Pros
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Button size="lg" variant="secondary" onClick={(e) => handleNavClick(e, 'pricing')}>
               Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              </Button>
+            <Button size="lg" variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>
               Book Live Demo
-            </Button>
+              </Button>
           </div>
           <p className="text-blue-200 mt-6">
             No credit card required • 14-day free trial • Cancel anytime
