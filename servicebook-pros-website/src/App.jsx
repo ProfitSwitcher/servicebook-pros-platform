@@ -61,8 +61,10 @@ function App() {
               </a>
             </nav>
             <div className="flex space-x-4">
-              <Button variant="outline">Login</Button>
-              <Button>Book Demo</Button>
+  <Button variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>Login</Button>
+  <Button onClick={(e) => handleNavClick(e, 'contact')}>Book Demo</Button>
+</div>
+
             </div>
           </div>
         </div>
