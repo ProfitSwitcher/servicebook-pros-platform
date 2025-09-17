@@ -13,6 +13,7 @@ import { usePWA } from './hooks/usePWA'
 import apiClient from './utils/apiClient'
 import cachedApiClient from './utils/apiClientCached'
 import { initializePerformanceOptimizations } from './utils/performanceOptimizer'
+import { API_BASE_URL } from './lib/config'
 import {
   DashboardLazy,
   CustomersLazy,
@@ -26,7 +27,7 @@ import {
 } from './components/LazyComponents'
 import './App.css'
 
-const API_BASE = 'https://9yhyi3cp5kgw.manus.space/api'
+const API_BASE = API_BASE_URL
 
 function App() {
   const [user, setUser] = useState(null)

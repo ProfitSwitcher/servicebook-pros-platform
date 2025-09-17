@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge.jsx'
 import { Alert, AlertDescription } from '@/components/ui/alert.jsx'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.jsx'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
+import { API_BASE_URL } from '@/lib/config'
 import { 
   Calendar,
   Users,
@@ -28,7 +29,7 @@ import {
 } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
-const API_BASE = 'https://9yhyi3cp5kgw.manus.space/api'
+const API_BASE = API_BASE_URL
 
 const CRMDashboard = () => {
   const [activeView, setActiveView] = useState('dashboard')

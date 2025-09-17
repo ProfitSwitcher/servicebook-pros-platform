@@ -1,7 +1,8 @@
+import { API_BASE_URL } from '@/lib/config'
 import cacheManager, { CacheStrategies, persistentCache } from './cacheManager'
 
 class CachedApiClient {
-  constructor(baseURL = process.env.REACT_APP_API_BASE || 'http://localhost:3001/api') {
+  constructor(baseURL = API_BASE_URL) {
     this.baseURL = baseURL;
     this.token = localStorage.getItem('auth_token');
   }

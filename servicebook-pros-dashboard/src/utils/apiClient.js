@@ -1,7 +1,8 @@
+import { API_BASE_URL } from '@/lib/config'
 // API Client for ServiceBook Pros Backend Integration
 // Updated with cache busting timestamp: 1757919828
 class ApiClient {
-  constructor(baseURL = process.env.REACT_APP_API_BASE || 'https://y0h0i3c8k75w.manus.space/api') {
+  constructor(baseURL = API_BASE_URL) {
     this.baseURL = baseURL;
     this.token = localStorage.getItem('auth_token');
     console.log('🔗 API Client initialized with baseURL:', this.baseURL);

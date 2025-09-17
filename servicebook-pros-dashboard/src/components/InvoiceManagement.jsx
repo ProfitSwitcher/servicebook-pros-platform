@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
+import { API_BASE_URL } from '@/lib/config'
 import { 
   FileText, 
   Plus, 
@@ -28,7 +29,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 
-const API_BASE = 'https://9yhyi3cp5kgw.manus.space/api'
+const API_BASE = API_BASE_URL
 
 const InvoiceManagement = () => {
   const [invoices, setInvoices] = useState([])
