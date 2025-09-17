@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
@@ -6,6 +6,13 @@ import { CheckCircle, Users, DollarSign, Clock, Smartphone, BarChart3, Zap, Shie
 import './App.css'
 
 function App() {
+
+  // Demo form state
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [businessType, setBusinessType] = useState('');
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -16,6 +23,16 @@ function App() {
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
     scrollToSection(sectionId);
+  };
+
+  const handleScheduleDemo = () => {
+    fetch('/api/schedule-demo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, businessType }),
+    })
+      .then(() => alert('Demo request sent!'))
+      .catch(() => alert('Something went wrong'));
   };
 
   return (
@@ -61,9 +78,13 @@ function App() {
               </a>
             </nav>
             <div className="flex space-x-4">
-              <Button variant="outline" onClick={(e) => handleNavClick(e, 'contact')}>Login</Button>
-              <Button onClick={(e) => handleNavClick(e, 'contact')}>Book Demo</Button>
+              <Button variant="outline" onClick={() => window.location.href = '/login'}>
+                Login
+              </Button>
 
+             <Button onClick={(e) => handleNavClick(e, 'contact')}>
+               Book Demo
+             </Button>
             </div>
           </div>
         </div>
@@ -672,50 +693,59 @@ function App() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name
                     </label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Your full name"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
                     />
                   </div>
-                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address
                     </label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="your@email.com"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </div>
-                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="(555) 123-4567"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
                     />
                   </div>
-                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Business Type
                     </label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                      <option>Select your trade</option>
-                      <option>Electrical</option>
-                      <option>HVAC</option>
-                      <option>Plumbing</option>
-                      <option>General Contracting</option>
-                      <option>Other</option>
+                    <select
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={businessType}
+                      onChange={e => setBusinessType(e.target.value)}
+                    >
+                      <option value="">Select your trade</option>
+                      <option value="Electrical">Electrical</option>
+                      <option value="HVAC">HVAC</option>
+                      <option value="Plumbing">Plumbing</option>
+                      <option value="General Contracting">General Contracting</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
-                  
-                  <Button className="w-full">
+                  <Button
+                    className="w-full"
+                    onClick={handleScheduleDemo}
+                  >
                     Schedule Demo
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
