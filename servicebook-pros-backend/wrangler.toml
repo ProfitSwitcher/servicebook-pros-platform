@@ -1,0 +1,7 @@
+name = "servicebookpros-api"
+main = "src/index.ts"
+compatibility_date = "2025-09-18"
+
+[site]
+bucket = "./src/static"
+entry-point = "src"
