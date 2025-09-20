@@ -77,7 +77,11 @@ function App() {
     setError('')
 
     try {
-      const response = await apiClient.login(loginForm.username, loginForm.password)
+      console.log('🔐 Starting login flow for user:', loginForm.username)
+      const response = await apiClient.login({ username: loginForm.username, password: loginForm.password })
+      console.log('🔐 Login response keys:', Object.keys(response || {}))
+      const savedToken = localStorage.getItem('auth_token')
+      console.log('🔐 Token saved to localStorage?', !!savedToken)
       
       if (response.user) {
         setUser(response.user)
@@ -137,11 +141,13 @@ function App() {
   // Load data function
   const loadData = async () => {
     try {
+      const token = localStorage.getItem('auth_token')
+      console.log('📦 Loading dashboard data. Token present?', !!token, 'API_BASE:', API_BASE)
       // Load estimates, jobs, and invoices
       const [estimatesRes, jobsRes, invoicesRes] = await Promise.all([
-        fetch(`${API_BASE}/estimates`, { headers: { 'Authorization': `Bearer ${user?.token}` } }),
-        fetch(`${API_BASE}/jobs`, { headers: { 'Authorization': `Bearer ${user?.token}` } }),
-        fetch(`${API_BASE}/invoices`, { headers: { 'Authorization': `Bearer ${user?.token}` } })
+        fetch(`${API_BASE}/estimates`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE}/jobs`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE}/invoices`, { headers: { 'Authorization': `Bearer ${token}` } })
       ])
 
       if (estimatesRes.ok) {

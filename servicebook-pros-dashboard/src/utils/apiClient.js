@@ -28,6 +28,12 @@ class ApiClient {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
     
+    // Debug: show whether auth header is present
+    if (process.env.NODE_ENV !== 'production') {
+      const hasAuth = !!this.token
+      console.log('🧪 apiClient headers prepared. Auth?', hasAuth)
+    }
+
     return headers;
   }
 
@@ -45,6 +51,9 @@ class ApiClient {
     };
 
     try {
+      // Debug outgoing headers minimally (without dumping token value)
+      const hasAuthHeader = !!config.headers?.Authorization
+      console.log('➡️ Request config. Auth header present?', hasAuthHeader)
       const response = await fetch(url, config);
       console.log('📡 API Response status:', response.status);
       
@@ -70,6 +79,12 @@ class ApiClient {
   // Authentication methods
   async login(credentials) {
     console.log('🔐 Attempting login...');
+    // Support both login(username, password) and login({ username, password }) call sites
+    if (typeof credentials === 'string') {
+      const username = credentials
+      const password = arguments[1]
+      credentials = { username, password }
+    }
     const response = await this.request('/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
