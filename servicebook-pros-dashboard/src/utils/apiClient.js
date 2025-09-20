@@ -90,8 +90,8 @@ class ApiClient {
       body: JSON.stringify(credentials),
     });
     
-    if (response.access_token) {
-      this.setToken(response.access_token);
+    if (response.access_token || response.token) {
+      this.setToken(response.access_token || response.token);
       console.log('✅ Login successful');
     }
     
