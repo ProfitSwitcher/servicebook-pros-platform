@@ -89,6 +89,27 @@ function App() {
         setShowLogin(false)
         setSuccess('Login successful!')
         loadData()
+      } else if (savedToken) {
+        // Some backends return only a token; fetch current user
+        console.log('👤 Fetching current user via /auth/me since login response had no user')
+        try {
+          const me = await apiClient.getCurrentUser()
+          console.log('👤 /auth/me response keys:', Object.keys(me || {}))
+          if (me && (me.user || me.username)) {
+            const resolvedUser = me.user || { username: me.username, id: me.id }
+            setUser(resolvedUser)
+            setCompany(me.company || me.primary_company || { name: 'ServiceBook Pros', id: 1 })
+            setShowLogin(false)
+            setSuccess('Login successful!')
+            loadData()
+          } else {
+            console.warn('⚠️ /auth/me did not return user info')
+            setError('Login failed: Could not load user info')
+          }
+        } catch (meErr) {
+          console.error('❌ Failed to fetch /auth/me:', meErr)
+          setError('Login failed: Could not verify user')
+        }
       } else {
         setError('Login failed: Invalid response')
       }
