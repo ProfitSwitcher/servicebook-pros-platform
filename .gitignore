@@ -28,8 +28,11 @@ build/
 *.db
 *.sqlite
 *.sqlite3
-database/
-*/database/
+# Ignore database directories' contents but keep placeholders
+database/*
+*/database/*
+!database/.gitkeep
+!*/database/.gitkeep
 
 # Logs
 logs/
