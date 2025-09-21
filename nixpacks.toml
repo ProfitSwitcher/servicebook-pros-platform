@@ -1,0 +1,13 @@
+# Nixpacks configuration for Railway (monorepo root)
+# Ensures Python deps are installed from the backend folder and starts the app via start.sh
+
+[phases.install]
+cmds = [
+  "python -V || true",
+  "pip -V || true",
+  "pip install --upgrade pip",
+  "pip install -r servicebook-pros-backend/requirements.txt"
+]
+
+[start]
+cmd = "bash ./start.sh"
