@@ -25,6 +25,10 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+@app.get('/api/health')
+def health():
+    return {'status': 'ok'}, 200
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
