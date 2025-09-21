@@ -29,7 +29,10 @@ import {
   UserPlus,
   FileSpreadsheet,
   Trash,
-  RotateCcw
+  RotateCcw,
+  Briefcase,
+  Receipt,
+  ChevronDown
 } from 'lucide-react'
 import CustomerInboxIntegrated from './CustomerInboxIntegrated'
 import CreateCustomerModal from './CreateCustomerModal'
