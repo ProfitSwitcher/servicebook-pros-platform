@@ -9,6 +9,7 @@ def _enrich(e):
         **e,
         'estimateNumber': f"EST-{str(e['id']).zfill(3)}",
         'totalAmount': e['total'],
+        'total_amount': e['total'],
         'customer': {
             'id': e['customer_id'],
             'name': e['customer_name'],
