@@ -490,7 +490,7 @@ const EstimatesManagement = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Value</p>
-                <p className="text-2xl font-bold">${estimates.reduce((sum, e) => sum + parseFloat(e.totalAmount.replace('$', '').replace(',', '')), 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p className="text-2xl font-bold">${estimates.reduce((sum, e) => sum + parseFloat(String(e.totalAmount).replace('$', '').replace(',', '')), 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
               </div>
               <DollarSign className="w-8 h-8 text-green-600" />
             </div>

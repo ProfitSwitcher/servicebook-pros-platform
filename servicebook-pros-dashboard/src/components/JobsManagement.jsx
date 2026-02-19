@@ -537,7 +537,7 @@ const JobsManagement = () => {
                         <div className="mt-4 pt-4 border-t">
                           <div className="flex justify-between items-center font-semibold">
                             <span>Total Materials Cost:</span>
-                            <span>${selectedJob.materials.reduce((sum, m) => sum + parseFloat(m.cost.replace('$', '')), 0).toFixed(2)}</span>
+                            <span>${selectedJob.materials.reduce((sum, m) => sum + parseFloat(String(m.cost).replace('$', '')), 0).toFixed(2)}</span>
                           </div>
                         </div>
                       </CardContent>
