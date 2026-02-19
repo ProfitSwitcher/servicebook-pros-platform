@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: servicebook-pros-backend
+    runtime: python
+    rootDir: servicebook-pros-backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 -k gthread -b 0.0.0.0:$PORT src.main:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    healthCheckPath: /api/health
+    autoDeploy: true
