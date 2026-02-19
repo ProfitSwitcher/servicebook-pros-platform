@@ -38,7 +38,7 @@ import CustomerInboxIntegrated from './CustomerInboxIntegrated'
 import CreateCustomerModal from './CreateCustomerModal'
 import apiClient from '../utils/apiClient'
 
-const CustomersPage = () => {
+const CustomersPage = ({ setActiveTab }) => {
   const [customers, setCustomers] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCustomers, setSelectedCustomers] = useState([])
@@ -293,7 +293,7 @@ const CustomersPage = () => {
       // Normalize customer data to match expected format
       const normalizedCustomers = customersData.map(customer => ({
         id: customer.id,
-        name: customer.display_name || `${customer.first_name} ${customer.last_name}`.trim() || 'Unknown',
+        name: customer.display_name || `${customer.first_name || ''} ${customer.last_name || ''}`.trim() || customer.name || 'Unknown',
         company: customer.company_name || '',
         email: customer.email || '',
         phone: customer.phone || '',
@@ -334,22 +334,22 @@ const CustomersPage = () => {
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          <a href="#" className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg">
-            <Users className="w-4 h-4" />
+          <button className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg">
+            <User className="w-4 h-4" />
             <span>Customers</span>
-          </a>
-          <a href="#" className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
+          </button>
+          <button onClick={() => setActiveTab?.('jobs')} className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
             <Briefcase className="w-4 h-4" />
             <span>Jobs</span>
-          </a>
-          <a href="#" className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
+          </button>
+          <button onClick={() => setActiveTab?.('estimates')} className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
             <FileText className="w-4 h-4" />
             <span>Estimates</span>
-          </a>
-          <a href="#" className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
+          </button>
+          <button onClick={() => setActiveTab?.('invoices')} className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg">
             <Receipt className="w-4 h-4" />
             <span>Invoices</span>
-          </a>
+          </button>
         </nav>
 
         {/* Inbox Section */}

@@ -1011,7 +1011,7 @@ function App() {
         
         {activeTab === 'schedule' && <ScheduleLazy />}
         
-        {activeTab === 'customers' && <CustomersLazy />}
+        {activeTab === 'customers' && <CustomersLazy setActiveTab={setActiveTab} />}
         
         {activeTab === 'financials' && (
           <div className="text-center py-12">

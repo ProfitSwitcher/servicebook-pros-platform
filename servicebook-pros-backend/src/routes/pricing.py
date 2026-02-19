@@ -11,6 +11,25 @@ from datetime import datetime
 
 pricing_bp = Blueprint('pricing', __name__)
 
+@pricing_bp.route('/', methods=['GET'])
+def get_pricing_list():
+    """Root endpoint — returns empty list (catalog uses in-memory sample data)."""
+    return jsonify([])
+
+@pricing_bp.route('/', methods=['POST'])
+def create_pricing_item():
+    data = request.get_json() or {}
+    return jsonify({**data, 'id': 1}), 201
+
+@pricing_bp.route('/<int:item_id>', methods=['PUT'])
+def update_pricing_item(item_id):
+    data = request.get_json() or {}
+    return jsonify({**data, 'id': item_id})
+
+@pricing_bp.route('/<int:item_id>', methods=['DELETE'])
+def delete_pricing_item(item_id):
+    return jsonify({'success': True})
+
 # CORS headers for all pricing routes
 @pricing_bp.after_request
 def after_request(response):
