@@ -149,17 +149,6 @@ export class MemoryManager {
 
 // Bundle splitting and code optimization
 export class BundleOptimizer {
-  static async loadChunk(chunkName) {
-    try {
-      // Fixed dynamic import with proper file extension
-      const module = await import(`../components/${chunkName}.jsx`)
-      return module.default
-    } catch (error) {
-      console.error(`Failed to load chunk: ${chunkName}`, error)
-      throw error
-    }
-  }
-
   static preloadCriticalChunks() {
     // Preload critical chunks that are likely to be needed
     const criticalChunks = [

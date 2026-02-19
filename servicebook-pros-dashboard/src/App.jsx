@@ -4,9 +4,7 @@ import { Button } from './components/ui/button'
 import { Badge } from './components/ui/badge'
 import { Alert, AlertDescription } from './components/ui/alert'
 import { FileText, Settings, Search, User, LogOut, DollarSign, Users, CheckCircle, BarChart3, TrendingUp, Globe, Wifi, WifiOff, Download } from 'lucide-react'
-import InvoiceManagement from './components/InvoiceManagement'
 import CRMDashboard from './components/CRMDashboard'
-import TeamManagement from './components/TeamManagement'
 import MobileNavigation from './components/MobileNavigation'
 import PWAInstallPrompt from './components/PWAInstallPrompt'
 import { usePWA } from './hooks/usePWA'
@@ -23,6 +21,8 @@ import {
   JobsLazy,
   EstimatesLazy,
   PricingLazy,
+  TeamLazy,
+  InvoiceLazy,
   SettingsLazy
 } from './components/LazyComponents'
 import './App.css'
@@ -1007,7 +1007,7 @@ function App() {
           />
         )}
         
-        {activeTab === 'invoices' && <InvoiceManagement />}
+        {activeTab === 'invoices' && <InvoiceLazy />}
         
         {activeTab === 'schedule' && <ScheduleLazy />}
         
@@ -1032,7 +1032,7 @@ function App() {
 
         {activeTab === 'pricing' && <PricingLazy />}
 
-        {activeTab === 'team' && <TeamManagement user={user} />}
+        {activeTab === 'team' && <TeamLazy user={user} />}
       </main>
 
       {/* Mobile Navigation */}

@@ -22,6 +22,7 @@ export const LazyJobsManagement = lazy(() => import('./JobsManagement'))
 export const LazyEstimatesManagement = lazy(() => import('./EstimatesManagement'))
 export const LazyPricingCatalog = lazy(() => import('./PricingCatalog'))
 export const LazyTeamManagement = lazy(() => import('./TeamManagement'))
+export const LazyInvoiceManagement = lazy(() => import('./InvoiceManagement'))
 export const LazySettingsPage = lazy(() => import('./SettingsPage'))
 
 // Wrapper component with Suspense
@@ -83,6 +84,12 @@ export const PricingLazy = (props) => (
 export const TeamLazy = (props) => (
   <LazyWrapper fallback={<LoadingSpinner message="Loading Team..." />}>
     <LazyTeamManagement {...props} />
+  </LazyWrapper>
+)
+
+export const InvoiceLazy = (props) => (
+  <LazyWrapper fallback={<LoadingSpinner message="Loading Invoices..." />}>
+    <LazyInvoiceManagement {...props} />
   </LazyWrapper>
 )
 

@@ -4,8 +4,7 @@ import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import apiClient from '../utils/apiClient'
 import CommunicationSettings from './CommunicationSettings'
-import PricingCatalog from './PricingCatalog'
-import TeamManagement from './TeamManagement'
+import { PricingLazy, TeamLazy } from './LazyComponents'
 import { 
   Settings,
   ChevronDown,
@@ -236,9 +235,9 @@ const SettingsPage = () => {
       case 'text-messages':
         return <CommunicationSettings />
       case 'price-book':
-        return <PricingCatalog />
+        return <PricingLazy />
       case 'team-permissions':
-        return <TeamManagement />
+        return <TeamLazy />
       default:
         return (
           <div className="flex-1 flex items-center justify-center">
