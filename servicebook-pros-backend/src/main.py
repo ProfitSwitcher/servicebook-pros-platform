@@ -19,6 +19,7 @@ from src.routes.communication import communication_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'sbp-dev-secret-change-in-prod')
+app.url_map.strict_slashes = False
 
 # CORS — allow the dashboard and marketing site origins
 CORS(app, resources={r'/api/*': {'origins': '*'}})
