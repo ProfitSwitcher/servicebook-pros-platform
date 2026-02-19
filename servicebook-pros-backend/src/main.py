@@ -10,6 +10,7 @@ from src.routes.user import user_bp
 from src.routes.pricing import pricing_bp
 from src.routes.customers import customers_bp
 from src.routes.jobs import jobs_bp
+from src.routes.estimates import estimates_bp
 from src.routes.invoices import invoices_bp
 from src.routes.technicians import technicians_bp
 from src.routes.analytics import analytics_bp
@@ -30,6 +31,7 @@ app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(pricing_bp, url_prefix='/api/pricing')
 app.register_blueprint(customers_bp, url_prefix='/api/customers')
 app.register_blueprint(jobs_bp, url_prefix='/api/jobs')
+app.register_blueprint(estimates_bp, url_prefix='/api/estimates')
 app.register_blueprint(invoices_bp, url_prefix='/api/invoices')
 app.register_blueprint(technicians_bp, url_prefix='/api/technicians')
 app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
