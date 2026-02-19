@@ -671,9 +671,10 @@ const CustomersPage = ({ setActiveTab }) => {
                 {filteredCustomers.map((customer) => (
                   <div
                     key={customer.id}
-                    className={`grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-100 hover:bg-gray-50 ${
+                    className={`grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${
                       selectedCustomers.includes(customer.id) ? 'bg-blue-50' : ''
                     }`}
+                    onClick={(e) => { if (!e.target.closest('button, input')) handleEditCustomer(customer) }}
                   >
                     <div className="col-span-1 flex items-center">
                       <input
@@ -699,10 +700,12 @@ const CustomersPage = ({ setActiveTab }) => {
                     </div>
                     <div className="col-span-3 flex items-center">
                       <div>
-                        <p className="text-gray-900">{customer.address}</p>
-                        <p className="text-sm text-gray-500">
-                          {customer.city}, {customer.state} {customer.zip_code}
-                        </p>
+                        {customer.address && <p className="text-gray-900">{customer.address}</p>}
+                        {(customer.city || customer.state || customer.zip_code) && (
+                          <p className="text-sm text-gray-500">
+                            {[customer.city, [customer.state, customer.zip_code].filter(Boolean).join(' ')].filter(Boolean).join(', ')}
+                          </p>
+                        )}
                       </div>
                     </div>
                     <div className="col-span-2 flex items-center">
@@ -912,8 +915,13 @@ const CustomersPage = ({ setActiveTab }) => {
                         <div className="flex items-start space-x-2 text-sm text-gray-600">
                           <MapPin className="w-4 h-4 mt-0.5" />
                           <span>
-                            {customer.address}<br />
-                            {customer.city}, {customer.state} {customer.zip_code}
+                            {customer.address}
+                            {(customer.city || customer.state || customer.zip_code) && (
+                              <>
+                                <br />
+                                {[customer.city, [customer.state, customer.zip_code].filter(Boolean).join(' ')].filter(Boolean).join(', ')}
+                              </>
+                            )}
                           </span>
                         </div>
                         

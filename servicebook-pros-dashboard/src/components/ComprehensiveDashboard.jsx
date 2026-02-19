@@ -24,6 +24,7 @@ import {
   Target,
   Zap
 } from 'lucide-react'
+import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 const ComprehensiveDashboard = ({ user, company, estimates, jobs, invoices }) => {
   const [selectedTimeframe, setSelectedTimeframe] = useState('30d')
@@ -142,6 +143,15 @@ const ComprehensiveDashboard = ({ user, company, estimates, jobs, invoices }) =>
     { id: 4, title: 'Electrical Repair - Red Building', time: '4:30 PM', location: '321 Maple Dr, Miami, FL', technician: 'Lisa Brown' }
   ]
 
+
+  const monthlyRevenueData = [
+    { month: 'Aug', revenue: 32400 },
+    { month: 'Sep', revenue: 38100 },
+    { month: 'Oct', revenue: 35800 },
+    { month: 'Nov', revenue: 41200 },
+    { month: 'Dec', revenue: 45280 },
+    { month: 'Jan', revenue: 38950 },
+  ]
   const financialMetrics = [
     { label: 'Monthly Revenue', value: '$45,280', change: '+16.3%', trend: 'up', color: 'green' },
     { label: 'Outstanding Invoices', value: '$12,450', change: '-8.2%', trend: 'down', color: 'red' },
@@ -273,12 +283,16 @@ const ComprehensiveDashboard = ({ user, company, estimates, jobs, invoices }) =>
                 <CardDescription>Monthly revenue performance and projections</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-80 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <BarChart3 className="w-16 h-16 text-blue-500 mx-auto mb-4" />
-                    <p className="text-gray-600">Interactive Revenue Chart</p>
-                    <p className="text-sm text-gray-500 mt-2">Chart visualization would be implemented here</p>
-                  </div>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RechartsBarChart data={monthlyRevenueData} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                      <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                      <YAxis tick={{ fontSize: 12 }} tickFormatter={(v) => `$${(v/1000).toFixed(0)}k`} />
+                      <Tooltip formatter={(value) => [`$${value.toLocaleString()}`, 'Revenue']} />
+                      <Bar dataKey="revenue" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    </RechartsBarChart>
+                  </ResponsiveContainer>
                 </div>
               </CardContent>
             </Card>

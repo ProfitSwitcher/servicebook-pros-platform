@@ -46,7 +46,7 @@ const SettingsPage = () => {
   const [activeSection, setActiveSection] = useState('service-area')
   const [saving, setSaving] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
-  const [profileData, setProfileData] = useState({ companyName: '', phone: '', address: '' })
+  const [profileData, setProfileData] = useState({ companyName: '', phone: '', address: '', email: '', timezone: '' })
   const [expandedSections, setExpandedSections] = useState({
     'jobs-estimates': true,
     'company': true,
@@ -61,6 +61,20 @@ const SettingsPage = () => {
       [sectionId]: !prev[sectionId]
     }))
   }
+
+  useEffect(() => {
+    apiClient.getSettings().then((data) => {
+      setProfileData({
+        companyName: data.company_name || '',
+        phone: data.phone || '',
+        address: data.address || '',
+        email: data.email || '',
+        timezone: data.timezone || '',
+      })
+    }).catch(() => {
+      // If API unavailable, leave fields empty
+    })
+  }, [])
 
   const settingsStructure = [
     {
@@ -225,6 +239,28 @@ const SettingsPage = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   placeholder="123 Main St, City, State 12345"
                 />
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={profileData.email}
+                    onChange={(e) => setProfileData(p => ({ ...p, email: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    placeholder="admin@example.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Timezone</label>
+                  <input
+                    type="text"
+                    value={profileData.timezone}
+                    onChange={(e) => setProfileData(p => ({ ...p, timezone: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    placeholder="America/New_York"
+                  />
+                </div>
               </div>
               <Button type="submit" disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white">
                 {saving ? 'Saving...' : 'Save Changes'}
