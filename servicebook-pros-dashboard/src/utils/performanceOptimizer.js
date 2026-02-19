@@ -150,19 +150,7 @@ export class MemoryManager {
 // Bundle splitting and code optimization
 export class BundleOptimizer {
   static preloadCriticalChunks() {
-    // Preload critical chunks that are likely to be needed
-    const criticalChunks = [
-      'CustomersPage',
-      'ComprehensiveDashboard',
-      'ScheduleCalendar'
-    ];
-
-    criticalChunks.forEach(chunk => {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = `/js/${chunk.toLowerCase()}-[hash].js`;
-      document.head.appendChild(link);
-    });
+    // Vite injects modulepreload links in index.html — no manual chunk prefetching needed
   }
 }
 
