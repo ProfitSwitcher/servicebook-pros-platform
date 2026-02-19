@@ -211,10 +211,10 @@ const EstimatesManagement = () => {
     }
   }
 
-  const filteredEstimates = estimates.filter(estimate => {
-    const matchesSearch = estimate.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         estimate.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         estimate.estimateNumber.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredEstimates = (estimates || []).filter(estimate => {
+    const matchesSearch = String(estimate.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         String(estimate.customer?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         String(estimate.estimateNumber || '').toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || estimate.status === statusFilter
     return matchesSearch && matchesStatus
   })
@@ -229,7 +229,7 @@ const EstimatesManagement = () => {
               <span className="font-semibold text-lg">{estimate.estimateNumber}</span>
             </div>
             <Badge className={getStatusColor(estimate.status)}>
-              {estimate.status.toUpperCase()}
+              {String(estimate.status || '').toUpperCase()}
             </Badge>
           </div>
           <div className="text-right">
@@ -270,7 +270,7 @@ const EstimatesManagement = () => {
                 <div className="flex items-center space-x-3 mb-2">
                   <h2 className="text-2xl font-bold">{selectedEstimate.estimateNumber}</h2>
                   <Badge className={getStatusColor(selectedEstimate.status)}>
-                    {selectedEstimate.status.toUpperCase()}
+                    {String(selectedEstimate.status || '').toUpperCase()}
                   </Badge>
                 </div>
                 <h3 className="text-xl text-gray-700 mb-2">{selectedEstimate.title}</h3>
@@ -337,7 +337,7 @@ const EstimatesManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {selectedEstimate.lineItems.map(item => (
+                    {(selectedEstimate.lineItems || []).map(item => (
                       <tr key={item.id} className="border-b">
                         <td className="py-2">{item.description}</td>
                         <td className="text-right py-2">{item.quantity}</td>
@@ -490,7 +490,7 @@ const EstimatesManagement = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Value</p>
-                <p className="text-2xl font-bold">${estimates.reduce((sum, e) => sum + parseFloat(String(e.totalAmount).replace('$', '').replace(',', '')), 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p className="text-2xl font-bold">${(estimates || []).reduce((sum, e) => sum + parseFloat(String(e.totalAmount || 0).replace('$', '').replace(',', '')), 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
               </div>
               <DollarSign className="w-8 h-8 text-green-600" />
             </div>

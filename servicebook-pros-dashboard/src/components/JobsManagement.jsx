@@ -207,10 +207,12 @@ const JobsManagement = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'scheduled': return 'bg-blue-100 text-blue-800'
-      case 'in-progress': return 'bg-yellow-100 text-yellow-800'
+      case 'in-progress':
+      case 'in_progress': return 'bg-yellow-100 text-yellow-800'
       case 'completed': return 'bg-green-100 text-green-800'
       case 'cancelled': return 'bg-red-100 text-red-800'
-      case 'on-hold': return 'bg-gray-100 text-gray-800'
+      case 'on-hold':
+      case 'on_hold': return 'bg-gray-100 text-gray-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
@@ -227,10 +229,12 @@ const JobsManagement = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'scheduled': return <Calendar className="w-4 h-4" />
-      case 'in-progress': return <PlayCircle className="w-4 h-4" />
+      case 'in-progress':
+      case 'in_progress': return <PlayCircle className="w-4 h-4" />
       case 'completed': return <CheckCircle className="w-4 h-4" />
       case 'cancelled': return <X className="w-4 h-4" />
-      case 'on-hold': return <PauseCircle className="w-4 h-4" />
+      case 'on-hold':
+      case 'on_hold': return <PauseCircle className="w-4 h-4" />
       default: return <Clock className="w-4 h-4" />
     }
   }
@@ -253,7 +257,7 @@ const JobsManagement = () => {
               <span className="font-semibold text-lg">{job.jobNumber}</span>
             </div>
             <Badge className={getStatusColor(job.status)}>
-              {job.status.replace('-', ' ').toUpperCase()}
+              {String(job.status).replace(/_/g, ' ').replace(/-/g, ' ').toUpperCase()}
             </Badge>
             {job.priority === 'high' && (
               <Flag className={`w-4 h-4 ${getPriorityColor(job.priority)}`} />
@@ -292,7 +296,7 @@ const JobsManagement = () => {
               <User className="w-4 h-4 text-gray-500" />
               <span className="text-sm">Assigned to: {job.assignedTechnician}</span>
             </div>
-            {job.materials.some(m => m.urgent) && (
+            {(job.materials || []).some(m => m.urgent) && (
               <div className="flex items-center space-x-2">
                 <AlertTriangle className="w-4 h-4 text-red-500" />
                 <span className="text-sm text-red-600">Urgent materials needed</span>
@@ -303,14 +307,14 @@ const JobsManagement = () => {
 
         <div className="flex justify-between items-center">
           <div className="flex space-x-2">
-            {job.urgentQuestions.length > 0 && (
+            {(job.urgentQuestions || []).length > 0 && (
               <Badge className="bg-red-100 text-red-800">
-                {job.urgentQuestions.length} Urgent Questions
+                {(job.urgentQuestions || []).length} Urgent Questions
               </Badge>
             )}
-            {job.homeownerQuestions.filter(q => !q.answered).length > 0 && (
+            {(job.homeownerQuestions || []).filter(q => !q.answered).length > 0 && (
               <Badge className="bg-blue-100 text-blue-800">
-                {job.homeownerQuestions.filter(q => !q.answered).length} Questions
+                {(job.homeownerQuestions || []).filter(q => !q.answered).length} Questions
               </Badge>
             )}
           </div>
@@ -328,10 +332,10 @@ const JobsManagement = () => {
     const tabs = [
       { id: 'overview', label: 'Overview', icon: Eye },
       { id: 'scope', label: 'Scope of Work', icon: FileText },
-      { id: 'materials', label: 'Materials', icon: Package, badge: selectedJob.materials.filter(m => m.urgent).length },
+      { id: 'materials', label: 'Materials', icon: Package, badge: (selectedJob.materials || []).filter(m => m.urgent).length },
       { id: 'time', label: 'Time Tracking', icon: Timer },
-      { id: 'questions', label: 'Homeowner Questions', icon: MessageSquare, badge: selectedJob.homeownerQuestions.filter(q => !q.answered).length },
-      { id: 'urgent-questions', label: 'Urgent Questions', icon: AlertTriangle, badge: selectedJob.urgentQuestions.length },
+      { id: 'questions', label: 'Homeowner Questions', icon: MessageSquare, badge: (selectedJob.homeownerQuestions || []).filter(q => !q.answered).length },
+      { id: 'urgent-questions', label: 'Urgent Questions', icon: AlertTriangle, badge: (selectedJob.urgentQuestions || []).length },
       { id: 'notes', label: 'Notes', icon: Clipboard }
     ]
 
@@ -347,7 +351,7 @@ const JobsManagement = () => {
                     <div className="flex items-center space-x-3 mb-2">
                       <h2 className="text-2xl font-bold">{selectedJob.jobNumber}</h2>
                       <Badge className={getStatusColor(selectedJob.status)}>
-                        {selectedJob.status.replace('-', ' ').toUpperCase()}
+                        {String(selectedJob.status).replace(/_/g, ' ').replace(/-/g, ' ').toUpperCase()}
                       </Badge>
                       {selectedJob.priority === 'high' && (
                         <Flag className={`w-5 h-5 ${getPriorityColor(selectedJob.priority)}`} />
@@ -455,7 +459,7 @@ const JobsManagement = () => {
                           <div className="flex justify-between">
                             <span className="text-gray-600">Priority:</span>
                             <span className={`font-medium ${getPriorityColor(selectedJob.priority)}`}>
-                              {selectedJob.priority.toUpperCase()}
+                              {String(selectedJob.priority || '').toUpperCase()}
                             </span>
                           </div>
                         </CardContent>
@@ -486,7 +490,7 @@ const JobsManagement = () => {
 
                 {activeTab === 'materials' && (
                   <div className="space-y-4">
-                    {selectedJob.materials.filter(m => m.urgent).length > 0 && (
+                    {(selectedJob.materials || []).filter(m => m.urgent).length > 0 && (
                       <Card className="border-red-200 bg-red-50">
                         <CardHeader>
                           <CardTitle className="text-lg text-red-800 flex items-center">
@@ -496,7 +500,7 @@ const JobsManagement = () => {
                         </CardHeader>
                         <CardContent>
                           <div className="space-y-3">
-                            {selectedJob.materials.filter(m => m.urgent).map((material, index) => (
+                            {(selectedJob.materials || []).filter(m => m.urgent).map((material, index) => (
                               <div key={index} className="flex justify-between items-center p-3 bg-white rounded border">
                                 <div>
                                   <div className="font-medium">{material.name}</div>
@@ -519,7 +523,7 @@ const JobsManagement = () => {
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-3">
-                          {selectedJob.materials.map((material, index) => (
+                          {(selectedJob.materials || []).map((material, index) => (
                             <div key={index} className="flex justify-between items-center p-3 border rounded">
                               <div>
                                 <div className="font-medium">{material.name}</div>
@@ -537,7 +541,7 @@ const JobsManagement = () => {
                         <div className="mt-4 pt-4 border-t">
                           <div className="flex justify-between items-center font-semibold">
                             <span>Total Materials Cost:</span>
-                            <span>${selectedJob.materials.reduce((sum, m) => sum + parseFloat(String(m.cost).replace('$', '')), 0).toFixed(2)}</span>
+                            <span>${(selectedJob.materials || []).reduce((sum, m) => sum + parseFloat(String(m.cost || 0).replace('$', '')), 0).toFixed(2)}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -571,7 +575,7 @@ const JobsManagement = () => {
                           </div>
                         </div>
                         <div className="space-y-2">
-                          {selectedJob.status === 'in-progress' ? (
+                          {(selectedJob.status === 'in-progress' || selectedJob.status === 'in_progress') ? (
                             <Button className="w-full bg-red-600 hover:bg-red-700">
                               <PauseCircle className="w-4 h-4 mr-2" />
                               Stop Timer
@@ -601,7 +605,7 @@ const JobsManagement = () => {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
-                        {selectedJob.homeownerQuestions.map((question) => (
+                        {(selectedJob.homeownerQuestions || []).map((question) => (
                           <div key={question.id} className={`p-4 border rounded-lg ${question.answered ? 'bg-green-50 border-green-200' : 'bg-yellow-50 border-yellow-200'}`}>
                             <div className="flex justify-between items-start">
                               <div className="flex-1">
@@ -637,8 +641,8 @@ const JobsManagement = () => {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
-                        {selectedJob.urgentQuestions.length > 0 ? (
-                          selectedJob.urgentQuestions.map((question) => (
+                        {(selectedJob.urgentQuestions || []).length > 0 ? (
+                          (selectedJob.urgentQuestions || []).map((question) => (
                             <div key={question.id} className="p-4 border border-red-200 rounded-lg bg-red-50">
                               <div className="flex justify-between items-start">
                                 <div className="flex-1">
@@ -766,7 +770,7 @@ const JobsManagement = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">In Progress</p>
-                <p className="text-2xl font-bold">{jobs.filter(j => j.status === 'in-progress').length}</p>
+                <p className="text-2xl font-bold">{jobs.filter(j => j.status === 'in-progress' || j.status === 'in_progress').length}</p>
               </div>
               <PlayCircle className="w-8 h-8 text-yellow-600" />
             </div>
@@ -791,7 +795,7 @@ const JobsManagement = () => {
               <div>
                 <p className="text-sm font-medium text-gray-600">Urgent Items</p>
                 <p className="text-2xl font-bold">
-                  {jobs.reduce((sum, job) => sum + job.materials.filter(m => m.urgent).length + job.urgentQuestions.length, 0)}
+                  {jobs.reduce((sum, job) => sum + (job.materials || []).filter(m => m.urgent).length + (job.urgentQuestions || []).length, 0)}
                 </p>
               </div>
               <AlertTriangle className="w-8 h-8 text-red-600" />

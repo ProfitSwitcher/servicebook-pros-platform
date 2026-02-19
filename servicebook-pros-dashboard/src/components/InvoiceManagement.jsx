@@ -254,13 +254,13 @@ const InvoiceManagement = () => {
     return (
       <Badge className={config.color}>
         <Icon className="w-3 h-3 mr-1" />
-        {status.charAt(0).toUpperCase() + status.slice(1)}
+        {String(status || '').charAt(0).toUpperCase() + String(status || '').slice(1)}
       </Badge>
     )
   }
 
-  const filteredInvoices = invoices.filter(invoice => {
-    const matchesSearch = invoice.invoice_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredInvoices = (invoices || []).filter(invoice => {
+    const matchesSearch = String(invoice.invoice_number || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
                          (invoice.customer && `${invoice.customer.first_name} ${invoice.customer.last_name}`.toLowerCase().includes(searchTerm.toLowerCase()))
     const matchesStatus = statusFilter === 'all' || invoice.status === statusFilter
     return matchesSearch && matchesStatus

@@ -157,13 +157,13 @@ const CustomersPage = ({ setActiveTab }) => {
     fetchCustomers()
   }, [])
 
-  const filteredCustomers = customers.filter(customer => {
+  const filteredCustomers = (customers || []).filter(customer => {
     // Search filter
-    const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.phone.includes(searchTerm) ||
-      customer.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.city.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = String(customer.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      String(customer.email || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      String(customer.phone || '').includes(searchTerm) ||
+      String(customer.address || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      String(customer.city || '').toLowerCase().includes(searchTerm.toLowerCase())
     
     // Status filter
     const matchesStatus = filters.status === 'all' || customer.status === filters.status
@@ -925,7 +925,7 @@ const CustomersPage = ({ setActiveTab }) => {
                             </div>
                             <div>
                               <p className="text-gray-500">Total Spent</p>
-                              <p className="font-medium">${customer.total_spent.toLocaleString()}</p>
+                              <p className="font-medium">${(customer.total_spent || 0).toLocaleString()}</p>
                             </div>
                           </div>
                         </div>
