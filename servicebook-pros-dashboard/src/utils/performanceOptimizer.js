@@ -262,42 +262,11 @@ export class PerformanceMonitor {
 // Resource preloading
 export class ResourcePreloader {
   static preloadCriticalResources() {
-    const criticalResources = [
-      { href: '/fonts/inter-var.woff2', as: 'font', type: 'font/woff2' },
-      { href: '/css/critical.css', as: 'style' },
-      { href: '/js/vendor.js', as: 'script' }
-    ];
-
-    criticalResources.forEach(resource => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.href = resource.href;
-      link.as = resource.as;
-      if (resource.type) link.type = resource.type;
-      if (resource.as === 'font') link.crossOrigin = 'anonymous';
-      document.head.appendChild(link);
-    });
+    // Vite handles modulepreload via index.html — no manual preloading needed
   }
 
   static prefetchNextPageResources(nextPage) {
-    const resourceMap = {
-      customers: ['/js/customers-chunk.js', '/api/customers'],
-      schedule: ['/js/schedule-chunk.js', '/api/jobs'],
-      dashboard: ['/js/dashboard-chunk.js', '/api/analytics/summary']
-    };
-
-    const resources = resourceMap[nextPage] || [];
-    resources.forEach(resource => {
-      if (resource.startsWith('/js/')) {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = resource;
-        document.head.appendChild(link);
-      } else if (resource.startsWith('/api/')) {
-        // Prefetch API data
-        fetch(resource, { method: 'HEAD' }).catch(() => {});
-      }
-    });
+    // Vite handles chunk splitting — no manual prefetching needed
   }
 }
 
