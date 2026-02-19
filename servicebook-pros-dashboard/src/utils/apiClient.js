@@ -215,6 +215,22 @@ class ApiClient {
     return this.request('/analytics/dashboard');
   }
 
+  async getAnalyticsSummary() {
+    return this.request('/analytics/summary');
+  }
+
+  async getRevenueByMonth() {
+    return this.request('/analytics/revenue-by-month');
+  }
+
+  async getTopCustomers() {
+    return this.request('/analytics/top-customers');
+  }
+
+  async getChurnAnalysis() {
+    return [];
+  }
+
   async getReports() {
     return this.request('/analytics/reports');
   }
