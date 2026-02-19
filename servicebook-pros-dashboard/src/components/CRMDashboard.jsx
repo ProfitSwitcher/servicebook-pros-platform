@@ -39,6 +39,7 @@ const CRMDashboard = () => {
   const [todaySchedule, setTodaySchedule] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [calendarDate, setCalendarDate] = useState(new Date())
 
   // Mock data for demonstration
   useEffect(() => {
@@ -434,7 +435,21 @@ const CRMDashboard = () => {
                 <div className="lg:col-span-3">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-4">
-                      <h3 className="text-lg font-semibold">July 2024</h3>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCalendarDate(d => new Date(d.getFullYear(), d.getMonth() - 1, 1))}
+                        >‹</Button>
+                        <h3 className="text-lg font-semibold min-w-[140px] text-center">
+                          {calendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                        </h3>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCalendarDate(d => new Date(d.getFullYear(), d.getMonth() + 1, 1))}
+                        >›</Button>
+                      </div>
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm">Month</Button>
                         <Button variant="outline" size="sm">Week</Button>

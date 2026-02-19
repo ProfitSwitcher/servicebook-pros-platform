@@ -87,8 +87,8 @@ class CachedApiClient {
       body: credentials,
     });
     
-    if (response.token) {
-      this.setToken(response.token);
+    if (response.access_token || response.token) {
+      this.setToken(response.access_token || response.token);
     }
     
     return response;
@@ -106,12 +106,9 @@ class CachedApiClient {
 
   // Cached customer methods
   async getCustomers(params = {}) {
-    return this.request('/customers', {
-      method: 'GET',
-      body: params,
-      cache: true,
-      cacheTTL: CacheStrategies.CUSTOMER_DATA
-    });
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/customers?${query}` : '/customers';
+    return this.request(endpoint, { cache: true, cacheTTL: CacheStrategies.CUSTOMER_DATA });
   }
 
   async getCustomer(id) {
@@ -158,12 +155,9 @@ class CachedApiClient {
 
   // Cached job methods
   async getJobs(params = {}) {
-    return this.request('/jobs', {
-      method: 'GET',
-      body: params,
-      cache: true,
-      cacheTTL: CacheStrategies.JOB_DATA
-    });
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/jobs?${query}` : '/jobs';
+    return this.request(endpoint, { cache: true, cacheTTL: CacheStrategies.JOB_DATA });
   }
 
   async getJob(id) {
@@ -224,31 +218,22 @@ class CachedApiClient {
 
   // Cached financial methods
   async getInvoices(params = {}) {
-    return this.request('/invoices', {
-      method: 'GET',
-      body: params,
-      cache: true,
-      cacheTTL: CacheStrategies.JOB_DATA
-    });
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/invoices?${query}` : '/invoices';
+    return this.request(endpoint, { cache: true, cacheTTL: CacheStrategies.JOB_DATA });
   }
 
   async getPayments(params = {}) {
-    return this.request('/payments', {
-      method: 'GET',
-      body: params,
-      cache: true,
-      cacheTTL: CacheStrategies.JOB_DATA
-    });
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/payments?${query}` : '/payments';
+    return this.request(endpoint, { cache: true, cacheTTL: CacheStrategies.JOB_DATA });
   }
 
   // Cached estimates methods
   async getEstimates(params = {}) {
-    return this.request('/estimates', {
-      method: 'GET',
-      body: params,
-      cache: true,
-      cacheTTL: CacheStrategies.JOB_DATA
-    });
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/estimates?${query}` : '/estimates';
+    return this.request(endpoint, { cache: true, cacheTTL: CacheStrategies.JOB_DATA });
   }
 
   async createEstimate(estimateData) {

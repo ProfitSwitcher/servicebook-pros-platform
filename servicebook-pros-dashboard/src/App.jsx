@@ -115,45 +115,7 @@ function App() {
       }
     } catch (err) {
       console.error('Login error:', err)
-      
-      // Fallback to demo mode for development
-      if (loginForm.username === 'demo_admin' && loginForm.password === 'demo123') {
-        setUser({ 
-          username: 'demo_admin', 
-          token: 'demo_token',
-          id: 1,
-          role: 'admin'
-        })
-        setCompany({ 
-          name: 'Demo Company',
-          id: 1
-        })
-        setShowLogin(false)
-        setSuccess('Login successful (Demo Mode)!')
-        loadData()
-      } else {
-        setError(err.message || 'Network error: Failed to connect to server.')
-        
-        // Auto-login with demo credentials if API is unavailable
-        if (err.message.includes('Failed to fetch') || err.message.includes('Network error')) {
-          setTimeout(() => {
-            setUser({ 
-              username: 'demo_admin', 
-              token: 'demo_token',
-              id: 1,
-              role: 'admin'
-            })
-            setCompany({ 
-              name: 'Demo Company (Offline)',
-              id: 1
-            })
-            setShowLogin(false)
-            setError('')
-            setSuccess('Running in demo mode - API server not available')
-            loadData()
-          }, 2000)
-        }
-      }
+      setError('Unable to connect to the server. Please check your connection and try again.')
     } finally {
       setLoading(false)
     }
@@ -258,12 +220,6 @@ function App() {
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
             
-            <div className="text-center text-sm text-gray-600">
-              <p className="font-medium">Demo Accounts:</p>
-              <p><strong>demo_admin</strong> / demo123</p>
-              <p><strong>miami_admin</strong> / miami123</p>
-              <p><strong>system_admin</strong> / admin123</p>
-            </div>
           </form>
         </div>
       </div>
@@ -1073,12 +1029,17 @@ function App() {
         {activeTab === 'reporting' && <ReportingLazy />}
         
         {activeTab === 'settings' && <SettingsLazy />}
+
+        {activeTab === 'pricing' && <PricingLazy />}
+
+        {activeTab === 'team' && <TeamManagement user={user} />}
       </main>
 
       {/* Mobile Navigation */}
-      <MobileNavigation 
+      <MobileNavigation
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        user={user}
         onNewAction={(actionId) => {
           // Handle quick actions from mobile menu
           if (actionId === 'new-customer') {

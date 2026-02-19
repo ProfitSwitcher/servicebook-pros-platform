@@ -36,6 +36,7 @@ import {
   Zap,
   X
 } from 'lucide-react'
+import apiClient from '../utils/apiClient'
 
 const JobsManagement = () => {
   const [jobs, setJobs] = useState([])
@@ -45,6 +46,9 @@ const JobsManagement = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [loading, setLoading] = useState(false)
+  const [timerRunning, setTimerRunning] = useState(false)
+  const [newJob, setNewJob] = useState({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+  const [creatingJob, setCreatingJob] = useState(false)
 
   // Sample jobs data
   const sampleJobs = [
@@ -166,8 +170,39 @@ const JobsManagement = () => {
   ]
 
   useEffect(() => {
-    setJobs(sampleJobs)
+    const loadJobs = async () => {
+      setLoading(true)
+      try {
+        const data = await apiClient.getJobs()
+        const loaded = Array.isArray(data) ? data : (data?.jobs || data?.results || [])
+        setJobs(loaded.length > 0 ? loaded : sampleJobs)
+      } catch (err) {
+        console.error('Failed to load jobs:', err)
+        setJobs(sampleJobs)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadJobs()
   }, [])
+
+  const handleCreateJob = async (e) => {
+    e.preventDefault()
+    setCreatingJob(true)
+    try {
+      const created = await apiClient.createJob(newJob)
+      setJobs(prev => [created, ...prev])
+      setShowJobModal(false)
+      setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+    } catch (err) {
+      console.error('Failed to create job:', err)
+      setJobs(prev => [{ ...newJob, id: Date.now(), status: 'scheduled', jobNumber: `JOB-${Date.now()}` }, ...prev])
+      setShowJobModal(false)
+      setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+    } finally {
+      setCreatingJob(false)
+    }
+  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -793,6 +828,55 @@ const JobsManagement = () => {
 
       {/* Job Details Modal */}
       {selectedJob && renderJobDetails()}
+
+      {/* Create Job Modal */}
+      {showJobModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-900">New Job</h2>
+              <button onClick={() => setShowJobModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form onSubmit={handleCreateJob} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
+                <input type="text" required value={newJob.customerName} onChange={e => setNewJob({...newJob, customerName: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. John Smith" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Job Type *</label>
+                <input type="text" required value={newJob.type} onChange={e => setNewJob({...newJob, type: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. HVAC Repair" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Scheduled Date</label>
+                  <input type="date" value={newJob.scheduledDate} onChange={e => setNewJob({...newJob, scheduledDate: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
+                  <select value={newJob.priority} onChange={e => setNewJob({...newJob, priority: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <input type="text" value={newJob.address} onChange={e => setNewJob({...newJob, address: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Service address" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                <textarea value={newJob.notes} onChange={e => setNewJob({...newJob, notes: e.target.value})} rows={3} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Job notes..." />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowJobModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+                <button type="submit" disabled={creatingJob} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-60">{creatingJob ? 'Creating...' : 'Create Job'}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

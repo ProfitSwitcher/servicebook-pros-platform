@@ -43,6 +43,14 @@ const MyMoneyPage = () => {
   const [invoices, setInvoices] = useState([])
   const [payments, setPayments] = useState([])
 
+  // Compute pending total dynamically from invoices state
+  const pendingTotal = invoices
+    .filter(inv => inv.status === 'pending' || inv.status === 'unpaid' || inv.status === 'sent')
+    .reduce((sum, inv) => {
+      const amount = parseFloat(String(inv.total_amount || inv.amount || inv.totalAmount || '0').replace(/[$,]/g, ''))
+      return sum + (isNaN(amount) ? 0 : amount)
+    }, 0)
+
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
       ...prev,
@@ -56,11 +64,25 @@ const MyMoneyPage = () => {
     setError('')
     
     try {
-      const [invoicesData, paymentsData] = await Promise.all([
-        apiClient.getInvoices({ status: 'pending' }),
-        apiClient.getPayments()
-      ])
-      
+      let invoicesData = []
+      let paymentsData = []
+
+      try {
+        invoicesData = await apiClient.getInvoices({ status: 'pending' })
+        if (!Array.isArray(invoicesData)) invoicesData = invoicesData?.invoices || invoicesData?.results || []
+      } catch (err) {
+        console.error('getInvoices not available:', err)
+        invoicesData = []
+      }
+
+      try {
+        paymentsData = await apiClient.getPayments()
+        if (!Array.isArray(paymentsData)) paymentsData = paymentsData?.payments || paymentsData?.results || []
+      } catch (err) {
+        console.error('getPayments not available:', err)
+        paymentsData = []
+      }
+
       // Transform invoices to pending transactions format
       const pendingTxns = invoicesData.map(invoice => ({
         id: invoice.id,
@@ -280,6 +302,85 @@ const MyMoneyPage = () => {
     </div>
   )
 
+  const renderPayoutTabContent = () => {
+    if (activeTab === 'standard') {
+      return (
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="text-left py-3 px-4 font-medium text-gray-600">Deposit date</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-600">Total amount</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-600">Payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(payoutHistory.length > 0 ? payoutHistory : samplePayoutHistory).map((payout) => (
+                <tr key={payout.id} className="border-b border-gray-100 hover:bg-gray-50">
+                  <td className="py-4 px-4 text-gray-900">{payout.depositDate}</td>
+                  <td className="py-4 px-4 text-right font-medium text-gray-900">{payout.totalAmount}</td>
+                  <td className="py-4 px-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <span className="text-gray-900">{payout.status}</span>
+                      <ChevronDown className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+
+    if (activeTab === 'instant') {
+      return (
+        <div className="py-12 text-center">
+          <CreditCard className="w-12 h-12 text-blue-500 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Payouts</h3>
+          <p className="text-gray-600 mb-6 max-w-sm mx-auto">
+            Get paid within 30 minutes of completing a job. Enable instant payouts to accelerate your cash flow.
+          </p>
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+            Enable Instant Payouts
+          </button>
+        </div>
+      )
+    }
+
+    if (activeTab === 'financing') {
+      return (
+        <div className="py-12 text-center">
+          <Building className="w-12 h-12 text-green-500 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Consumer Financing</h3>
+          <p className="text-gray-600 mb-6 max-w-sm mx-auto">
+            Offer your customers flexible financing options so they can afford larger projects without upfront costs.
+          </p>
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+            Learn More
+          </button>
+        </div>
+      )
+    }
+
+    if (activeTab === 'check-deposits') {
+      return (
+        <div className="py-12 text-center">
+          <CheckCircle className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Check Deposits</h3>
+          <p className="text-gray-600 mb-6 max-w-sm mx-auto">
+            Deposit checks directly from your mobile app. Take a photo and funds are processed automatically.
+          </p>
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+            Set Up Check Deposits
+          </button>
+        </div>
+      )
+    }
+
+    return null
+  }
+
   const renderPayoutTabs = () => (
     <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit">
       {[
@@ -332,7 +433,15 @@ const MyMoneyPage = () => {
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-1">Pending transactions</h2>
-              <div className="text-3xl font-bold text-gray-900">$2,815.16</div>
+              <div className="text-3xl font-bold text-gray-900">
+                ${pendingTotal > 0
+                  ? pendingTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                  : pendingTransactions.reduce((sum, t) => {
+                      const n = parseFloat(String(t.amount || '0').replace(/[$,]/g, ''))
+                      return sum + (isNaN(n) ? 0 : n)
+                    }, 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                }
+              </div>
             </div>
             <Button variant="outline" size="sm">
               <MoreHorizontal className="w-4 h-4" />
@@ -387,33 +496,9 @@ const MyMoneyPage = () => {
         <CardContent>
           {/* Payout Tabs */}
           {renderPayoutTabs()}
-          
-          {/* Payout History Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Deposit date</th>
-                  <th className="text-right py-3 px-4 font-medium text-gray-600">Total amount</th>
-                  <th className="text-right py-3 px-4 font-medium text-gray-600">Payment</th>
-                </tr>
-              </thead>
-              <tbody>
-                {payoutHistory.map((payout) => (
-                  <tr key={payout.id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-4 px-4 text-gray-900">{payout.depositDate}</td>
-                    <td className="py-4 px-4 text-right font-medium text-gray-900">{payout.totalAmount}</td>
-                    <td className="py-4 px-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <span className="text-gray-900">{payout.status}</span>
-                        <ChevronDown className="w-4 h-4 text-gray-400" />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+
+          {/* Payout Tab Content */}
+          {renderPayoutTabContent()}
         </CardContent>
       </Card>
     </div>

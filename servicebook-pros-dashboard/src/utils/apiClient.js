@@ -1,11 +1,10 @@
 import { API_BASE_URL } from '@/lib/config'
+
 // API Client for ServiceBook Pros Backend Integration
-// Updated with cache busting timestamp: 1757919828
 class ApiClient {
   constructor(baseURL = API_BASE_URL) {
     this.baseURL = baseURL;
     this.token = localStorage.getItem('auth_token');
-    console.log('🔗 API Client initialized with baseURL:', this.baseURL);
   }
 
   // Set authentication token
@@ -23,25 +22,15 @@ class ApiClient {
     const headers = {
       'Content-Type': 'application/json',
     };
-    
     if (this.token) {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
-    
-    // Debug: show whether auth header is present
-    if (process.env.NODE_ENV !== 'production') {
-      const hasAuth = !!this.token
-      console.log('🧪 apiClient headers prepared. Auth?', hasAuth)
-    }
-
     return headers;
   }
 
   // Generic request method with enhanced error handling
   async request(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`;
-    console.log('🌐 Making API request to:', url);
-    
     const config = {
       ...options,
       headers: {
@@ -51,15 +40,10 @@ class ApiClient {
     };
 
     try {
-      // Debug outgoing headers minimally (without dumping token value)
-      const hasAuthHeader = !!config.headers?.Authorization
-      console.log('➡️ Request config. Auth header present?', hasAuthHeader)
       const response = await fetch(url, config);
-      console.log('📡 API Response status:', response.status);
-      
+
       if (!response.ok) {
         if (response.status === 401) {
-          // Clear invalid token
           this.setToken(null);
           window.location.href = '/';
           throw new Error('Authentication required');
@@ -68,33 +52,31 @@ class ApiClient {
       }
 
       const data = await response.json();
-      console.log('✅ API Response data received');
       return data;
     } catch (error) {
-      console.error('❌ API Request failed:', error);
+      console.error('API Request failed:', endpoint, error.message);
       throw error;
     }
   }
 
   // Authentication methods
-  async login(credentials) {
-    console.log('🔐 Attempting login...');
-    // Support both login(username, password) and login({ username, password }) call sites
-    if (typeof credentials === 'string') {
-      const username = credentials
-      const password = arguments[1]
-      credentials = { username, password }
+  async login(credentialsOrUsername, password) {
+    let credentials;
+    if (typeof credentialsOrUsername === 'string') {
+      credentials = { username: credentialsOrUsername, password };
+    } else {
+      credentials = credentialsOrUsername;
     }
+
     const response = await this.request('/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
-    
+
     if (response.access_token || response.token) {
       this.setToken(response.access_token || response.token);
-      console.log('✅ Login successful');
     }
-    
+
     return response;
   }
 
@@ -111,19 +93,16 @@ class ApiClient {
     return this.request('/auth/me');
   }
 
-  // Customer methods with enhanced logging
+  // Customer methods
   async getCustomers() {
-    console.log('👥 Fetching customers...');
     return this.request('/customers/');
   }
 
   async getCustomer(id) {
-    console.log('👤 Fetching customer:', id);
     return this.request(`/customers/${id}`);
   }
 
   async createCustomer(customerData) {
-    console.log('➕ Creating customer...');
     return this.request('/customers/', {
       method: 'POST',
       body: JSON.stringify(customerData),
@@ -131,7 +110,6 @@ class ApiClient {
   }
 
   async updateCustomer(id, customerData) {
-    console.log('✏️ Updating customer:', id);
     return this.request(`/customers/${id}`, {
       method: 'PUT',
       body: JSON.stringify(customerData),
@@ -139,15 +117,16 @@ class ApiClient {
   }
 
   async deleteCustomer(id) {
-    console.log('🗑️ Deleting customer:', id);
     return this.request(`/customers/${id}`, {
       method: 'DELETE',
     });
   }
 
   // Job methods
-  async getJobs() {
-    return this.request('/jobs/');
+  async getJobs(params = {}) {
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/jobs/?${query}` : '/jobs/';
+    return this.request(endpoint);
   }
 
   async getJob(id) {
@@ -169,8 +148,10 @@ class ApiClient {
   }
 
   // Estimate methods
-  async getEstimates() {
-    return this.request('/estimates/');
+  async getEstimates(params = {}) {
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/estimates/?${query}` : '/estimates/';
+    return this.request(endpoint);
   }
 
   async getEstimate(id) {
@@ -184,9 +165,24 @@ class ApiClient {
     });
   }
 
+  async updateEstimate(id, estimateData) {
+    return this.request(`/estimates/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(estimateData),
+    });
+  }
+
+  async deleteEstimate(id) {
+    return this.request(`/estimates/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Invoice methods
-  async getInvoices() {
-    return this.request('/invoices/');
+  async getInvoices(params = {}) {
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/invoices/?${query}` : '/invoices/';
+    return this.request(endpoint);
   }
 
   async getInvoice(id) {
@@ -198,6 +194,20 @@ class ApiClient {
       method: 'POST',
       body: JSON.stringify(invoiceData),
     });
+  }
+
+  async updateInvoice(id, invoiceData) {
+    return this.request(`/invoices/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(invoiceData),
+    });
+  }
+
+  // Payment methods
+  async getPayments(params = {}) {
+    const query = new URLSearchParams(params).toString();
+    const endpoint = query ? `/payments/?${query}` : '/payments/';
+    return this.request(endpoint);
   }
 
   // Analytics methods
@@ -226,8 +236,15 @@ class ApiClient {
     return this.request('/pricing/');
   }
 
-  async updatePricing(pricingData) {
+  async createPricing(pricingData) {
     return this.request('/pricing/', {
+      method: 'POST',
+      body: JSON.stringify(pricingData),
+    });
+  }
+
+  async updatePricing(id, pricingData) {
+    return this.request(`/pricing/${id}`, {
       method: 'PUT',
       body: JSON.stringify(pricingData),
     });
@@ -252,6 +269,20 @@ class ApiClient {
 
   async getTechnician(id) {
     return this.request(`/technicians/${id}`);
+  }
+
+  async createTechnician(techData) {
+    return this.request('/technicians/', {
+      method: 'POST',
+      body: JSON.stringify(techData),
+    });
+  }
+
+  async updateTechnician(id, techData) {
+    return this.request(`/technicians/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(techData),
+    });
   }
 
   // Communication methods

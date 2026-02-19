@@ -26,6 +26,7 @@ import {
   Save,
   RefreshCw
 } from 'lucide-react'
+import apiClient from '../utils/apiClient'
 
 const PricingCatalog = () => {
   const [pricingItems, setPricingItems] = useState([])
@@ -36,6 +37,9 @@ const PricingCatalog = () => {
   const [showSettingsModal, setShowSettingsModal] = useState(false)
   const [laborRate, setLaborRate] = useState(125)
   const [loading, setLoading] = useState(false)
+  const [editingItem, setEditingItem] = useState(null)
+  const [newPricingItem, setNewPricingItem] = useState({ title: '', category: 'hvac', code: '', description: '', laborHours: 1, materialCost: 0, profitMargin: 35, unit: 'each' })
+  const [creatingPricingItem, setCreatingPricingItem] = useState(false)
 
   // Sample categories
   const sampleCategories = [
@@ -135,7 +139,20 @@ const PricingCatalog = () => {
 
   useEffect(() => {
     setCategories(sampleCategories)
-    setPricingItems(samplePricingItems)
+    const loadPricing = async () => {
+      setLoading(true)
+      try {
+        const data = await apiClient.getPricing()
+        const items = Array.isArray(data) ? data : (data?.items || data?.results || [])
+        setPricingItems(items.length > 0 ? items : samplePricingItems)
+      } catch (err) {
+        console.error('Failed to load pricing:', err)
+        setPricingItems(samplePricingItems)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadPricing()
   }, [])
 
   // Recalculate all pricing when labor rate changes
@@ -226,11 +243,15 @@ const PricingCatalog = () => {
               ))}
             </div>
             <div className="flex space-x-2">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setEditingItem(item)}>
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => {
+                const duplicate = { ...item, id: undefined, title: `${item.title} (Copy)`, code: `${item.code}-COPY` }
+                setPricingItems(prev => [...prev, { ...duplicate, id: Date.now() }])
+                apiClient.createPricing(duplicate).catch(() => {})
+              }}>
                 <Copy className="w-4 h-4 mr-2" />
                 Duplicate
               </Button>
@@ -530,6 +551,114 @@ const PricingCatalog = () => {
 
       {/* Settings Modal */}
       {showSettingsModal && renderSettingsModal()}
+
+      {/* Edit Pricing Item Modal */}
+      {editingItem && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">Edit Pricing Item</h2>
+              <button onClick={() => setEditingItem(null)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              try {
+                await apiClient.updatePricing(editingItem.id, editingItem)
+              } catch (err) {
+                console.error('Failed to update pricing item:', err)
+              }
+              setPricingItems(prev => prev.map(p => p.id === editingItem.id ? editingItem : p))
+              setEditingItem(null)
+            }} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Service Name</label>
+                <input type="text" value={editingItem.title || editingItem.name || ''} onChange={e => setEditingItem({...editingItem, title: e.target.value, name: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
+                  <input type="number" step="0.01" value={editingItem.totalPrice || editingItem.price || 0} onChange={e => setEditingItem({...editingItem, totalPrice: parseFloat(e.target.value), price: parseFloat(e.target.value)})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Labor Hours</label>
+                  <input type="number" step="0.25" min="0" value={editingItem.laborHours || 1} onChange={e => setEditingItem({...editingItem, laborHours: parseFloat(e.target.value)})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea value={editingItem.description || ''} onChange={e => setEditingItem({...editingItem, description: e.target.value})} rows={2} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setEditingItem(null)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Create Pricing Item Modal */}
+      {showPricingModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">New Pricing Item</h2>
+              <button onClick={() => setShowPricingModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              setCreatingPricingItem(true)
+              try {
+                const created = await apiClient.createPricing(newPricingItem)
+                setPricingItems(prev => [...prev, created])
+              } catch (err) {
+                const laborCost = newPricingItem.laborHours * laborRate
+                const totalPrice = (laborCost + newPricingItem.materialCost) * (1 + newPricingItem.profitMargin / 100)
+                setPricingItems(prev => [...prev, { ...newPricingItem, id: Date.now(), laborCost, totalPrice }])
+              } finally {
+                setCreatingPricingItem(false)
+                setShowPricingModal(false)
+                setNewPricingItem({ title: '', category: 'hvac', code: '', description: '', laborHours: 1, materialCost: 0, profitMargin: 35, unit: 'each' })
+              }
+            }} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Service Name *</label>
+                <input type="text" required value={newPricingItem.title} onChange={e => setNewPricingItem({...newPricingItem, title: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. AC Tune-Up" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
+                  <input type="text" value={newPricingItem.code} onChange={e => setNewPricingItem({...newPricingItem, code: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. HVAC-001" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                  <select value={newPricingItem.category} onChange={e => setNewPricingItem({...newPricingItem, category: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Labor Hours</label>
+                  <input type="number" step="0.25" min="0" value={newPricingItem.laborHours} onChange={e => setNewPricingItem({...newPricingItem, laborHours: parseFloat(e.target.value) || 0})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Material Cost ($)</label>
+                  <input type="number" step="0.01" min="0" value={newPricingItem.materialCost} onChange={e => setNewPricingItem({...newPricingItem, materialCost: parseFloat(e.target.value) || 0})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Profit Margin (%)</label>
+                <input type="number" step="1" min="0" max="100" value={newPricingItem.profitMargin} onChange={e => setNewPricingItem({...newPricingItem, profitMargin: parseFloat(e.target.value) || 0})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowPricingModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" disabled={creatingPricingItem} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-60">{creatingPricingItem ? 'Creating...' : 'Create Item'}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

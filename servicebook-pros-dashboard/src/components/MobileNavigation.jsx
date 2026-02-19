@@ -16,14 +16,14 @@ import {
   ChevronDown
 } from 'lucide-react'
 
-const MobileNavigation = ({ activeTab, setActiveTab, onNewAction }) => {
+const MobileNavigation = ({ activeTab, setActiveTab, onNewAction, user }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
 
   const navigationItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'dashboard', label: 'Dash', icon: BarChart3 },
-    { id: 'inbox', label: 'Inbox', icon: MessageSquare },
+    { id: 'overview', label: 'Home', icon: Home },
+    { id: 'crm', label: 'Dash', icon: BarChart3 },
+    { id: 'customers', label: 'Inbox', icon: MessageSquare },
     { id: 'schedule', label: 'Schedule', icon: Calendar },
     { id: 'customers', label: 'Customers', icon: Users },
     { id: 'my-money', label: 'Money', icon: DollarSign },
@@ -216,11 +216,13 @@ const MobileNavigation = ({ activeTab, setActiveTab, onNewAction }) => {
             <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                  <span className="text-gray-600 font-medium text-sm">JD</span>
+                  <span className="text-gray-600 font-medium text-sm">
+                    {user?.username ? user.username.slice(0, 2).toUpperCase() : 'SB'}
+                  </span>
                 </div>
                 <div className="flex-1">
-                  <div className="font-medium text-gray-900">John Doe</div>
-                  <div className="text-sm text-gray-600">Owner</div>
+                  <div className="font-medium text-gray-900">{user?.username || 'User'}</div>
+                  <div className="text-sm text-gray-600">{user?.role || 'Member'}</div>
                 </div>
                 <button className="p-1 hover:bg-gray-100 rounded">
                   <ChevronDown className="w-4 h-4 text-gray-600" />

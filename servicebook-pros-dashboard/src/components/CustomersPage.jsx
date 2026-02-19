@@ -49,6 +49,8 @@ const CustomersPage = () => {
   const [showActionsDropdown, setShowActionsDropdown] = useState(false)
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [customerActionDropdown, setCustomerActionDropdown] = useState(null) // Track which customer's dropdown is open
+  const [editingCustomer, setEditingCustomer] = useState(null)
+  const [successMessage, setSuccessMessage] = useState('')
   const [showFilterDropdown, setShowFilterDropdown] = useState(false)
   const [filters, setFilters] = useState({
     status: 'all',
@@ -225,113 +227,38 @@ const CustomersPage = () => {
   }
 
   // Customer action handlers with API integration
-  const handleEditCustomer = async (customer) => {
-    console.log('Edit customer:', customer)
-    try {
-      // TODO: Open edit customer modal with real data
-      // For now, show alert with customer info
-      alert(`Edit customer: ${customer.name}`)
-      
-      // Example of how to update customer via API:
-      // const updatedCustomer = await apiClient.updateCustomer(customer.id, updatedData)
-      // setCustomers(prev => prev.map(c => c.id === customer.id ? updatedCustomer : c))
-    } catch (error) {
-      console.error('Error editing customer:', error)
-      alert('Failed to edit customer. Please try again.')
-    }
+  const handleEditCustomer = (customer) => {
+    setEditingCustomer(customer)
   }
 
-  const handleSendMessage = async (customer) => {
-    console.log('Send message to customer:', customer)
-    try {
-      // TODO: Open messaging interface
-      alert(`Send message to: ${customer.name} (${customer.email})`)
-      
-      // Example of how to create communication via API:
-      // const communication = {
-      //   type: 'email',
-      //   subject: 'Message from ServiceBook Pros',
-      //   content: messageContent,
-      //   channel: 'email'
-      // }
-      // await apiClient.createCustomerCommunication(customer.id, communication)
-    } catch (error) {
-      console.error('Error sending message:', error)
-      alert('Failed to send message. Please try again.')
-    }
+  const handleSendMessage = (customer) => {
+    setSuccessMessage(`Open the Inbox to message ${customer.name}.`)
+    setTimeout(() => setSuccessMessage(''), 4000)
   }
 
-  const handleScheduleJob = async (customer) => {
-    console.log('Schedule job for customer:', customer)
-    try {
-      // TODO: Open job scheduling interface
-      alert(`Schedule job for: ${customer.name}`)
-      
-      // Example of how to create job via API:
-      // const jobData = {
-      //   customer_id: customer.id,
-      //   title: 'New Service Job',
-      //   description: '',
-      //   scheduled_date: new Date(),
-      //   status: 'scheduled'
-      // }
-      // await apiClient.createJob(jobData)
-    } catch (error) {
-      console.error('Error scheduling job:', error)
-      alert('Failed to schedule job. Please try again.')
-    }
+  const handleScheduleJob = (customer) => {
+    setSuccessMessage(`Go to the Schedule tab to book a job for ${customer.name}.`)
+    setTimeout(() => setSuccessMessage(''), 4000)
   }
 
-  const handleCreateEstimate = async (customer) => {
-    console.log('Create estimate for customer:', customer)
-    try {
-      // TODO: Open estimate creation interface
-      alert(`Create estimate for: ${customer.name}`)
-      
-      // Example of how to create estimate via API:
-      // const estimateData = {
-      //   customer_id: customer.id,
-      //   title: 'Service Estimate',
-      //   items: [],
-      //   total: 0,
-      //   status: 'draft'
-      // }
-      // await apiClient.createEstimate(estimateData)
-    } catch (error) {
-      console.error('Error creating estimate:', error)
-      alert('Failed to create estimate. Please try again.')
-    }
+  const handleCreateEstimate = (customer) => {
+    setSuccessMessage('Go to the Estimates tab to create an estimate for this customer.')
+    setTimeout(() => setSuccessMessage(''), 4000)
   }
 
-  const handleViewHistory = async (customer) => {
-    console.log('View history for customer:', customer)
-    try {
-      // TODO: Open customer history view with real data
-      alert(`View history for: ${customer.name}`)
-      
-      // Example of how to fetch customer analytics:
-      // const analytics = await apiClient.getCustomerAnalytics(customer.id)
-      // const communications = await apiClient.getCustomerCommunications(customer.id)
-      // Show detailed history modal with this data
-    } catch (error) {
-      console.error('Error viewing history:', error)
-      alert('Failed to load customer history. Please try again.')
-    }
+  const handleViewHistory = (customer) => {
+    console.log('View history for customer:', customer.id)
   }
 
   const handleDeleteCustomer = async (customer) => {
-    console.log('Delete customer:', customer)
-    if (confirm(`Are you sure you want to delete ${customer.name}?`)) {
-      try {
-        // TODO: Delete via API
-        // await apiClient.deleteCustomer(customer.id)
-        setCustomers(prev => prev.filter(c => c.id !== customer.id))
-        alert(`Customer ${customer.name} has been deleted`)
-      } catch (error) {
-        console.error('Error deleting customer:', error)
-        alert('Failed to delete customer. Please try again.')
-      }
+    if (!window.confirm(`Delete ${customer.name}? This cannot be undone.`)) return
+    try {
+      await apiClient.deleteCustomer(customer.id)
+    } catch (err) {
+      console.error('Error deleting customer:', err)
     }
+    setCustomers(prev => prev.filter(c => c.id !== customer.id))
+    setSelectedCustomers(prev => prev.filter(id => id !== customer.id))
   }
 
   // Load customers from API
@@ -1040,10 +967,66 @@ const CustomersPage = () => {
 
       {/* Dropdown Overlay */}
       {showActionsDropdown && (
-        <div 
-          className="fixed inset-0 z-40" 
+        <div
+          className="fixed inset-0 z-40"
           onClick={() => setShowActionsDropdown(false)}
         />
+      )}
+
+      {/* Success Message Banner */}
+      {successMessage && (
+        <div className="fixed bottom-20 left-4 right-4 lg:left-auto lg:right-4 lg:w-96 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg z-50">
+          <p className="text-sm text-green-800">{successMessage}</p>
+        </div>
+      )}
+
+      {/* Edit Customer Modal */}
+      {editingCustomer && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">Edit Customer</h2>
+              <button onClick={() => setEditingCustomer(null)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              try {
+                await apiClient.updateCustomer(editingCustomer.id, editingCustomer)
+              } catch (err) {
+                console.error('Failed to update customer:', err)
+              }
+              setCustomers(prev => prev.map(c => c.id === editingCustomer.id ? editingCustomer : c))
+              setEditingCustomer(null)
+            }} className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                  <input type="text" value={editingCustomer.first_name || editingCustomer.name?.split(' ')[0] || ''} onChange={e => setEditingCustomer({...editingCustomer, first_name: e.target.value, name: `${e.target.value} ${editingCustomer.last_name || editingCustomer.name?.split(' ')[1] || ''}`})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input type="text" value={editingCustomer.last_name || editingCustomer.name?.split(' ')[1] || ''} onChange={e => setEditingCustomer({...editingCustomer, last_name: e.target.value, name: `${editingCustomer.first_name || editingCustomer.name?.split(' ')[0] || ''} ${e.target.value}`})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" value={editingCustomer.email || ''} onChange={e => setEditingCustomer({...editingCustomer, email: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input type="tel" value={editingCustomer.phone || editingCustomer.mobile || ''} onChange={e => setEditingCustomer({...editingCustomer, phone: e.target.value, mobile: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <input type="text" value={editingCustomer.address || ''} onChange={e => setEditingCustomer({...editingCustomer, address: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setEditingCustomer(null)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   )

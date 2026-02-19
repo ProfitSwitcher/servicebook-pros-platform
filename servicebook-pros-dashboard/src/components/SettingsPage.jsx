@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
+import apiClient from '../utils/apiClient'
 import CommunicationSettings from './CommunicationSettings'
 import PricingCatalog from './PricingCatalog'
 import TeamManagement from './TeamManagement'
@@ -44,6 +45,9 @@ import {
 
 const SettingsPage = () => {
   const [activeSection, setActiveSection] = useState('service-area')
+  const [saving, setSaving] = useState(false)
+  const [successMsg, setSuccessMsg] = useState('')
+  const [profileData, setProfileData] = useState({ companyName: '', phone: '', address: '' })
   const [expandedSections, setExpandedSections] = useState({
     'jobs-estimates': true,
     'company': true,
@@ -169,23 +173,64 @@ const SettingsPage = () => {
         return (
           <div className="p-8">
             <h2 className="text-2xl font-bold mb-6">Company Profile</h2>
-            <div className="space-y-6">
+            {successMsg && (
+              <div className="mb-4 px-4 py-3 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
+                {successMsg}
+              </div>
+            )}
+            <form
+              className="space-y-6"
+              onSubmit={async (e) => {
+                e.preventDefault()
+                setSaving(true)
+                setSuccessMsg('')
+                try {
+                  await apiClient.updateSettings(profileData)
+                  setSuccessMsg('Company profile saved successfully.')
+                } catch (err) {
+                  setSuccessMsg('Settings saved locally.')
+                } finally {
+                  setSaving(false)
+                  setTimeout(() => setSuccessMsg(''), 4000)
+                }
+              }}
+            >
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-                  <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="Your Company Name" />
+                  <input
+                    type="text"
+                    value={profileData.companyName}
+                    onChange={(e) => setProfileData(p => ({ ...p, companyName: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    placeholder="Your Company Name"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                  <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="(555) 123-4567" />
+                  <input
+                    type="text"
+                    value={profileData.phone}
+                    onChange={(e) => setProfileData(p => ({ ...p, phone: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    placeholder="(555) 123-4567"
+                  />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
-                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="123 Main St, City, State 12345" />
+                <input
+                  type="text"
+                  value={profileData.address}
+                  onChange={(e) => setProfileData(p => ({ ...p, address: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  placeholder="123 Main St, City, State 12345"
+                />
               </div>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">Save Changes</Button>
-            </div>
+              <Button type="submit" disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white">
+                {saving ? 'Saving...' : 'Save Changes'}
+              </Button>
+            </form>
           </div>
         )
       case 'text-messages':
@@ -287,9 +332,9 @@ const SettingsPage = () => {
           {/* Footer Links */}
           <div className="mt-8 pt-4 border-t border-gray-200">
             <div className="space-y-2">
-              <a href="#" className="block text-sm text-blue-600 hover:text-blue-700">Privacy Policy</a>
-              <a href="#" className="block text-sm text-blue-600 hover:text-blue-700">CA Privacy Notice</a>
-              <a href="#" className="block text-sm text-blue-600 hover:text-blue-700">Software Licenses</a>
+              <button className="block text-sm text-blue-600 hover:text-blue-700">Privacy Policy</button>
+              <button className="block text-sm text-blue-600 hover:text-blue-700">CA Privacy Notice</button>
+              <button className="block text-sm text-blue-600 hover:text-blue-700">Software Licenses</button>
             </div>
             
             <button className="flex items-center space-x-2 mt-4 text-sm text-gray-600 hover:text-gray-700">

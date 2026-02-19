@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea.jsx'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
 import { API_BASE_URL } from '@/lib/config'
+import apiClient from '../utils/apiClient'
 import { 
   FileText, 
   Plus, 
@@ -42,6 +43,7 @@ const InvoiceManagement = () => {
   const [statusFilter, setStatusFilter] = useState('all')
   const [showCreateDialog, setShowCreateDialog] = useState(false)
   const [selectedInvoice, setSelectedInvoice] = useState(null)
+  const [editingInvoice, setEditingInvoice] = useState(null)
 
   // Invoice form state
   const [invoiceForm, setInvoiceForm] = useState({
@@ -80,16 +82,8 @@ const InvoiceManagement = () => {
   const loadInvoices = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_BASE}/invoices`, {
-        credentials: 'include'
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        setInvoices(data.invoices || [])
-      } else {
-        setError('Failed to load invoices')
-      }
+      const data = await apiClient.getInvoices()
+      setInvoices(Array.isArray(data) ? data : (data?.invoices || data?.results || []))
     } catch (err) {
       setError('Error loading invoices: ' + err.message)
     } finally {
@@ -99,14 +93,8 @@ const InvoiceManagement = () => {
 
   const loadCustomers = async () => {
     try {
-      const response = await fetch(`${API_BASE}/customers`, {
-        credentials: 'include'
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        setCustomers(data.customers || [])
-      }
+      const data = await apiClient.getCustomers()
+      setCustomers(Array.isArray(data) ? data : (data?.customers || data?.results || []))
     } catch (err) {
       console.error('Error loading customers:', err)
     }
@@ -116,26 +104,11 @@ const InvoiceManagement = () => {
     try {
       setLoading(true)
       setError('')
-      
-      const response = await fetch(`${API_BASE}/invoices`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(invoiceForm)
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        setSuccess('Invoice created successfully!')
-        setShowCreateDialog(false)
-        resetInvoiceForm()
-        loadInvoices()
-      } else {
-        const errorData = await response.json()
-        setError(errorData.error || 'Failed to create invoice')
-      }
+      const data = await apiClient.createInvoice(invoiceForm)
+      setSuccess('Invoice created successfully!')
+      setShowCreateDialog(false)
+      resetInvoiceForm()
+      loadInvoices()
     } catch (err) {
       setError('Error creating invoice: ' + err.message)
     } finally {
@@ -147,29 +120,23 @@ const InvoiceManagement = () => {
     try {
       setLoading(true)
       setError('')
-      
-      const response = await fetch(`${API_BASE}/customers`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(customerForm)
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        setSuccess('Customer created successfully!')
-        resetCustomerForm()
-        loadCustomers()
-      } else {
-        const errorData = await response.json()
-        setError(errorData.error || 'Failed to create customer')
-      }
+      await apiClient.createCustomer(customerForm)
+      setSuccess('Customer created successfully!')
+      resetCustomerForm()
+      loadCustomers()
     } catch (err) {
       setError('Error creating customer: ' + err.message)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleSendInvoice = async (invoice) => {
+    try {
+      await apiClient.request(`/invoices/${invoice.id}/send/`, { method: 'POST' })
+      setInvoices(prev => prev.map(inv => inv.id === invoice.id ? { ...inv, status: 'sent' } : inv))
+    } catch (err) {
+      console.error('Failed to send invoice:', err)
     }
   }
 
@@ -449,10 +416,10 @@ const InvoiceManagement = () => {
                               >
                                 <Download className="w-4 h-4" />
                               </Button>
-                              <Button variant="outline" size="sm" title="Edit Invoice">
+                              <Button variant="outline" size="sm" title="Edit Invoice" onClick={() => setEditingInvoice(invoice)}>
                                 <Edit className="w-4 h-4" />
                               </Button>
-                              <Button variant="outline" size="sm" title="Send Invoice">
+                              <Button variant="outline" size="sm" title="Send Invoice" onClick={() => handleSendInvoice(invoice)}>
                                 <Send className="w-4 h-4" />
                               </Button>
                             </div>
@@ -880,6 +847,46 @@ const InvoiceManagement = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Edit Invoice Modal */}
+      {editingInvoice && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">Edit Invoice</h2>
+              <button onClick={() => setEditingInvoice(null)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Invoice Number</label>
+                <input type="text" value={editingInvoice.invoice_number || editingInvoice.number || ''} readOnly className="w-full border rounded-lg px-3 py-2 bg-gray-50 text-gray-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select value={editingInvoice.status || 'pending'} onChange={e => setEditingInvoice({...editingInvoice, status: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="draft">Draft</option>
+                  <option value="pending">Pending</option>
+                  <option value="sent">Sent</option>
+                  <option value="paid">Paid</option>
+                  <option value="overdue">Overdue</option>
+                </select>
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button onClick={() => setEditingInvoice(null)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button onClick={async () => {
+                  try {
+                    await apiClient.updateInvoice(editingInvoice.id, { status: editingInvoice.status })
+                  } catch (err) {
+                    console.error('Failed to update invoice:', err)
+                  }
+                  setInvoices(prev => prev.map(inv => inv.id === editingInvoice.id ? editingInvoice : inv))
+                  setEditingInvoice(null)
+                }} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

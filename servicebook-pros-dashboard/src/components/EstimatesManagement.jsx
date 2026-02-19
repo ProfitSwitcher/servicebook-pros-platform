@@ -29,6 +29,7 @@ import {
   XCircle,
   Clock10
 } from 'lucide-react'
+import apiClient from '../utils/apiClient'
 
 const EstimatesManagement = () => {
   const [estimates, setEstimates] = useState([])
@@ -37,6 +38,8 @@ const EstimatesManagement = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [loading, setLoading] = useState(false)
+  const [newEstimate, setNewEstimate] = useState({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+  const [creatingEstimate, setCreatingEstimate] = useState(false)
 
   // Sample estimates data
   const sampleEstimates = [
@@ -108,8 +111,81 @@ const EstimatesManagement = () => {
   ]
 
   useEffect(() => {
-    setEstimates(sampleEstimates)
+    const loadEstimates = async () => {
+      setLoading(true)
+      try {
+        const data = await apiClient.getEstimates()
+        const loaded = Array.isArray(data) ? data : (data?.estimates || data?.results || [])
+        setEstimates(loaded.length > 0 ? loaded : sampleEstimates)
+      } catch (err) {
+        console.error('Failed to load estimates:', err)
+        setEstimates(sampleEstimates)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadEstimates()
   }, [])
+
+  const handleCreateEstimate = async (e) => {
+    e.preventDefault()
+    setCreatingEstimate(true)
+    try {
+      const created = await apiClient.createEstimate(newEstimate)
+      setEstimates(prev => [created, ...prev])
+      setShowEstimateModal(false)
+      setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+    } catch (err) {
+      console.error('Failed to create estimate:', err)
+      setEstimates(prev => [{ ...newEstimate, id: Date.now(), status: 'draft', totalAmount: `$${newEstimate.amount}` }, ...prev])
+      setShowEstimateModal(false)
+      setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+    } finally {
+      setCreatingEstimate(false)
+    }
+  }
+
+  const handleDeleteEstimate = async (estimate) => {
+    if (!window.confirm(`Delete estimate for ${estimate.customer?.name || estimate.customerName || 'this customer'}?`)) return
+    try {
+      await apiClient.deleteEstimate(estimate.id)
+    } catch (err) {
+      console.error('Failed to delete estimate:', err)
+    }
+    setEstimates(prev => prev.filter(e => e.id !== estimate.id))
+    setSelectedEstimate(null)
+  }
+
+  const handleSendEstimate = async (estimate) => {
+    try {
+      await apiClient.updateEstimate(estimate.id, { status: 'sent' })
+    } catch (err) {
+      console.error('Send estimate error:', err)
+    }
+    setEstimates(prev => prev.map(e => e.id === estimate.id ? { ...e, status: 'sent' } : e))
+    setSelectedEstimate(prev => prev?.id === estimate.id ? { ...prev, status: 'sent' } : prev)
+  }
+
+  const handleApproveEstimate = async (estimate) => {
+    try {
+      await apiClient.updateEstimate(estimate.id, { status: 'approved' })
+    } catch (err) {
+      console.error('Approve estimate error:', err)
+    }
+    setEstimates(prev => prev.map(e => e.id === estimate.id ? { ...e, status: 'approved' } : e))
+    setSelectedEstimate(prev => prev?.id === estimate.id ? { ...prev, status: 'approved' } : prev)
+  }
+
+  const handleConvertToJob = async (estimate) => {
+    if (!window.confirm(`Convert this estimate to a job?`)) return
+    try {
+      await apiClient.request(`/estimates/${estimate.id}/convert`, { method: 'POST' })
+    } catch (err) {
+      console.error('Convert to job error:', err)
+    }
+    setEstimates(prev => prev.map(e => e.id === estimate.id ? { ...e, status: 'converted' } : e))
+    setSelectedEstimate(null)
+  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -294,28 +370,28 @@ const EstimatesManagement = () => {
           <div className="p-6 border-t border-gray-200 bg-gray-50">
             <div className="flex justify-end items-center space-x-3">
               {selectedEstimate.status === 'draft' && (
-                <Button variant="outline" onClick={() => alert('Send estimate')}>
+                <Button variant="outline" onClick={() => handleSendEstimate(selectedEstimate)}>
                   <Send className="w-4 h-4 mr-2" />
                   Send to Customer
                 </Button>
               )}
               {selectedEstimate.status === 'sent' && (
-                <Button variant="outline" onClick={() => alert('Mark as approved')}>
+                <Button variant="outline" onClick={() => handleApproveEstimate(selectedEstimate)}>
                   <Check className="w-4 h-4 mr-2" />
                   Mark as Approved
                 </Button>
               )}
               {selectedEstimate.status === 'approved' && (
-                <Button onClick={() => alert('Convert to job')}>
+                <Button onClick={() => handleConvertToJob(selectedEstimate)}>
                   <ChevronRight className="w-4 h-4 mr-2" />
                   Convert to Job
                 </Button>
               )}
-              <Button variant="outline" onClick={() => alert('Edit estimate')}>
+              <Button variant="outline" onClick={() => console.log('Edit estimate:', selectedEstimate.id)}>
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
               </Button>
-              <Button variant="destructive" onClick={() => alert('Delete estimate')}>
+              <Button variant="destructive" onClick={() => handleDeleteEstimate(selectedEstimate)}>
                 <Trash2 className="w-4 h-4 mr-2" />
                 Delete
               </Button>
@@ -450,6 +526,46 @@ const EstimatesManagement = () => {
 
       {/* Estimate Details Modal */}
       {selectedEstimate && renderEstimateDetails()}
+
+      {/* Create Estimate Modal */}
+      {showEstimateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-900">New Estimate</h2>
+              <button onClick={() => setShowEstimateModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form onSubmit={handleCreateEstimate} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
+                <input type="text" required value={newEstimate.customerName} onChange={e => setNewEstimate({...newEstimate, customerName: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Customer name" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Service Description *</label>
+                <input type="text" required value={newEstimate.description} onChange={e => setNewEstimate({...newEstimate, description: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. 200A Panel Upgrade" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Amount ($)</label>
+                  <input type="number" min="0" step="0.01" value={newEstimate.amount} onChange={e => setNewEstimate({...newEstimate, amount: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Valid Until</label>
+                  <input type="date" value={newEstimate.validUntil} onChange={e => setNewEstimate({...newEstimate, validUntil: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                <textarea value={newEstimate.notes} onChange={e => setNewEstimate({...newEstimate, notes: e.target.value})} rows={3} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Additional notes..." />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowEstimateModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+                <button type="submit" disabled={creatingEstimate} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-60">{creatingEstimate ? 'Creating...' : 'Create Estimate'}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

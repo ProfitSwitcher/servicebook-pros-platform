@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import apiClient from '../utils/apiClient'
 import { 
   Users, 
   UserPlus, 
@@ -35,6 +36,9 @@ const TeamManagement = () => {
   const [showAddModal, setShowAddModal] = useState(false)
   const [selectedMember, setSelectedMember] = useState(null)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [newMember, setNewMember] = useState({ firstName: '', lastName: '', email: '', phone: '', role: 'Technician', hourlyRate: '' })
+  const [creatingMember, setCreatingMember] = useState(false)
 
   // Sample team data
   const [teamMembers, setTeamMembers] = useState([
@@ -151,6 +155,81 @@ const TeamManagement = () => {
       }
     }
   ])
+
+  useEffect(() => {
+    const loadTeam = async () => {
+      setLoading(true)
+      try {
+        const data = await apiClient.getTechnicians()
+        const members = Array.isArray(data) ? data : data?.technicians || data?.results || []
+        if (members.length > 0) {
+          const mapped = members.map(m => ({
+            id: m.id,
+            name: `${m.first_name || ''} ${m.last_name || ''}`.trim() || m.username || m.name || 'Unknown',
+            role: m.role || 'Technician',
+            email: m.email || '',
+            phone: m.phone || '',
+            avatar: null,
+            status: m.status || 'active',
+            hire_date: m.created_at || new Date().toISOString(),
+            hourly_rate: parseFloat(m.hourly_rate || 0),
+            specialties: m.specialties || [],
+            permissions: m.permissions || ['view_jobs'],
+            stats: {
+              jobs_completed: m.jobs_completed || 0,
+              avg_rating: m.avg_rating || 0,
+              revenue_generated: m.revenue_generated || 0,
+              efficiency_score: m.efficiency_score || 0
+            },
+            schedule: m.schedule || {}
+          }))
+          setTeamMembers(mapped)
+        }
+      } catch (err) {
+        console.error('Failed to load team members, using sample data:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadTeam()
+  }, [])
+
+  const handleCreateMember = async () => {
+    if (!newMember.firstName || !newMember.email) return
+    setCreatingMember(true)
+    const newEntry = {
+      id: Date.now(),
+      name: `${newMember.firstName} ${newMember.lastName}`.trim(),
+      role: newMember.role,
+      email: newMember.email,
+      phone: newMember.phone,
+      avatar: null,
+      status: 'active',
+      hire_date: new Date().toISOString(),
+      hourly_rate: parseFloat(newMember.hourlyRate) || 0,
+      specialties: [],
+      permissions: ['view_jobs'],
+      stats: { jobs_completed: 0, avg_rating: 0, revenue_generated: 0, efficiency_score: 0 },
+      schedule: {}
+    }
+    try {
+      const created = await apiClient.createTechnician({
+        first_name: newMember.firstName,
+        last_name: newMember.lastName,
+        email: newMember.email,
+        phone: newMember.phone,
+        role: newMember.role,
+        hourly_rate: parseFloat(newMember.hourlyRate) || 0
+      })
+      newEntry.id = created.id || newEntry.id
+    } catch (err) {
+      console.error('Failed to create team member via API:', err)
+    }
+    setTeamMembers(prev => [...prev, newEntry])
+    setCreatingMember(false)
+    setShowAddModal(false)
+    setNewMember({ firstName: '', lastName: '', email: '', phone: '', role: 'Technician', hourlyRate: '' })
+  }
 
   const filteredMembers = teamMembers.filter(member =>
     member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -654,24 +733,99 @@ const TeamManagement = () => {
         />
       )}
 
-      {/* Add Team Member Modal Placeholder */}
+      {/* Add Team Member Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Add Team Member</h3>
-              <p className="text-gray-600 mb-4">Team member creation form would go here.</p>
-              <div className="flex items-center justify-end space-x-3">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">
-                  Add Member
-                </button>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900">Add Team Member</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                  <input
+                    type="text"
+                    value={newMember.firstName}
+                    onChange={(e) => setNewMember(prev => ({ ...prev, firstName: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="John"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input
+                    type="text"
+                    value={newMember.lastName}
+                    onChange={(e) => setNewMember(prev => ({ ...prev, lastName: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Doe"
+                  />
+                </div>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <input
+                  type="email"
+                  value={newMember.email}
+                  onChange={(e) => setNewMember(prev => ({ ...prev, email: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="john.doe@company.com"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input
+                  type="tel"
+                  value={newMember.phone}
+                  onChange={(e) => setNewMember(prev => ({ ...prev, phone: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                <select
+                  value={newMember.role}
+                  onChange={(e) => setNewMember(prev => ({ ...prev, role: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="Lead Technician">Lead Technician</option>
+                  <option value="Senior Technician">Senior Technician</option>
+                  <option value="Technician">Technician</option>
+                  <option value="Apprentice">Apprentice</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Hourly Rate ($)</label>
+                <input
+                  type="number"
+                  value={newMember.hourlyRate}
+                  onChange={(e) => setNewMember(prev => ({ ...prev, hourlyRate: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="25.00"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-end space-x-3 p-6 border-t border-gray-200">
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateMember}
+                disabled={creatingMember || !newMember.firstName || !newMember.email}
+                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              >
+                {creatingMember ? 'Adding...' : 'Add Member'}
+              </button>
             </div>
           </div>
         </div>

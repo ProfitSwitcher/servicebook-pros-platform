@@ -348,10 +348,11 @@ const ScheduleCalendar = () => {
     setShowAddMenu(true)
   }
 
+  const [showAddJobModal, setShowAddJobModal] = useState(false)
+
   const handleAddItem = (type) => {
-    console.log(`Adding ${type} for date:`, selectedDate)
     setShowAddMenu(false)
-    // Here you would implement the actual add functionality
+    setShowAddJobModal(true)
   }
 
   const toggleTeamCalendar = (calendarId) => {
@@ -573,7 +574,7 @@ In production, this requires server-side CalDAV implementation.`)
         <div className="bg-white border-b border-gray-200 p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setCurrentDate(new Date())}>
                 Today
               </Button>
               <div className="flex items-center space-x-2">
@@ -796,6 +797,38 @@ In production, this requires server-side CalDAV implementation.`)
               <Button variant="outline" onClick={() => setShowAddMenu(false)}>
                 Cancel
               </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Add Job Modal */}
+      {showAddJobModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold">Schedule Job</h2>
+              <button onClick={() => setShowAddJobModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <div className="p-6 space-y-4">
+              {selectedDate && (
+                <p className="text-sm text-gray-600">Date: <strong>{new Date(selectedDate).toLocaleDateString()}</strong></p>
+              )}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                <input type="text" id="sched-customer" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Customer name" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Job Type</label>
+                <input type="text" id="sched-type" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. HVAC Service, Electrical" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                <input type="time" id="sched-time" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button onClick={() => setShowAddJobModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button onClick={() => setShowAddJobModal(false)} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Schedule</button>
+              </div>
             </div>
           </div>
         </div>
