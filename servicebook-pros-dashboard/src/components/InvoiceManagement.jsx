@@ -133,7 +133,7 @@ const InvoiceManagement = () => {
 
   const handleSendInvoice = async (invoice) => {
     try {
-      await apiClient.request(`/invoices/${invoice.id}/send`, { method: 'POST' })
+      await apiClient.request(`/invoices/${invoice.id}/send`, { method: 'POST', body: JSON.stringify({}) })
       setInvoices(prev => prev.map(inv => inv.id === invoice.id ? { ...inv, status: 'sent' } : inv))
     } catch (err) {
       console.error('Failed to send invoice:', err)
