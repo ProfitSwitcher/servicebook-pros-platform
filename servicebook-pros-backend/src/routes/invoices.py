@@ -321,7 +321,7 @@ def send_invoice(invoice_id):
     if not inv:
         return jsonify({"error": "Invoice not found"}), 404
 
-    data            = request.get_json() or {}
+    data            = request.get_json(silent=True) or {}
     recipient_email = data.get("email", "")
 
     if inv.get("status") == "pending":
