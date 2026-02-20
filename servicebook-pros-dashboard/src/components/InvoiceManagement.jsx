@@ -194,39 +194,15 @@ const InvoiceManagement = () => {
     })
   }
 
-  const downloadInvoicePDF = async (invoiceId, invoiceNumber) => {
-    try {
-      setLoading(true)
-      const response = await fetch(`${API_BASE}/invoices/${invoiceId}/pdf`, {
-        method: 'GET',
-        credentials: 'include'
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to download PDF')
-      }
-
-      // Create blob from response
-      const blob = await response.blob()
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `invoice_${invoiceNumber}.pdf`
-      document.body.appendChild(link)
-      link.click()
-      
-      // Cleanup
-      document.body.removeChild(link)
-      window.URL.revokeObjectURL(url)
-      
-    } catch (error) {
-      console.error('Error downloading PDF:', error)
-      alert('Failed to download PDF. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+  const downloadInvoicePDF = (invoiceId, invoiceNumber) => {
+    const url = `${API_BASE}/invoices/${invoiceId}/pdf`
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `invoice_${invoiceNumber}.pdf`
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const previewInvoicePDF = async (invoiceId) => {

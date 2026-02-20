@@ -349,6 +349,8 @@ const ScheduleCalendar = () => {
   }
 
   const [showAddJobModal, setShowAddJobModal] = useState(false)
+  const [calendarView, setCalendarView] = useState('month')
+  const [scheduleForm, setScheduleForm] = useState({ customerName: '', jobType: '', time: '' })
 
   const handleAddItem = (type) => {
     setShowAddMenu(false)
@@ -427,7 +429,11 @@ In production, this requires server-side CalDAV implementation.`)
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Schedule</h2>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+            <Button
+              size="sm"
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => { setSelectedDate(new Date()); setShowAddJobModal(true) }}
+            >
               <Plus className="w-4 h-4 mr-2" />
               New
             </Button>
@@ -615,10 +621,14 @@ In production, this requires server-side CalDAV implementation.`)
                   MAP
                 </button>
               </div>
-              <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option>Month</option>
-                <option>Week</option>
-                <option>Day</option>
+              <select
+                value={calendarView}
+                onChange={(e) => setCalendarView(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+              >
+                <option value="month">Month</option>
+                <option value="week">Week</option>
+                <option value="day">Day</option>
               </select>
               <Button variant="outline" size="sm">
                 <MoreHorizontal className="w-4 h-4" />
@@ -815,19 +825,56 @@ In production, this requires server-side CalDAV implementation.`)
               )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
-                <input type="text" id="sched-customer" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Customer name" />
+                <input
+                  type="text"
+                  value={scheduleForm.customerName}
+                  onChange={e => setScheduleForm(p => ({ ...p, customerName: e.target.value }))}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Customer name"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type</label>
-                <input type="text" id="sched-type" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. HVAC Service, Electrical" />
+                <input
+                  type="text"
+                  value={scheduleForm.jobType}
+                  onChange={e => setScheduleForm(p => ({ ...p, jobType: e.target.value }))}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="e.g. HVAC Service, Electrical"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
-                <input type="time" id="sched-time" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input
+                  type="time"
+                  value={scheduleForm.time}
+                  onChange={e => setScheduleForm(p => ({ ...p, time: e.target.value }))}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </div>
               <div className="flex gap-3 pt-2">
-                <button onClick={() => setShowAddJobModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button onClick={() => setShowAddJobModal(false)} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Schedule</button>
+                <button onClick={() => { setScheduleForm({ customerName: '', jobType: '', time: '' }); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button
+                  onClick={async () => {
+                    if (!scheduleForm.customerName) return
+                    try {
+                      await createJob({
+                        title: scheduleForm.jobType || 'Service Job',
+                        customer_name: scheduleForm.customerName,
+                        scheduled_date: selectedDate ? selectedDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+                        scheduled_time: scheduleForm.time,
+                        status: 'scheduled',
+                      })
+                    } catch (err) {
+                      console.error('Failed to schedule job:', err)
+                    }
+                    setScheduleForm({ customerName: '', jobType: '', time: '' })
+                    setShowAddJobModal(false)
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
+                  Schedule
+                </button>
               </div>
             </div>
           </div>
