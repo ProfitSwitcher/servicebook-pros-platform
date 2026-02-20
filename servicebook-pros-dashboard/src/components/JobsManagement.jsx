@@ -49,6 +49,7 @@ const JobsManagement = () => {
   const [timerRunning, setTimerRunning] = useState(false)
   const [newJob, setNewJob] = useState({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
   const [creatingJob, setCreatingJob] = useState(false)
+  const [editingJob, setEditingJob] = useState(null)
 
   // Sample jobs data
   const sampleJobs = [
@@ -190,7 +191,16 @@ const JobsManagement = () => {
     e.preventDefault()
     setCreatingJob(true)
     try {
-      const created = await apiClient.createJob(newJob)
+      const payload = {
+        title: newJob.type,
+        customer_name: newJob.customerName,
+        scheduled_date: newJob.scheduledDate,
+        priority: newJob.priority || 'normal',
+        address: newJob.address,
+        notes: newJob.notes,
+        status: 'scheduled',
+      }
+      const created = await apiClient.createJob(payload)
       setJobs(prev => [created, ...prev])
       setShowJobModal(false)
       setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
@@ -201,6 +211,25 @@ const JobsManagement = () => {
       setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
     } finally {
       setCreatingJob(false)
+    }
+  }
+
+  const handleUpdateJob = async (e) => {
+    e.preventDefault()
+    try {
+      const updated = await apiClient.updateJob(editingJob.id, {
+        title: editingJob.title,
+        customer_name: editingJob.customer?.name || editingJob.customerName || editingJob.customer_name,
+        status: editingJob.status,
+        priority: editingJob.priority,
+        notes: editingJob.notes,
+      })
+      setJobs(prev => prev.map(j => j.id === editingJob.id ? updated : j))
+      setSelectedJob(updated)
+      setEditingJob(null)
+    } catch (err) {
+      console.error('Failed to update job:', err)
+      setEditingJob(null)
     }
   }
 
@@ -367,7 +396,7 @@ const JobsManagement = () => {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => setEditingJob(selectedJob)}>
                       <Edit className="w-4 h-4 mr-2" />
                       Edit Job
                     </Button>
@@ -832,6 +861,51 @@ const JobsManagement = () => {
 
       {/* Job Details Modal */}
       {selectedJob && renderJobDetails()}
+
+      {/* Edit Job Modal */}
+      {editingJob && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-900">Edit Job</h2>
+              <button onClick={() => setEditingJob(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form onSubmit={handleUpdateJob} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>
+                <input type="text" required value={editingJob.title || ''} onChange={e => setEditingJob({...editingJob, title: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Job title" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select value={editingJob.status || 'scheduled'} onChange={e => setEditingJob({...editingJob, status: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="scheduled">Scheduled</option>
+                  <option value="in_progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                  <option value="on_hold">On Hold</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
+                <select value={editingJob.priority || 'normal'} onChange={e => setEditingJob({...editingJob, priority: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="low">Low</option>
+                  <option value="normal">Normal</option>
+                  <option value="high">High</option>
+                  <option value="urgent">Urgent</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                <textarea value={editingJob.notes || ''} onChange={e => setEditingJob({...editingJob, notes: e.target.value})} rows={3} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Job notes..." />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setEditingJob(null)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Create Job Modal */}
       {showJobModal && (

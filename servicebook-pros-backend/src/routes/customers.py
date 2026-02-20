@@ -26,9 +26,12 @@ def get_customer(customer_id):
 def create_customer():
     global _next_id
     data = request.get_json() or {}
+    first_name = data.get('first_name', '')
+    last_name = data.get('last_name', '')
+    name = data.get('name') or f"{first_name} {last_name}".strip()
     customer = {
         'id': _next_id,
-        'name': data.get('name', ''),
+        'name': name,
         'email': data.get('email', ''),
         'phone': data.get('phone', ''),
         'address': data.get('address', ''),

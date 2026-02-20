@@ -40,6 +40,7 @@ const EstimatesManagement = () => {
   const [loading, setLoading] = useState(false)
   const [newEstimate, setNewEstimate] = useState({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
   const [creatingEstimate, setCreatingEstimate] = useState(false)
+  const [editingEstimate, setEditingEstimate] = useState(null)
 
   // Sample estimates data
   const sampleEstimates = [
@@ -131,17 +132,44 @@ const EstimatesManagement = () => {
     e.preventDefault()
     setCreatingEstimate(true)
     try {
-      const created = await apiClient.createEstimate(newEstimate)
+      const payload = {
+        title: newEstimate.description,
+        customer_name: newEstimate.customerName,
+        total: parseFloat(newEstimate.amount) || 0,
+        expiry_date: newEstimate.validUntil || null,
+        status: newEstimate.status || 'pending',
+        notes: newEstimate.notes,
+      }
+      const created = await apiClient.createEstimate(payload)
       setEstimates(prev => [created, ...prev])
       setShowEstimateModal(false)
       setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
     } catch (err) {
       console.error('Failed to create estimate:', err)
-      setEstimates(prev => [{ ...newEstimate, id: Date.now(), status: 'draft', totalAmount: `$${newEstimate.amount}` }, ...prev])
+      setEstimates(prev => [{ title: newEstimate.description, customer_name: newEstimate.customerName, id: Date.now(), status: 'draft', totalAmount: `$${newEstimate.amount}` }, ...prev])
       setShowEstimateModal(false)
       setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
     } finally {
       setCreatingEstimate(false)
+    }
+  }
+
+  const handleUpdateEstimate = async (e) => {
+    e.preventDefault()
+    try {
+      const updated = await apiClient.updateEstimate(editingEstimate.id, {
+        title: editingEstimate.title,
+        customer_name: editingEstimate.customer?.name || editingEstimate.customerName || editingEstimate.customer_name,
+        total: parseFloat(editingEstimate.totalAmount || editingEstimate.total) || 0,
+        status: editingEstimate.status,
+        notes: editingEstimate.notes,
+      })
+      setEstimates(prev => prev.map(e => e.id === editingEstimate.id ? updated : e))
+      setSelectedEstimate(updated)
+      setEditingEstimate(null)
+    } catch (err) {
+      console.error('Failed to update estimate:', err)
+      setEditingEstimate(null)
     }
   }
 
@@ -387,7 +415,7 @@ const EstimatesManagement = () => {
                   Convert to Job
                 </Button>
               )}
-              <Button variant="outline" onClick={() => console.log('Edit estimate:', selectedEstimate.id)}>
+              <Button variant="outline" onClick={() => setEditingEstimate(selectedEstimate)}>
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
               </Button>
@@ -526,6 +554,50 @@ const EstimatesManagement = () => {
 
       {/* Estimate Details Modal */}
       {selectedEstimate && renderEstimateDetails()}
+
+      {/* Edit Estimate Modal */}
+      {editingEstimate && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-900">Edit Estimate</h2>
+              <button onClick={() => setEditingEstimate(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form onSubmit={handleUpdateEstimate} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>
+                <input type="text" required value={editingEstimate.title || ''} onChange={e => setEditingEstimate({...editingEstimate, title: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Service description" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                <input type="text" value={editingEstimate.customer?.name || editingEstimate.customerName || editingEstimate.customer_name || ''} onChange={e => setEditingEstimate({...editingEstimate, customer: {...(editingEstimate.customer || {}), name: e.target.value}, customerName: e.target.value, customer_name: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Customer name" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Amount ($)</label>
+                <input type="number" min="0" step="0.01" value={editingEstimate.totalAmount || editingEstimate.total || ''} onChange={e => setEditingEstimate({...editingEstimate, totalAmount: e.target.value, total: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select value={editingEstimate.status || 'pending'} onChange={e => setEditingEstimate({...editingEstimate, status: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="pending">Pending</option>
+                  <option value="sent">Sent</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="expired">Expired</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                <textarea value={editingEstimate.notes || ''} onChange={e => setEditingEstimate({...editingEstimate, notes: e.target.value})} rows={3} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Additional notes..." />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setEditingEstimate(null)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Create Estimate Modal */}
       {showEstimateModal && (
