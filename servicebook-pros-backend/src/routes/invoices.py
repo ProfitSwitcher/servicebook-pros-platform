@@ -262,7 +262,7 @@ def update_invoice(invoice_id):
     return jsonify(_enrich(inv))
 
 
-@invoices_bp.route("/<int:invoice_id>/pdf", methods=["GET"])
+@invoices_bp.route("/<int:invoice_id>/pdf", methods=["GET"], strict_slashes=False)
 def download_invoice_pdf(invoice_id):
     """
     GET /api/invoices/{id}/pdf
@@ -286,7 +286,7 @@ def download_invoice_pdf(invoice_id):
     )
 
 
-@invoices_bp.route("/<int:invoice_id>/pdf/preview", methods=["GET"])
+@invoices_bp.route("/<int:invoice_id>/pdf/preview", methods=["GET"], strict_slashes=False)
 def preview_invoice_pdf(invoice_id):
     """
     GET /api/invoices/{id}/pdf/preview
@@ -310,7 +310,7 @@ def preview_invoice_pdf(invoice_id):
     )
 
 
-@invoices_bp.route("/<int:invoice_id>/send", methods=["POST"])
+@invoices_bp.route("/<int:invoice_id>/send", methods=["POST"], strict_slashes=False)
 def send_invoice(invoice_id):
     """
     POST /api/invoices/{id}/send

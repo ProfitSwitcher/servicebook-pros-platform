@@ -198,7 +198,13 @@ const SettingsPage = () => {
                 setSaving(true)
                 setSuccessMsg('')
                 try {
-                  await apiClient.updateSettings(profileData)
+                  await apiClient.updateSettings({
+                    company_name: profileData.companyName,
+                    phone: profileData.phone,
+                    address: profileData.address,
+                    email: profileData.email,
+                    timezone: profileData.timezone,
+                  })
                   setSuccessMsg('Company profile saved successfully.')
                 } catch (err) {
                   setSuccessMsg('Settings saved locally.')

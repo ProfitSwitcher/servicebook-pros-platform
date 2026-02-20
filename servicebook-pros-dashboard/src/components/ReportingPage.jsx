@@ -31,6 +31,7 @@ import {
 const ReportingPage = () => {
   const [dateRange, setDateRange] = useState('year-to-date')
   const [showBy, setShowBy] = useState('month')
+  const [selectedReport, setSelectedReport] = useState('tech-performance')
   const [expandedSections, setExpandedSections] = useState({
     businessInsights: true
   })
@@ -57,7 +58,7 @@ const ReportingPage = () => {
       items: [
         { id: 'administrative', title: 'Administrative', icon: Settings },
         { id: 'electrical', title: 'Electrical', icon: Zap },
-        { id: 'tech-performance', title: 'Tech Performance', icon: Users, active: true }
+        { id: 'tech-performance', title: 'Tech Performance', icon: Users }
       ]
     },
     {
@@ -73,6 +74,17 @@ const ReportingPage = () => {
       ]
     }
   ]
+
+  const reportTitles = {
+    'administrative': 'Administrative',
+    'electrical': 'Electrical',
+    'tech-performance': 'Tech Performance',
+    'jobs': 'Jobs',
+    'estimates': 'Estimates',
+    'invoices': 'Invoices',
+    'payments': 'Payments',
+    'custom': 'Custom Reports',
+  }
 
   const renderSidebar = () => (
     <div className="w-64 bg-white border-r border-gray-200 h-full overflow-y-auto">
@@ -94,9 +106,10 @@ const ReportingPage = () => {
                     return (
                       <button
                         key={item.id}
+                        onClick={() => setSelectedReport(item.id)}
                         className={`w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                          item.active 
-                            ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700' 
+                          selectedReport === item.id
+                            ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
                             : 'text-gray-700 hover:bg-gray-100'
                         }`}
                       >
@@ -245,7 +258,7 @@ const ReportingPage = () => {
       <div className="flex justify-between items-start mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            Tech Performance
+            {reportTitles[selectedReport] || 'Reports'}
             <Edit className="w-5 h-5 text-gray-400" />
           </h1>
         </div>
