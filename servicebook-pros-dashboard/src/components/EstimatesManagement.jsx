@@ -269,6 +269,10 @@ const EstimatesManagement = () => {
     return matchesSearch && matchesStatus
   })
 
+  const getEstimateCustomerName = (estimate) => {
+    return estimate.customer?.name || estimate.customer_name || estimate.customerName || 'Unknown Customer'
+  }
+
   const renderEstimateCard = (estimate) => (
     <Card key={estimate.id} className="mb-4 hover:shadow-md transition-shadow cursor-pointer" onClick={() => setSelectedEstimate(estimate)}>
       <CardContent className="p-6">
@@ -276,31 +280,31 @@ const EstimatesManagement = () => {
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-2">
               {getStatusIcon(estimate.status)}
-              <span className="font-semibold text-lg">{estimate.estimateNumber}</span>
+              <span className="font-semibold text-lg">{estimate.estimateNumber || estimate.estimate_number || `EST-${estimate.id}`}</span>
             </div>
             <Badge className={getStatusColor(estimate.status)}>
               {String(estimate.status || '').toUpperCase()}
             </Badge>
           </div>
           <div className="text-right">
-            <div className="font-semibold text-lg">{estimate.totalAmount}</div>
-            <div className="text-sm text-gray-500">Expires: {estimate.expiryDate}</div>
+            <div className="font-semibold text-lg">{estimate.totalAmount || (estimate.total != null ? `$${parseFloat(estimate.total).toFixed(2)}` : '')}</div>
+            <div className="text-sm text-gray-500">Expires: {estimate.expiryDate || estimate.expiry_date || ''}</div>
           </div>
         </div>
 
         <h3 className="text-xl font-semibold mb-2">{estimate.title}</h3>
-        
+
         <div className="flex items-center space-x-2 mb-4">
           <User className="w-4 h-4 text-gray-500" />
-          <span className="font-medium">{estimate.customer.name}</span>
+          <span className="font-medium">{getEstimateCustomerName(estimate)}</span>
         </div>
 
         <div className="flex justify-between items-center">
           <div className="text-sm text-gray-500">
-            Created: {estimate.createdDate}
+            Created: {estimate.createdDate || estimate.created_at || ''}
           </div>
           <div className="text-sm text-gray-500">
-            Updated: {estimate.lastUpdated}
+            Updated: {estimate.lastUpdated || estimate.updated_at || ''}
           </div>
         </div>
       </CardContent>
@@ -310,6 +314,11 @@ const EstimatesManagement = () => {
   const renderEstimateDetails = () => {
     if (!selectedEstimate) return null
 
+    const customerName = getEstimateCustomerName(selectedEstimate)
+    const customerAddress = selectedEstimate.customer?.address || ''
+    const customerPhone = selectedEstimate.customer?.phone || ''
+    const customerEmail = selectedEstimate.customer?.email || ''
+
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-lg w-full max-w-4xl h-5/6 overflow-hidden flex flex-col">
@@ -318,13 +327,13 @@ const EstimatesManagement = () => {
             <div className="flex justify-between items-start">
               <div>
                 <div className="flex items-center space-x-3 mb-2">
-                  <h2 className="text-2xl font-bold">{selectedEstimate.estimateNumber}</h2>
+                  <h2 className="text-2xl font-bold">{selectedEstimate.estimateNumber || selectedEstimate.estimate_number || `EST-${selectedEstimate.id}`}</h2>
                   <Badge className={getStatusColor(selectedEstimate.status)}>
                     {String(selectedEstimate.status || '').toUpperCase()}
                   </Badge>
                 </div>
                 <h3 className="text-xl text-gray-700 mb-2">{selectedEstimate.title}</h3>
-                <div className="text-sm text-gray-600">{selectedEstimate.customer.name}</div>
+                <div className="text-sm text-gray-600">{customerName}</div>
               </div>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm">
@@ -354,10 +363,10 @@ const EstimatesManagement = () => {
                   <CardTitle>Customer</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-semibold">{selectedEstimate.customer.name}</p>
-                  <p>{selectedEstimate.customer.address}</p>
-                  <p>{selectedEstimate.customer.phone}</p>
-                  <p>{selectedEstimate.customer.email}</p>
+                  <p className="font-semibold">{customerName}</p>
+                  {customerAddress && <p>{customerAddress}</p>}
+                  {customerPhone && <p>{customerPhone}</p>}
+                  {customerEmail && <p>{customerEmail}</p>}
                 </CardContent>
               </Card>
               <Card>
@@ -365,9 +374,9 @@ const EstimatesManagement = () => {
                   <CardTitle>Estimate Details</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p><strong>Created:</strong> {selectedEstimate.createdDate}</p>
-                  <p><strong>Expires:</strong> {selectedEstimate.expiryDate}</p>
-                  <p><strong>Total:</strong> <span className="font-bold text-lg">{selectedEstimate.totalAmount}</span></p>
+                  <p><strong>Created:</strong> {selectedEstimate.createdDate || selectedEstimate.created_at || ''}</p>
+                  <p><strong>Expires:</strong> {selectedEstimate.expiryDate || selectedEstimate.expiry_date || ''}</p>
+                  <p><strong>Total:</strong> <span className="font-bold text-lg">{selectedEstimate.totalAmount || (selectedEstimate.total != null ? `$${parseFloat(selectedEstimate.total).toFixed(2)}` : '')}</span></p>
                 </CardContent>
               </Card>
             </div>
@@ -399,7 +408,7 @@ const EstimatesManagement = () => {
                   <tfoot>
                     <tr className="border-t-2">
                       <td colSpan="3" className="text-right py-2 font-bold">Total</td>
-                      <td className="text-right py-2 font-bold text-lg">{selectedEstimate.totalAmount}</td>
+                      <td className="text-right py-2 font-bold text-lg">{selectedEstimate.totalAmount || (selectedEstimate.total != null ? `$${parseFloat(selectedEstimate.total).toFixed(2)}` : '')}</td>
                     </tr>
                   </tfoot>
                 </table>

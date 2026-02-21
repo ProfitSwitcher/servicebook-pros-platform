@@ -144,7 +144,13 @@ const CustomerAutocomplete = ({
         </ul>
       )}
 
-      {isOpen && inputValue.length > 0 && filtered.length === 0 && (
+      {isOpen && customers.length === 0 && (
+        <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg px-3 py-2 text-sm text-gray-500">
+          Loading customers...
+        </div>
+      )}
+
+      {isOpen && customers.length > 0 && inputValue.length > 0 && filtered.length === 0 && (
         <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg px-3 py-2 text-sm text-gray-500">
           No customers found matching "{inputValue}"
         </div>

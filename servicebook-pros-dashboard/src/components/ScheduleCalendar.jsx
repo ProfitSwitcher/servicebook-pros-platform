@@ -886,11 +886,12 @@ In production, this requires server-side CalDAV implementation.`)
                 <button onClick={() => { setScheduleForm({ customer_id: '', customerName: '', jobType: '', time: '' }); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
                 <button
                   onClick={async () => {
-                    if (!scheduleForm.customerName) return
+                    if (!scheduleForm.customer_id && !scheduleForm.customerName) return
                     try {
                       await createJob({
                         title: scheduleForm.jobType || 'Service Job',
                         customer_name: scheduleForm.customerName,
+                        customer_id: scheduleForm.customer_id ? parseInt(scheduleForm.customer_id) : undefined,
                         scheduled_date: selectedDate ? selectedDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
                         scheduled_time: scheduleForm.time,
                         status: 'scheduled',
