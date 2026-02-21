@@ -57,6 +57,12 @@ const CustomersPage = ({ setActiveTab }) => {
     type: 'all',
     location: 'all'
   })
+  const [viewingCustomer, setViewingCustomer] = useState(null)
+  const [customerJobs, setCustomerJobs] = useState([])
+  const [customerInvoices, setCustomerInvoices] = useState([])
+  const [customerEstimates, setCustomerEstimates] = useState([])
+  const [customerDetailTab, setCustomerDetailTab] = useState('overview')
+  const [loadingDetail, setLoadingDetail] = useState(false)
 
   // Sample customer data
   const sampleCustomers = [
@@ -223,6 +229,29 @@ const CustomersPage = ({ setActiveTab }) => {
     } catch (error) {
       console.error('Error creating customer:', error)
       throw error
+    }
+  }
+
+  const handleViewCustomer = async (customer) => {
+    setViewingCustomer(customer)
+    setCustomerDetailTab('overview')
+    setLoadingDetail(true)
+    try {
+      const [jobs, invoices, estimates] = await Promise.all([
+        apiClient.getJobs(),
+        apiClient.getInvoices(),
+        apiClient.getEstimates(),
+      ])
+      const cid = String(customer.id)
+      setCustomerJobs((jobs || []).filter(j => String(j.customer_id) === cid))
+      setCustomerInvoices((invoices || []).filter(i => String(i.customer_id) === cid))
+      setCustomerEstimates((estimates || []).filter(e => String(e.customer_id) === cid))
+    } catch {
+      setCustomerJobs([])
+      setCustomerInvoices([])
+      setCustomerEstimates([])
+    } finally {
+      setLoadingDetail(false)
     }
   }
 
@@ -679,7 +708,7 @@ const CustomersPage = ({ setActiveTab }) => {
                     className={`grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${
                       selectedCustomers.includes(customer.id) ? 'bg-blue-50' : ''
                     }`}
-                    onClick={(e) => { if (!e.target.closest('button, input')) handleEditCustomer(customer) }}
+                    onClick={(e) => { if (!e.target.closest('button, input')) handleViewCustomer(customer) }}
                   >
                     <div className="col-span-1 flex items-center">
                       <input
@@ -819,7 +848,7 @@ const CustomersPage = ({ setActiveTab }) => {
             <div className="p-6 overflow-y-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredCustomers.map((customer) => (
-                  <Card key={customer.id} className="hover:shadow-lg transition-shadow">
+                  <Card key={customer.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={(e) => { if (!e.target.closest('button')) handleViewCustomer(customer) }}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
@@ -1010,6 +1039,202 @@ const CustomersPage = ({ setActiveTab }) => {
       {successMessage && (
         <div className="fixed bottom-20 left-4 right-4 lg:left-auto lg:right-4 lg:w-96 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg z-50">
           <p className="text-sm text-green-800">{successMessage}</p>
+        </div>
+      )}
+
+      {/* Customer Detail Panel */}
+      {viewingCustomer && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="flex-1 bg-black bg-opacity-40"
+            onClick={() => setViewingCustomer(null)}
+          />
+          {/* Panel */}
+          <div className="w-full max-w-2xl bg-white shadow-2xl flex flex-col overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-lg">
+                  {(viewingCustomer.name || `${viewingCustomer.first_name || ''} ${viewingCustomer.last_name || ''}`).trim().charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">
+                    {viewingCustomer.name || `${viewingCustomer.first_name || ''} ${viewingCustomer.last_name || ''}`.trim()}
+                  </h2>
+                  <p className="text-sm text-gray-500">{viewingCustomer.email}</p>
+                </div>
+              </div>
+              <button onClick={() => setViewingCustomer(null)} className="p-2 hover:bg-gray-100 rounded-lg">
+                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="flex gap-2 px-6 py-3 bg-gray-50 border-b border-gray-200">
+              <button
+                onClick={() => { setViewingCustomer(null); handleCreateEstimate(viewingCustomer) }}
+                className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              >
+                + Estimate
+              </button>
+              <button
+                onClick={() => { setViewingCustomer(null); handleCreateInvoice(viewingCustomer) }}
+                className="px-3 py-1.5 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+              >
+                + Invoice
+              </button>
+              <button
+                onClick={() => { setViewingCustomer(null); handleScheduleJob(viewingCustomer) }}
+                className="px-3 py-1.5 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
+              >
+                + Schedule Job
+              </button>
+              <button
+                onClick={() => { setViewingCustomer(null); handleEditCustomer(viewingCustomer) }}
+                className="px-3 py-1.5 text-sm border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 font-medium"
+              >
+                Edit
+              </button>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex border-b border-gray-200 px-6">
+              {['overview', 'jobs', 'invoices', 'estimates'].map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setCustomerDetailTab(tab)}
+                  className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors capitalize ${
+                    customerDetailTab === tab
+                      ? 'border-blue-600 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  {tab === 'jobs' ? `Jobs (${customerJobs.length})` :
+                   tab === 'invoices' ? `Invoices (${customerInvoices.length})` :
+                   tab === 'estimates' ? `Estimates (${customerEstimates.length})` : 'Overview'}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab Content */}
+            <div className="flex-1 overflow-y-auto p-6">
+              {loadingDetail ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="text-gray-400 text-sm">Loading...</div>
+                </div>
+              ) : customerDetailTab === 'overview' ? (
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <p className="text-xs font-semibold text-gray-500 uppercase mb-3">Contact Info</p>
+                      <div className="space-y-2">
+                        {viewingCustomer.phone && <div className="flex items-center gap-2 text-sm"><span className="text-gray-500">Phone:</span><span className="font-medium">{viewingCustomer.phone}</span></div>}
+                        {viewingCustomer.email && <div className="flex items-center gap-2 text-sm"><span className="text-gray-500">Email:</span><span className="font-medium">{viewingCustomer.email}</span></div>}
+                        {viewingCustomer.address && <div className="flex items-center gap-2 text-sm"><span className="text-gray-500">Address:</span><span className="font-medium">{viewingCustomer.address}</span></div>}
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <p className="text-xs font-semibold text-gray-500 uppercase mb-3">Summary</p>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm"><span className="text-gray-500">Total Jobs</span><span className="font-bold">{customerJobs.length}</span></div>
+                        <div className="flex justify-between text-sm"><span className="text-gray-500">Total Invoiced</span><span className="font-bold text-green-600">${customerInvoices.reduce((s, i) => s + (i.amount || i.total_amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span></div>
+                        <div className="flex justify-between text-sm"><span className="text-gray-500">Open Estimates</span><span className="font-bold">{customerEstimates.filter(e => e.status === 'pending').length}</span></div>
+                        <div className="flex justify-between text-sm"><span className="text-gray-500">Customer Since</span><span className="font-medium">{viewingCustomer.created_at ? new Date(viewingCustomer.created_at).toLocaleDateString() : '—'}</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Recent Jobs */}
+                  {customerJobs.length > 0 && (
+                    <div>
+                      <p className="text-sm font-semibold text-gray-700 mb-3">Recent Jobs</p>
+                      <div className="space-y-2">
+                        {customerJobs.slice(0, 3).map(j => (
+                          <div key={j.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                              <p className="text-sm font-medium">{j.title || 'Service Job'}</p>
+                              <p className="text-xs text-gray-500">{j.scheduled_date || j.scheduledDate || ''}</p>
+                            </div>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                              j.status === 'completed' ? 'bg-green-100 text-green-700' :
+                              j.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
+                              'bg-gray-100 text-gray-700'
+                            }`}>{j.status}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : customerDetailTab === 'jobs' ? (
+                <div className="space-y-3">
+                  {customerJobs.length === 0 ? (
+                    <p className="text-sm text-gray-400 text-center py-8">No jobs for this customer yet.</p>
+                  ) : customerJobs.map(j => (
+                    <div key={j.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                      <div>
+                        <p className="font-medium text-sm">{j.title || 'Service Job'}</p>
+                        <p className="text-xs text-gray-500">{j.job_number || `JOB-${j.id}`} · {j.scheduled_date || j.scheduledDate || 'Not scheduled'}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-medium">${Number(j.total || j.total_amount || 0).toLocaleString()}</span>
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                          j.status === 'completed' ? 'bg-green-100 text-green-700' :
+                          j.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-700'
+                        }`}>{j.status}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : customerDetailTab === 'invoices' ? (
+                <div className="space-y-3">
+                  {customerInvoices.length === 0 ? (
+                    <p className="text-sm text-gray-400 text-center py-8">No invoices for this customer yet.</p>
+                  ) : customerInvoices.map(inv => (
+                    <div key={inv.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                      <div>
+                        <p className="font-medium text-sm">{inv.invoice_number || `INV-${inv.id}`}</p>
+                        <p className="text-xs text-gray-500">Due: {inv.due_date || '—'}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-bold">${Number(inv.amount || inv.total_amount || 0).toLocaleString()}</span>
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                          inv.status === 'paid' ? 'bg-green-100 text-green-700' :
+                          inv.status === 'overdue' ? 'bg-red-100 text-red-700' :
+                          'bg-yellow-100 text-yellow-700'
+                        }`}>{inv.status}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {customerEstimates.length === 0 ? (
+                    <p className="text-sm text-gray-400 text-center py-8">No estimates for this customer yet.</p>
+                  ) : customerEstimates.map(est => (
+                    <div key={est.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                      <div>
+                        <p className="font-medium text-sm">{est.title || 'Estimate'}</p>
+                        <p className="text-xs text-gray-500">{est.estimate_number || `EST-${est.id}`}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-bold">${Number(est.total_amount || est.amount || 0).toLocaleString()}</span>
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                          est.status === 'approved' ? 'bg-green-100 text-green-700' :
+                          est.status === 'sent' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-700'
+                        }`}>{est.status}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
