@@ -24,10 +24,13 @@ const CustomerAutocomplete = ({
   const wrapperRef = useRef(null)
   const inputRef = useRef(null)
 
-  // Keep input in sync when value prop changes (e.g. sessionStorage auto-fill)
+  // Keep input in sync when value prop changes (e.g. sessionStorage auto-fill).
+  // Only update inputValue when a valid customer is resolved from the value prop.
+  // Do NOT clear inputValue when value is empty — the user may be actively typing.
   useEffect(() => {
+    if (!value) return  // user cleared or is typing; don't overwrite their input
     const c = customers.find(c => String(c.id) === String(value))
-    setInputValue(c?.name || '')
+    if (c) setInputValue(c.name)
   }, [value, customers])
 
   // Close dropdown on outside click
