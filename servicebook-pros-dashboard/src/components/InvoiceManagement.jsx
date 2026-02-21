@@ -79,6 +79,18 @@ const InvoiceManagement = () => {
     loadCustomers()
   }, [])
 
+  useEffect(() => {
+    const pending = sessionStorage.getItem('sbp_auto_open_invoice')
+    if (pending) {
+      try {
+        const { customer_id, customer_name } = JSON.parse(pending)
+        setInvoiceForm(prev => ({ ...prev, customer_id: String(customer_id) }))
+        setShowCreateDialog(true)
+      } catch (e) {}
+      sessionStorage.removeItem('sbp_auto_open_invoice')
+    }
+  }, [])
+
   const loadInvoices = async () => {
     try {
       setLoading(true)

@@ -176,6 +176,25 @@ const ScheduleCalendar = () => {
     loadScheduleData()
   }, [])
 
+  useEffect(() => {
+    apiClient.getCustomers().then(data => {
+      const list = Array.isArray(data) ? data : (data?.customers || [])
+      setCustomers(list)
+    }).catch(err => console.error('Failed to load customers:', err))
+  }, [])
+
+  useEffect(() => {
+    const pending = sessionStorage.getItem('sbp_auto_open_schedule')
+    if (pending) {
+      try {
+        const { customer_id, customer_name } = JSON.parse(pending)
+        setScheduleForm(prev => ({ ...prev, customer_id: String(customer_id), customerName: customer_name }))
+        setShowAddJobModal(true)
+      } catch (e) {}
+      sessionStorage.removeItem('sbp_auto_open_schedule')
+    }
+  }, [])
+
   // Create new job via API
   const createJob = async (jobData) => {
     try {
@@ -350,7 +369,9 @@ const ScheduleCalendar = () => {
 
   const [showAddJobModal, setShowAddJobModal] = useState(false)
   const [calendarView, setCalendarView] = useState('month')
-  const [scheduleForm, setScheduleForm] = useState({ customerName: '', jobType: '', time: '' })
+  const [scheduleForm, setScheduleForm] = useState({ customer_id: '', customerName: '', jobType: '', time: '' })
+  const [customers, setCustomers] = useState([])
+  const [showCalendarModal, setShowCalendarModal] = useState(false)
 
   const handleAddItem = (type) => {
     setShowAddMenu(false)
@@ -630,6 +651,13 @@ In production, this requires server-side CalDAV implementation.`)
                 <option value="week">Week</option>
                 <option value="day">Day</option>
               </select>
+              <button
+                onClick={() => setShowCalendarModal(true)}
+                className="flex items-center gap-2 px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Connect Calendar
+              </button>
               <Button variant="outline" size="sm">
                 <MoreHorizontal className="w-4 h-4" />
               </Button>
@@ -825,13 +853,18 @@ In production, this requires server-side CalDAV implementation.`)
               )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
-                <input
-                  type="text"
-                  value={scheduleForm.customerName}
-                  onChange={e => setScheduleForm(p => ({ ...p, customerName: e.target.value }))}
-                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Customer name"
-                />
+                <select
+                  required
+                  value={scheduleForm.customer_id || ''}
+                  onChange={e => {
+                    const customer = customers.find(c => String(c.id) === e.target.value)
+                    setScheduleForm({...scheduleForm, customer_id: e.target.value, customerName: customer?.name || ''})
+                  }}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="" disabled>Select a customer</option>
+                  {customers.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type</label>
@@ -853,7 +886,7 @@ In production, this requires server-side CalDAV implementation.`)
                 />
               </div>
               <div className="flex gap-3 pt-2">
-                <button onClick={() => { setScheduleForm({ customerName: '', jobType: '', time: '' }); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button onClick={() => { setScheduleForm({ customer_id: '', customerName: '', jobType: '', time: '' }); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
                 <button
                   onClick={async () => {
                     if (!scheduleForm.customerName) return
@@ -868,13 +901,53 @@ In production, this requires server-side CalDAV implementation.`)
                     } catch (err) {
                       console.error('Failed to schedule job:', err)
                     }
-                    setScheduleForm({ customerName: '', jobType: '', time: '' })
+                    setScheduleForm({ customer_id: '', customerName: '', jobType: '', time: '' })
                     setShowAddJobModal(false)
                   }}
                   className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
                   Schedule
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showCalendarModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b">
+              <h2 className="text-xl font-semibold text-gray-900">Connect External Calendar</h2>
+              <button onClick={() => setShowCalendarModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <div className="p-6 space-y-4">
+              <p className="text-sm text-gray-600">Subscribe to your ServiceBook Pros schedule in any calendar app. Your jobs will appear as read-only events and update automatically.</p>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Calendar Feed URL</label>
+                <div className="flex gap-2">
+                  <input
+                    readOnly
+                    value="https://servicebook-pros-backend.onrender.com/api/calendar/feed.ics"
+                    className="flex-1 border rounded-lg px-3 py-2 text-sm bg-gray-50 text-gray-700 focus:outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText('https://servicebook-pros-backend.onrender.com/api/calendar/feed.ics')
+                      alert('Copied to clipboard!')
+                    }}
+                    className="px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+              <div className="space-y-3 text-sm text-gray-700">
+                <p className="font-medium">How to add:</p>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                  <p><strong>Google Calendar:</strong> Other calendars → + → From URL → paste URL</p>
+                  <p><strong>Apple Calendar:</strong> File → New Calendar Subscription → paste URL</p>
+                  <p><strong>Outlook:</strong> Add calendar → Subscribe from web → paste URL</p>
+                </div>
               </div>
             </div>
           </div>

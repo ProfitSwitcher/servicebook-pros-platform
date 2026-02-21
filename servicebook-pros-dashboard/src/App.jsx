@@ -1007,9 +1007,9 @@ function App() {
           />
         )}
         
-        {activeTab === 'invoices' && <InvoiceLazy />}
+        {activeTab === 'invoices' && <InvoiceLazy setActiveTab={setActiveTab} />}
         
-        {activeTab === 'schedule' && <ScheduleLazy />}
+        {activeTab === 'schedule' && <ScheduleLazy setActiveTab={setActiveTab} />}
         
         {activeTab === 'customers' && <CustomersLazy setActiveTab={setActiveTab} />}
         
@@ -1020,9 +1020,9 @@ function App() {
           </div>
         )}
         
-        {activeTab === 'estimates' && <EstimatesLazy />}
+        {activeTab === 'estimates' && <EstimatesLazy setActiveTab={setActiveTab} />}
         
-        {activeTab === 'jobs' && <JobsLazy />}
+        {activeTab === 'jobs' && <JobsLazy setActiveTab={setActiveTab} />}
         
         {activeTab === 'my-money' && <MyMoneyLazy />}
         

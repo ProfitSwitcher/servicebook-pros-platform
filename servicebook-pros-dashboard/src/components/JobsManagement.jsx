@@ -47,7 +47,8 @@ const JobsManagement = () => {
   const [statusFilter, setStatusFilter] = useState('all')
   const [loading, setLoading] = useState(false)
   const [timerRunning, setTimerRunning] = useState(false)
-  const [newJob, setNewJob] = useState({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+  const [customers, setCustomers] = useState([])
+  const [newJob, setNewJob] = useState({ customer_id: '', customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
   const [creatingJob, setCreatingJob] = useState(false)
   const [editingJob, setEditingJob] = useState(null)
 
@@ -187,6 +188,25 @@ const JobsManagement = () => {
     loadJobs()
   }, [])
 
+  useEffect(() => {
+    apiClient.getCustomers().then(data => {
+      const list = Array.isArray(data) ? data : (data?.customers || [])
+      setCustomers(list)
+    }).catch(err => console.error('Failed to load customers:', err))
+  }, [])
+
+  useEffect(() => {
+    const pending = sessionStorage.getItem('sbp_auto_open_job')
+    if (pending) {
+      try {
+        const { customer_id, customer_name } = JSON.parse(pending)
+        setNewJob(prev => ({ ...prev, customer_id: String(customer_id), customerName: customer_name }))
+        setShowJobModal(true)
+      } catch (e) {}
+      sessionStorage.removeItem('sbp_auto_open_job')
+    }
+  }, [])
+
   const handleCreateJob = async (e) => {
     e.preventDefault()
     setCreatingJob(true)
@@ -194,6 +214,7 @@ const JobsManagement = () => {
       const payload = {
         title: newJob.type,
         customer_name: newJob.customerName,
+        customer_id: parseInt(newJob.customer_id) || null,
         scheduled_date: newJob.scheduledDate,
         priority: newJob.priority || 'normal',
         address: newJob.address,
@@ -203,12 +224,12 @@ const JobsManagement = () => {
       const created = await apiClient.createJob(payload)
       setJobs(prev => [created, ...prev])
       setShowJobModal(false)
-      setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+      setNewJob({ customer_id: '', customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
     } catch (err) {
       console.error('Failed to create job:', err)
       setJobs(prev => [{ ...newJob, id: Date.now(), status: 'scheduled', jobNumber: `JOB-${Date.now()}` }, ...prev])
       setShowJobModal(false)
-      setNewJob({ customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
+      setNewJob({ customer_id: '', customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
     } finally {
       setCreatingJob(false)
     }
@@ -917,8 +938,19 @@ const JobsManagement = () => {
             </div>
             <form onSubmit={handleCreateJob} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
-                <input type="text" required value={newJob.customerName} onChange={e => setNewJob({...newJob, customerName: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. John Smith" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
+                <select
+                  required
+                  value={newJob.customer_id}
+                  onChange={e => {
+                    const customer = customers.find(c => String(c.id) === e.target.value)
+                    setNewJob({...newJob, customer_id: e.target.value, customerName: customer?.name || ''})
+                  }}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="" disabled>Select a customer</option>
+                  {customers.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type *</label>

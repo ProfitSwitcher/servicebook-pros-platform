@@ -38,7 +38,8 @@ const EstimatesManagement = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [loading, setLoading] = useState(false)
-  const [newEstimate, setNewEstimate] = useState({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+  const [customers, setCustomers] = useState([])
+  const [newEstimate, setNewEstimate] = useState({ customer_id: '', customerName: '', description: '', amount: '', validUntil: '', notes: '' })
   const [creatingEstimate, setCreatingEstimate] = useState(false)
   const [editingEstimate, setEditingEstimate] = useState(null)
 
@@ -128,6 +129,25 @@ const EstimatesManagement = () => {
     loadEstimates()
   }, [])
 
+  useEffect(() => {
+    apiClient.getCustomers().then(data => {
+      const list = Array.isArray(data) ? data : (data?.customers || [])
+      setCustomers(list)
+    }).catch(err => console.error('Failed to load customers:', err))
+  }, [])
+
+  useEffect(() => {
+    const pending = sessionStorage.getItem('sbp_auto_open_estimate')
+    if (pending) {
+      try {
+        const { customer_id, customer_name } = JSON.parse(pending)
+        setNewEstimate(prev => ({ ...prev, customer_id: String(customer_id), customerName: customer_name }))
+        setShowEstimateModal(true)
+      } catch (e) {}
+      sessionStorage.removeItem('sbp_auto_open_estimate')
+    }
+  }, [])
+
   const handleCreateEstimate = async (e) => {
     e.preventDefault()
     setCreatingEstimate(true)
@@ -135,6 +155,7 @@ const EstimatesManagement = () => {
       const payload = {
         title: newEstimate.description,
         customer_name: newEstimate.customerName,
+        customer_id: parseInt(newEstimate.customer_id) || null,
         total: parseFloat(newEstimate.amount) || 0,
         expiry_date: newEstimate.validUntil || null,
         status: newEstimate.status || 'pending',
@@ -143,12 +164,12 @@ const EstimatesManagement = () => {
       const created = await apiClient.createEstimate(payload)
       setEstimates(prev => [created, ...prev])
       setShowEstimateModal(false)
-      setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+      setNewEstimate({ customer_id: '', customerName: '', description: '', amount: '', validUntil: '', notes: '' })
     } catch (err) {
       console.error('Failed to create estimate:', err)
       setEstimates(prev => [{ title: newEstimate.description, customer_name: newEstimate.customerName, id: Date.now(), status: 'draft', totalAmount: `$${newEstimate.amount}` }, ...prev])
       setShowEstimateModal(false)
-      setNewEstimate({ customerName: '', description: '', amount: '', validUntil: '', notes: '' })
+      setNewEstimate({ customer_id: '', customerName: '', description: '', amount: '', validUntil: '', notes: '' })
     } finally {
       setCreatingEstimate(false)
     }
@@ -609,8 +630,19 @@ const EstimatesManagement = () => {
             </div>
             <form onSubmit={handleCreateEstimate} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
-                <input type="text" required value={newEstimate.customerName} onChange={e => setNewEstimate({...newEstimate, customerName: e.target.value})} className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Customer name" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
+                <select
+                  required
+                  value={newEstimate.customer_id}
+                  onChange={e => {
+                    const customer = customers.find(c => String(c.id) === e.target.value)
+                    setNewEstimate({...newEstimate, customer_id: e.target.value, customerName: customer?.name || ''})
+                  }}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="" disabled>Select a customer</option>
+                  {customers.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Service Description *</label>

@@ -17,6 +17,7 @@ from src.routes.analytics import analytics_bp
 from src.routes.settings import settings_bp
 from src.routes.payments import payments_bp
 from src.routes.communication import communication_bp
+from src.routes.calendar import calendar_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'sbp-dev-secret-change-in-prod')
@@ -38,6 +39,7 @@ app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
 app.register_blueprint(settings_bp, url_prefix='/api/settings')
 app.register_blueprint(payments_bp, url_prefix='/api/payments')
 app.register_blueprint(communication_bp, url_prefix='/api/communication')
+app.register_blueprint(calendar_bp, url_prefix='/api/calendar')
 
 # Database configuration
 database_dir = os.path.join(os.path.dirname(__file__), 'database')

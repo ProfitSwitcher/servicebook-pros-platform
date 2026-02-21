@@ -237,13 +237,13 @@ const CustomersPage = ({ setActiveTab }) => {
   }
 
   const handleScheduleJob = (customer) => {
-    setSuccessMessage(`Go to the Schedule tab to book a job for ${customer.name}.`)
-    setTimeout(() => setSuccessMessage(''), 4000)
+    sessionStorage.setItem('sbp_auto_open_schedule', JSON.stringify({ customer_id: customer.id, customer_name: customer.display_name || customer.name || `${customer.first_name || ''} ${customer.last_name || ''}`.trim() }))
+    setActiveTab('schedule')
   }
 
   const handleCreateEstimate = (customer) => {
-    setSuccessMessage('Go to the Estimates tab to create an estimate for this customer.')
-    setTimeout(() => setSuccessMessage(''), 4000)
+    sessionStorage.setItem('sbp_auto_open_estimate', JSON.stringify({ customer_id: customer.id, customer_name: customer.display_name || customer.name || `${customer.first_name || ''} ${customer.last_name || ''}`.trim() }))
+    setActiveTab('estimates')
   }
 
   const handleViewHistory = (customer) => {
