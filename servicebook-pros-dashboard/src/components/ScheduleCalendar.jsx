@@ -5,6 +5,7 @@ import { Badge } from './ui/badge'
 import CalendarSettingsModal from './CalendarSettingsModal'
 import ScheduleMapView from './ScheduleMapView'
 import apiClient from '../utils/apiClient'
+import CustomerAutocomplete from './CustomerAutocomplete'
 import { 
   Calendar,
   ChevronLeft,
@@ -851,21 +852,17 @@ In production, this requires server-side CalDAV implementation.`)
               {selectedDate && (
                 <p className="text-sm text-gray-600">Date: <strong>{new Date(selectedDate).toLocaleDateString()}</strong></p>
               )}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
-                <select
-                  required
-                  value={scheduleForm.customer_id || ''}
-                  onChange={e => {
-                    const customer = customers.find(c => String(c.id) === e.target.value)
-                    setScheduleForm({...scheduleForm, customer_id: e.target.value, customerName: customer?.name || ''})
-                  }}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="" disabled>Select a customer</option>
-                  {customers.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
-                </select>
-              </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
+                  <CustomerAutocomplete
+                    customers={customers}
+                    value={scheduleForm.customer_id || ''}
+                    onChange={({ customer_id, customer_name }) =>
+                      setScheduleForm({ ...scheduleForm, customer_id, customerName: customer_name })
+                    }
+                    placeholder="Search customers..."
+                  />
+                </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type</label>
                 <input

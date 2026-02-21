@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
 import { API_BASE_URL } from '@/lib/config'
 import apiClient from '../utils/apiClient'
+import CustomerAutocomplete from './CustomerAutocomplete'
 import { 
   FileText, 
   Plus, 
@@ -436,21 +437,14 @@ const InvoiceManagement = () => {
                 {/* Customer Selection */}
                 <div>
                   <Label htmlFor="customer">Customer</Label>
-                  <Select 
-                    value={invoiceForm.customer_id} 
-                    onValueChange={(value) => setInvoiceForm(prev => ({...prev, customer_id: value}))}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a customer" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {customers.map((customer) => (
-                        <SelectItem key={customer.id} value={customer.id.toString()}>
-                          {customer.first_name} {customer.last_name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <CustomerAutocomplete
+                    customers={customers}
+                    value={invoiceForm.customer_id}
+                    onChange={({ customer_id }) =>
+                      setInvoiceForm(prev => ({ ...prev, customer_id }))
+                    }
+                    placeholder="Search customers..."
+                  />
                 </div>
 
                 {/* Due Date */}

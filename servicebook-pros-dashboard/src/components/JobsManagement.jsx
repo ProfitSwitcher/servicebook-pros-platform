@@ -37,6 +37,7 @@ import {
   X
 } from 'lucide-react'
 import apiClient from '../utils/apiClient'
+import CustomerAutocomplete from './CustomerAutocomplete'
 
 const JobsManagement = () => {
   const [jobs, setJobs] = useState([])
@@ -939,18 +940,14 @@ const JobsManagement = () => {
             <form onSubmit={handleCreateJob} className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
-                <select
-                  required
+                <CustomerAutocomplete
+                  customers={customers}
                   value={newJob.customer_id}
-                  onChange={e => {
-                    const customer = customers.find(c => String(c.id) === e.target.value)
-                    setNewJob({...newJob, customer_id: e.target.value, customerName: customer?.name || ''})
-                  }}
-                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="" disabled>Select a customer</option>
-                  {customers.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
-                </select>
+                  onChange={({ customer_id, customer_name }) =>
+                    setNewJob({ ...newJob, customer_id, customerName: customer_name })
+                  }
+                  placeholder="Search customers..."
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type *</label>
