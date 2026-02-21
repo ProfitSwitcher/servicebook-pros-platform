@@ -246,6 +246,11 @@ const CustomersPage = ({ setActiveTab }) => {
     setActiveTab('estimates')
   }
 
+  const handleCreateInvoice = (customer) => {
+    sessionStorage.setItem('sbp_auto_open_invoice', JSON.stringify({ customer_id: customer.id, customer_name: customer.display_name || customer.name || `${customer.first_name || ''} ${customer.last_name || ''}`.trim() }))
+    setActiveTab('invoices')
+  }
+
   const handleViewHistory = (customer) => {
     console.log('View history for customer:', customer.id)
   }
@@ -758,7 +763,7 @@ const CustomersPage = ({ setActiveTab }) => {
                                   <Calendar className="w-4 h-4 inline mr-2" />
                                   Schedule Job
                                 </button>
-                                <button 
+                                <button
                                   onClick={() => {
                                     setCustomerActionDropdown(null)
                                     handleCreateEstimate(customer)
@@ -768,18 +773,28 @@ const CustomersPage = ({ setActiveTab }) => {
                                   <FileText className="w-4 h-4 inline mr-2" />
                                   Create Estimate
                                 </button>
-                                <button 
+                                <button
+                                  onClick={() => {
+                                    setCustomerActionDropdown(null)
+                                    handleCreateInvoice(customer)
+                                  }}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                >
+                                  <Receipt className="w-4 h-4 inline mr-2" />
+                                  Create Invoice
+                                </button>
+                                <button
                                   onClick={() => {
                                     setCustomerActionDropdown(null)
                                     handleViewHistory(customer)
                                   }}
                                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                 >
-                                  <Receipt className="w-4 h-4 inline mr-2" />
+                                  <Eye className="w-4 h-4 inline mr-2" />
                                   View History
                                 </button>
                                 <div className="border-t border-gray-100 my-1"></div>
-                                <button 
+                                <button
                                   onClick={() => {
                                     setCustomerActionDropdown(null)
                                     handleDeleteCustomer(customer)
@@ -864,7 +879,7 @@ const CustomersPage = ({ setActiveTab }) => {
                                     <Calendar className="w-4 h-4 inline mr-2" />
                                     Schedule Job
                                   </button>
-                                  <button 
+                                  <button
                                     onClick={() => {
                                       setCustomerActionDropdown(null)
                                       handleCreateEstimate(customer)
@@ -874,18 +889,28 @@ const CustomersPage = ({ setActiveTab }) => {
                                     <FileText className="w-4 h-4 inline mr-2" />
                                     Create Estimate
                                   </button>
-                                  <button 
+                                  <button
+                                    onClick={() => {
+                                      setCustomerActionDropdown(null)
+                                      handleCreateInvoice(customer)
+                                    }}
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                  >
+                                    <Receipt className="w-4 h-4 inline mr-2" />
+                                    Create Invoice
+                                  </button>
+                                  <button
                                     onClick={() => {
                                       setCustomerActionDropdown(null)
                                       handleViewHistory(customer)
                                     }}
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                   >
-                                    <Receipt className="w-4 h-4 inline mr-2" />
+                                    <Eye className="w-4 h-4 inline mr-2" />
                                     View History
                                   </button>
                                   <div className="border-t border-gray-100 my-1"></div>
-                                  <button 
+                                  <button
                                     onClick={() => {
                                       setCustomerActionDropdown(null)
                                       handleDeleteCustomer(customer)

@@ -49,6 +49,7 @@ const InvoiceManagement = () => {
   // Invoice form state
   const [invoiceForm, setInvoiceForm] = useState({
     customer_id: '',
+    customer_name: '',
     due_date: '',
     payment_terms: 'Net 30',
     notes: '',
@@ -85,8 +86,8 @@ const InvoiceManagement = () => {
     if (pending) {
       try {
         const { customer_id, customer_name } = JSON.parse(pending)
-        setInvoiceForm(prev => ({ ...prev, customer_id: String(customer_id) }))
-        setShowCreateDialog(true)
+        setInvoiceForm(prev => ({ ...prev, customer_id: String(customer_id), customer_name: customer_name || '' }))
+        setActiveTab('create')
       } catch (e) {}
       sessionStorage.removeItem('sbp_auto_open_invoice')
     }
@@ -117,7 +118,13 @@ const InvoiceManagement = () => {
     try {
       setLoading(true)
       setError('')
-      const data = await apiClient.createInvoice(invoiceForm)
+      // Ensure customer_name is set — fall back to looking up by customer_id
+      let customerName = invoiceForm.customer_name
+      if (!customerName && invoiceForm.customer_id) {
+        const found = customers.find(c => String(c.id) === String(invoiceForm.customer_id))
+        customerName = found?.name || ''
+      }
+      const data = await apiClient.createInvoice({ ...invoiceForm, customer_name: customerName })
       setSuccess('Invoice created successfully!')
       setShowCreateDialog(false)
       resetInvoiceForm()
@@ -187,6 +194,7 @@ const InvoiceManagement = () => {
   const resetInvoiceForm = () => {
     setInvoiceForm({
       customer_id: '',
+      customer_name: '',
       due_date: '',
       payment_terms: 'Net 30',
       notes: '',
@@ -440,8 +448,8 @@ const InvoiceManagement = () => {
                   <CustomerAutocomplete
                     customers={customers}
                     value={invoiceForm.customer_id}
-                    onChange={({ customer_id }) =>
-                      setInvoiceForm(prev => ({ ...prev, customer_id }))
+                    onChange={({ customer_id, customer_name }) =>
+                      setInvoiceForm(prev => ({ ...prev, customer_id, customer_name: customer_name || '' }))
                     }
                     placeholder="Search customers..."
                   />

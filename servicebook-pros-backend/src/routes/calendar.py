@@ -1,5 +1,17 @@
 from flask import Blueprint, Response
-from routes.jobs import _jobs
+
+# The correct import path depends on how gunicorn loads the app.
+# Production: gunicorn runs `src.main:app` from the servicebook-pros-backend/
+# directory, so the package root is `src` and the import must be
+# `from src.routes.jobs import _jobs`.  A bare `from routes.jobs import _jobs`
+# works only when Python's cwd is already inside `src/`, which never happens
+# in the Render/Railway deployment.  We try both so the module loads correctly
+# in every environment (local dev with `python src/main.py` as well as
+# gunicorn `src.main:app`).
+try:
+    from src.routes.jobs import _jobs
+except ImportError:
+    from routes.jobs import _jobs
 
 calendar_bp = Blueprint('calendar', __name__)
 

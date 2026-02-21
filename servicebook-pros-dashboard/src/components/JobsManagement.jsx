@@ -172,13 +172,48 @@ const JobsManagement = () => {
     }
   ]
 
+  // Normalize a job from the API into the shape the UI expects
+  const normalizeJob = (job) => {
+    // If job already has a customer object with a name, keep it as-is
+    if (job.customer && typeof job.customer === 'object' && job.customer.name) {
+      return job
+    }
+    // Otherwise build a customer object from flat API fields
+    return {
+      ...job,
+      jobNumber: job.jobNumber || job.job_number || `JOB-${String(job.id).padStart(3, '0')}`,
+      title: job.title || 'Service Job',
+      status: job.status || 'scheduled',
+      priority: job.priority || 'normal',
+      scheduledDate: job.scheduledDate || job.scheduled_date || '',
+      scheduledTime: job.scheduledTime || job.scheduled_time || '',
+      estimatedDuration: job.estimatedDuration || '',
+      totalAmount: job.totalAmount || (job.estimated_value ? `$${job.estimated_value}` : ''),
+      assignedTechnician: job.assignedTechnician || job.assigned_technician || '',
+      scopeOfWork: job.scopeOfWork || job.description || job.notes || '',
+      materials: job.materials || [],
+      timeTracking: job.timeTracking || { startTime: null, endTime: null, totalHours: 0, billableHours: 0 },
+      homeownerQuestions: job.homeownerQuestions || [],
+      urgentQuestions: job.urgentQuestions || [],
+      notes: job.notes || '',
+      lastUpdated: job.lastUpdated || job.updated_at || job.created_at || '',
+      createdDate: job.createdDate || job.created_at || '',
+      customer: {
+        name: job.customer_name || (typeof job.customer === 'string' ? job.customer : '') || 'Unknown',
+        phone: job.customer_phone || '',
+        email: job.customer_email || '',
+        address: job.address || '',
+      },
+    }
+  }
+
   useEffect(() => {
     const loadJobs = async () => {
       setLoading(true)
       try {
         const data = await apiClient.getJobs()
         const loaded = Array.isArray(data) ? data : (data?.jobs || data?.results || [])
-        setJobs(loaded.length > 0 ? loaded : sampleJobs)
+        setJobs(loaded.length > 0 ? loaded.map(normalizeJob) : sampleJobs)
       } catch (err) {
         console.error('Failed to load jobs:', err)
         setJobs(sampleJobs)
@@ -223,7 +258,7 @@ const JobsManagement = () => {
         status: 'scheduled',
       }
       const created = await apiClient.createJob(payload)
-      setJobs(prev => [created, ...prev])
+      setJobs(prev => [normalizeJob(created), ...prev])
       setShowJobModal(false)
       setNewJob({ customer_id: '', customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
     } catch (err) {
@@ -246,8 +281,9 @@ const JobsManagement = () => {
         priority: editingJob.priority,
         notes: editingJob.notes,
       })
-      setJobs(prev => prev.map(j => j.id === editingJob.id ? updated : j))
-      setSelectedJob(updated)
+      const normalizedUpdated = normalizeJob(updated)
+      setJobs(prev => prev.map(j => j.id === editingJob.id ? normalizedUpdated : j))
+      setSelectedJob(normalizedUpdated)
       setEditingJob(null)
     } catch (err) {
       console.error('Failed to update job:', err)
@@ -291,9 +327,9 @@ const JobsManagement = () => {
   }
 
   const filteredJobs = jobs.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.jobNumber.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = String(job.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         String(job.customer?.name || job.customer_name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         String(job.jobNumber || job.job_number || '').toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || job.status === statusFilter
     return matchesSearch && matchesStatus
   })
