@@ -52,6 +52,51 @@ function App() {
   const [weekStats, setWeekStats] = useState({ revenue: 0, jobs_completed: 0, avg_job_size: 0, new_jobs_booked: 0, new_jobs_online: 0 })
   const [customers, setCustomers] = useState([])
 
+  // Search results derived from searchTerm
+  const searchResults = searchTerm.trim().length >= 2 ? [
+    ...customers.filter(c => {
+      const name = c.name || `${c.first_name || ''} ${c.last_name || ''}`.trim()
+      return name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             (c.email || '').toLowerCase().includes(searchTerm.toLowerCase())
+    }).slice(0, 3).map(c => ({
+      type: 'Customer',
+      label: c.name || `${c.first_name || ''} ${c.last_name || ''}`.trim(),
+      sub: c.email || c.phone || '',
+      tab: 'customers',
+      color: 'bg-blue-100 text-blue-700',
+    })),
+    ...jobs.filter(j =>
+      (j.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (j.customer_name || '').toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(0, 3).map(j => ({
+      type: 'Job',
+      label: j.title || 'Job',
+      sub: j.customer_name || '',
+      tab: 'jobs',
+      color: 'bg-orange-100 text-orange-700',
+    })),
+    ...invoices.filter(i =>
+      (i.invoice_number || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (i.customer_name || '').toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(0, 3).map(i => ({
+      type: 'Invoice',
+      label: i.invoice_number || `INV-${i.id}`,
+      sub: i.customer_name || '',
+      tab: 'invoices',
+      color: 'bg-green-100 text-green-700',
+    })),
+    ...estimates.filter(e =>
+      (e.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (e.customer_name || '').toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(0, 3).map(e => ({
+      type: 'Estimate',
+      label: e.title || `EST-${e.id}`,
+      sub: e.customer_name || '',
+      tab: 'estimates',
+      color: 'bg-purple-100 text-purple-700',
+    })),
+  ] : []
+
   // PWA functionality
   const { isOnline, isInstallable, updateAvailable, updateServiceWorker, showNotification } = usePWA()
 
@@ -246,7 +291,7 @@ function App() {
                 <span className="text-lg font-semibold">ServiceBook Pros</span>
               </div>
               
-              <nav className="flex space-x-1">
+              <nav className="hidden lg:flex space-x-1">
                 <button
                   onClick={() => setActiveTab('overview')}
                   className={`px-3 py-2 rounded-md text-sm font-medium ${
@@ -354,13 +399,33 @@ function App() {
 
             {/* Search and Actions */}
             <div className="flex items-center space-x-4">
-              <div className="relative">
+              <div className="hidden lg:block relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  onBlur={() => setTimeout(() => setSearchTerm(''), 200)}
                   className="pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                {searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-200 z-50 overflow-hidden">
+                    {searchResults.map((r, i) => (
+                      <button
+                        key={i}
+                        onMouseDown={() => { setActiveTab(r.tab); setSearchTerm('') }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-left"
+                      >
+                        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.color}`}>{r.type}</span>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">{r.label}</p>
+                          {r.sub && <p className="text-xs text-gray-500">{r.sub}</p>}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               
               <div className="relative">

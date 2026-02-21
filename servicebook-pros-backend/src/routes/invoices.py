@@ -23,11 +23,16 @@ def _enrich(inv):
     }
 
 _invoices = [
-    {'id': 1, 'invoice_number': 'INV-001', 'customer_id': 1, 'customer_name': 'John Smith',   'status': 'paid',    'amount': 1850.00, 'due_date': '2024-12-30', 'created_at': '2024-12-15', 'line_items': []},
-    {'id': 2, 'invoice_number': 'INV-002', 'customer_id': 2, 'customer_name': 'Sarah Johnson', 'status': 'pending', 'amount': 423.70,  'due_date': '2025-01-05', 'created_at': '2024-12-18', 'line_items': []},
-    {'id': 3, 'invoice_number': 'INV-003', 'customer_id': 3, 'customer_name': 'Mike Davis',    'status': 'overdue', 'amount': 675.00,  'due_date': '2024-12-10', 'created_at': '2024-12-01', 'line_items': []},
+    {'id': 1, 'invoice_number': 'INV-001', 'customer_id': 1, 'customer_name': 'John Smith',      'status': 'paid',    'amount': 1850.00, 'due_date': '2024-12-20', 'created_at': '2024-11-20', 'line_items': [{'description': 'Panel Upgrade 200A Labor', 'quantity': 8, 'unit_price': 125.00, 'total': 1000.00}, {'description': 'Materials & Panel', 'quantity': 1, 'unit_price': 850.00, 'total': 850.00}]},
+    {'id': 2, 'invoice_number': 'INV-002', 'customer_id': 2, 'customer_name': 'Sarah Johnson',   'status': 'paid',    'amount': 423.70,  'due_date': '2025-01-05', 'created_at': '2024-12-05', 'line_items': [{'description': 'GFCI Outlet Installation (6)', 'quantity': 6, 'unit_price': 65.00, 'total': 390.00}, {'description': 'Materials', 'quantity': 1, 'unit_price': 33.70, 'total': 33.70}]},
+    {'id': 3, 'invoice_number': 'INV-003', 'customer_id': 3, 'customer_name': 'Mike Davis',      'status': 'overdue', 'amount': 675.00,  'due_date': '2024-12-31', 'created_at': '2024-12-15', 'line_items': [{'description': 'LED Retrofit Labor', 'quantity': 4, 'unit_price': 125.00, 'total': 500.00}, {'description': 'LED Fixtures (12)', 'quantity': 12, 'unit_price': 14.58, 'total': 175.00}]},
+    {'id': 4, 'invoice_number': 'INV-004', 'customer_id': 4, 'customer_name': 'Lisa Chen',       'status': 'pending', 'amount': 1200.00, 'due_date': '2025-02-10', 'created_at': '2025-01-10', 'line_items': [{'description': 'EV Charger Installation', 'quantity': 1, 'unit_price': 800.00, 'total': 800.00}, {'description': 'Level 2 Charger Unit', 'quantity': 1, 'unit_price': 400.00, 'total': 400.00}]},
+    {'id': 5, 'invoice_number': 'INV-005', 'customer_id': 5, 'customer_name': 'Robert Williams', 'status': 'pending', 'amount': 2400.00, 'due_date': '2025-02-15', 'created_at': '2025-01-15', 'line_items': [{'description': 'Generator Transfer Switch Install', 'quantity': 1, 'unit_price': 1500.00, 'total': 1500.00}, {'description': 'Transfer Switch Unit', 'quantity': 1, 'unit_price': 900.00, 'total': 900.00}]},
+    {'id': 6, 'invoice_number': 'INV-006', 'customer_id': 6, 'customer_name': 'Jennifer Brown',  'status': 'sent',    'amount': 380.00,  'due_date': '2025-02-18', 'created_at': '2025-01-18', 'line_items': [{'description': 'Smoke/CO Detector Installation (8)', 'quantity': 8, 'unit_price': 35.00, 'total': 280.00}, {'description': 'Detector Units', 'quantity': 8, 'unit_price': 12.50, 'total': 100.00}]},
+    {'id': 7, 'invoice_number': 'INV-007', 'customer_id': 1, 'customer_name': 'John Smith',      'status': 'paid',    'amount': 560.00,  'due_date': '2024-10-15', 'created_at': '2024-09-15', 'line_items': [{'description': 'Emergency Service Call', 'quantity': 2, 'unit_price': 180.00, 'total': 360.00}, {'description': 'Parts & Materials', 'quantity': 1, 'unit_price': 200.00, 'total': 200.00}]},
+    {'id': 8, 'invoice_number': 'INV-008', 'customer_id': 7, 'customer_name': 'David Martinez',  'status': 'pending', 'amount': 290.00,  'due_date': '2025-02-20', 'created_at': '2025-01-20', 'line_items': [{'description': 'Ceiling Fan Installation (3)', 'quantity': 3, 'unit_price': 85.00, 'total': 255.00}, {'description': 'Mounting Hardware', 'quantity': 1, 'unit_price': 35.00, 'total': 35.00}]},
 ]
-_next_id = 4
+_next_id = 9
 
 
 # ---------------------------------------------------------------------------
