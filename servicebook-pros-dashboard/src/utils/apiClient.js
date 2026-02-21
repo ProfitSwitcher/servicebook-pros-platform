@@ -222,6 +222,10 @@ class ApiClient {
     return this.request('/analytics/summary');
   }
 
+  async getWeekStats() {
+    return this.request('/analytics/week');
+  }
+
   async getRevenueByMonth() {
     return this.request('/analytics/revenue-by-month');
   }

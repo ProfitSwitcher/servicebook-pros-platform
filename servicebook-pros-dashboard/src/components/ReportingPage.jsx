@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
+import apiClient from '../utils/apiClient'
 import { 
   BarChart3,
   TrendingUp,
@@ -35,6 +36,13 @@ const ReportingPage = () => {
   const [expandedSections, setExpandedSections] = useState({
     businessInsights: true
   })
+  const [analytics, setAnalytics] = useState(null)
+  const [allReportsData, setAllReportsData] = useState(null)
+
+  useEffect(() => {
+    apiClient.getAnalyticsSummary().then(setAnalytics).catch(() => {})
+    apiClient.getReports().then(setAllReportsData).catch(() => {})
+  }, [])
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -84,6 +92,7 @@ const ReportingPage = () => {
     'invoices': 'Invoices',
     'payments': 'Payments',
     'custom': 'Custom Reports',
+    'business-insights': 'Business Insights',
   }
 
   const renderSidebar = () => (
@@ -130,8 +139,12 @@ const ReportingPage = () => {
           return (
             <div key={section.section} className="mb-2">
               <button
-                onClick={() => hasItems && toggleSection(section.section)}
-                className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                onClick={() => section.section === 'businessInsights' ? setSelectedReport('business-insights') : hasItems && toggleSection(section.section)}
+                className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  section.section === 'businessInsights' && selectedReport === 'business-insights'
+                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
               >
                 <div className="flex items-center space-x-3">
                   <Icon className="w-4 h-4" />
@@ -252,7 +265,61 @@ const ReportingPage = () => {
     </Card>
   )
 
-  const renderMainContent = () => (
+  const renderMainContent = () => {
+    if (selectedReport === 'business-insights') {
+      return (
+        <div className="flex-1 p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-6">Business Insights</h1>
+          {analytics ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+              {[
+                { label: 'Total Revenue', value: `$${Number(analytics.total_invoice_amount || 0).toLocaleString()}`, trend: `+${analytics.revenue_growth || 0}%` },
+                { label: 'Completed Jobs', value: analytics.completed_jobs || 0, trend: null },
+                { label: 'Total Customers', value: analytics.total_customers || 0, trend: `+${analytics.new_customers || 0} new` },
+                { label: 'Pending Estimates', value: analytics.pending_estimates || 0, trend: null },
+                { label: 'Est. Conversion', value: `${analytics.estimate_conversion || 0}%`, trend: null },
+                { label: 'Customer Retention', value: `${analytics.customer_retention || 0}%`, trend: null },
+              ].map(({ label, value, trend }) => (
+                <Card key={label}>
+                  <div className="p-6">
+                    <p className="text-sm text-gray-500 font-medium mb-1">{label}</p>
+                    <p className="text-3xl font-bold text-gray-900">{value}</p>
+                    {trend && <p className="text-sm text-green-600 mt-1 font-medium">{trend}</p>}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-gray-500">Loading insights...</div>
+          )}
+        </div>
+      )
+    }
+
+    if (['jobs', 'estimates', 'invoices', 'payments'].includes(selectedReport)) {
+      return (
+        <div className="flex-1 p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-6">{reportTitles[selectedReport]}</h1>
+          <div className="bg-white rounded-xl border border-gray-200 p-8 text-center">
+            <BarChart3 className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+            <p className="text-lg font-medium text-gray-700 mb-2">{reportTitles[selectedReport]} Report</p>
+            <p className="text-sm text-gray-500 mb-4">
+              {allReportsData?.totals ? (
+                <>
+                  {selectedReport === 'invoices' && `Total revenue: $${Number(allReportsData.totals.total_revenue || 0).toLocaleString()}`}
+                  {selectedReport === 'jobs' && `Total jobs: ${allReportsData.totals.total_jobs || 0}`}
+                  {selectedReport === 'estimates' && `Total estimates: ${allReportsData.totals.total_estimates || 0}`}
+                  {selectedReport === 'payments' && `Total customers: ${allReportsData.totals.total_customers || 0}`}
+                </>
+              ) : 'Loading report data...'}
+            </p>
+            <p className="text-xs text-gray-400">Detailed filtering and export coming soon</p>
+          </div>
+        </div>
+      )
+    }
+
+    return (
     <div className="flex-1 p-8">
       {/* Header */}
       <div className="flex justify-between items-start mb-8">
@@ -320,7 +387,8 @@ const ReportingPage = () => {
         {renderTimeTrackingChart()}
       </div>
     </div>
-  )
+    )
+  }
 
   return (
     <div className="h-screen bg-gray-50 flex">

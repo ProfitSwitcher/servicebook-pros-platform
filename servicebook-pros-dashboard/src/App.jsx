@@ -49,6 +49,8 @@ function App() {
   const [showNewDropdown, setShowNewDropdown] = useState(false)
   const [showFinancialsDropdown, setShowFinancialsDropdown] = useState(false)
   const [jobLocationView, setJobLocationView] = useState('today')
+  const [weekStats, setWeekStats] = useState({ revenue: 0, jobs_completed: 0, avg_job_size: 0, new_jobs_booked: 0, new_jobs_online: 0 })
+  const [customers, setCustomers] = useState([])
 
   // PWA functionality
   const { isOnline, isInstallable, updateAvailable, updateServiceWorker, showNotification } = usePWA()
@@ -145,6 +147,10 @@ function App() {
         const invoicesData = await invoicesRes.json()
         setInvoices(invoicesData)
       }
+
+      // Load week stats and customers (non-blocking, fail silently)
+      apiClient.getWeekStats().then(setWeekStats).catch(() => {})
+      apiClient.getCustomers().then(data => setCustomers(Array.isArray(data) ? data : [])).catch(() => {})
     } catch (err) {
       console.error('Error loading data:', err)
     }
@@ -523,7 +529,7 @@ function App() {
                     </div>
                   </div>
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">JOB REVENUE EARNED</h4>
-                  <div className="text-2xl font-bold text-gray-900">$0</div>
+                  <div className="text-2xl font-bold text-gray-900">{weekStats.revenue ? '$' + weekStats.revenue.toLocaleString() : '$0'}</div>
                 </Card>
                 <Card 
                   className="p-5 text-center cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-green-500"
@@ -535,7 +541,7 @@ function App() {
                     </div>
                   </div>
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">JOBS COMPLETED</h4>
-                  <div className="text-2xl font-bold text-gray-900">0</div>
+                  <div className="text-2xl font-bold text-gray-900">{weekStats.jobs_completed || 0}</div>
                 </Card>
                 <Card 
                   className="p-5 text-center cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-purple-500"
@@ -547,7 +553,7 @@ function App() {
                     </div>
                   </div>
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">AVERAGE JOB SIZE</h4>
-                  <div className="text-2xl font-bold text-gray-900">$0</div>
+                  <div className="text-2xl font-bold text-gray-900">{weekStats.avg_job_size ? '$' + weekStats.avg_job_size.toLocaleString() : '$0'}</div>
                 </Card>
                 <Card 
                   className="p-5 text-center cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-orange-500"
@@ -559,8 +565,7 @@ function App() {
                     </div>
                   </div>
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">TOTAL NEW JOBS BOOKED</h4>
-                  <div className="text-2xl font-bold text-gray-900">$9,494</div>
-                  <div className="text-xs text-green-600 mt-2 font-medium">↑ 1.283%</div>
+                  <div className="text-2xl font-bold text-gray-900">{weekStats.new_jobs_booked || jobs.length}</div>
                 </Card>
                 <Card 
                   className="p-5 text-center cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-indigo-500"
@@ -815,77 +820,64 @@ function App() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mt-1">
-                        <FileText className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium">Line items updated total = $11226.29</p>
-                        <p className="text-xs text-gray-500">Thu, Sep 11 at 3:27 PM</p>
-                      </div>
-                      <div className="text-right">
-                        <button 
-                          className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                          onClick={() => setActiveTab('jobs')}
-                        >
-                          Job #964
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mt-1">
-                        <DollarSign className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium">Line items updated total = $9736.29</p>
-                        <p className="text-xs text-gray-500">Thu, Sep 11 at 2:15 PM</p>
-                      </div>
-                      <div className="text-right">
-                        <button 
-                          className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                          onClick={() => setActiveTab('jobs')}
-                        >
-                          Job #964
-                        </button>
-                      </div>
-                    </div>
+                    {(() => {
+                      const activities = []
+                      // Add recent invoices
+                      ;[...invoices].slice(-3).reverse().forEach(inv => {
+                        activities.push({
+                          type: 'invoice',
+                          text: `Invoice #${inv.invoice_number || inv.id} ${inv.status === 'paid' ? 'paid' : 'created'} — $${Number(inv.amount || inv.total_amount || 0).toLocaleString()}`,
+                          date: inv.created_at || '',
+                          tab: 'invoices',
+                          link: `Invoice #${inv.invoice_number || inv.id}`,
+                        })
+                      })
+                      // Add recent customers
+                      ;[...customers].slice(-2).reverse().forEach(c => {
+                        activities.push({
+                          type: 'customer',
+                          text: `New customer added: ${c.name || `${c.first_name || ''} ${c.last_name || ''}`.trim()}`,
+                          date: c.created_at || '',
+                          tab: 'customers',
+                          link: `Customer #${c.id}`,
+                        })
+                      })
+                      // Sort by date desc (if no date, put at end)
+                      activities.sort((a, b) => (b.date || '0').localeCompare(a.date || '0'))
 
-                    <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mt-1">
-                        <Users className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium">New customer added</p>
-                        <p className="text-xs text-gray-500">Thu, Sep 11 at 1:45 PM</p>
-                      </div>
-                      <div className="text-right">
-                        <button 
-                          className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                          onClick={() => setActiveTab('customers')}
-                        >
-                          Customer #125
-                        </button>
-                      </div>
-                    </div>
+                      const icons = { invoice: FileText, customer: Users, job: Settings }
+                      const colors = { invoice: 'text-blue-600', customer: 'text-green-600', job: 'text-orange-600' }
 
-                    <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mt-1">
-                        <FileText className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium">Invoice #INV-2025-001 sent</p>
-                        <p className="text-xs text-gray-500">Thu, Sep 11 at 12:30 PM</p>
-                      </div>
-                      <div className="text-right">
-                        <button 
-                          className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                          onClick={() => setActiveTab('invoices')}
-                        >
-                          Invoice #001
-                        </button>
-                      </div>
-                    </div>
+                      if (activities.length === 0) {
+                        return <p className="text-sm text-gray-400">No recent activity.</p>
+                      }
+
+                      return activities.slice(0, 4).map((act, i) => {
+                        const Icon = icons[act.type] || FileText
+                        const dateLabel = act.date
+                          ? new Date(act.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+                          : 'Recently'
+                        return (
+                          <div key={i} className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mt-1">
+                              <Icon className={`w-4 h-4 ${colors[act.type]}`} />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium">{act.text}</p>
+                              <p className="text-xs text-gray-500">{dateLabel}</p>
+                            </div>
+                            <div className="text-right">
+                              <button
+                                className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                                onClick={() => setActiveTab(act.tab)}
+                              >
+                                {act.link}
+                              </button>
+                            </div>
+                          </div>
+                        )
+                      })
+                    })()}
                   </div>
                 </CardContent>
               </Card>
@@ -905,89 +897,51 @@ function App() {
                 <CardContent>
                   <div className="space-y-4">
                     <div>
-                      <p className="text-sm font-medium text-gray-500 mb-3">FRI SEP 12, 2025</p>
+                      <p className="text-sm font-medium text-gray-500 mb-3">
+                        {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase()}
+                      </p>
                       
                       <div className="space-y-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="text-sm font-medium">9:00am - 10:00am</div>
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2">
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('estimates')}
-                              >
-                                Estimate 208
-                              </button>
-                              <span className="text-sm">•</span>
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('customers')}
-                              >
-                                Susan Scarr
-                              </button>
-                            </div>
-                            <div className="flex items-center space-x-2 mt-1">
-                              <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                                <span className="text-xs">AM</span>
+                        {(() => {
+                          const todayStr = new Date().toISOString().split('T')[0]
+                          const todayJobs = jobs.filter(j => {
+                            const d = j.scheduled_date || j.scheduledDate || ''
+                            return d && d.startsWith(todayStr)
+                          })
+                          if (todayJobs.length === 0) {
+                            // Show upcoming jobs if none today
+                            const upcoming = [...jobs]
+                              .filter(j => j.status !== 'completed' && j.status !== 'cancelled')
+                              .slice(0, 3)
+                            if (upcoming.length === 0) {
+                              return <p className="text-sm text-gray-400">No jobs scheduled for today.</p>
+                            }
+                            return upcoming.map((j, i) => (
+                              <div key={j.id} className="flex items-center space-x-3">
+                                <div className={`w-3 h-3 rounded-full ${['bg-red-500','bg-blue-500','bg-green-500'][i % 3]}`}></div>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium">{j.title || 'Service Job'}</span>
+                                    <span className="text-xs text-gray-500">Job #{j.id}</span>
+                                  </div>
+                                  <p className="text-sm text-gray-600">{j.customer_name || (j.customer && j.customer.name) || ''}</p>
+                                </div>
                               </div>
-                              <span className="text-xs text-gray-500">Alvis(AJ) Miller</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center space-x-3">
-                          <div className="text-sm font-medium">11:00am - 12:00pm</div>
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2">
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('jobs')}
-                              >
-                                Job 972
-                              </button>
-                              <span className="text-sm">•</span>
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('customers')}
-                              >
-                                Michael Pritchard
-                              </button>
-                            </div>
-                            <div className="flex items-center space-x-2 mt-1">
-                              <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                                <span className="text-xs">AM</span>
+                            ))
+                          }
+                          return todayJobs.slice(0, 3).map((j, i) => (
+                            <div key={j.id} className="flex items-center space-x-3">
+                              <div className={`w-3 h-3 rounded-full ${['bg-red-500','bg-blue-500','bg-green-500'][i % 3]}`}></div>
+                              <div className="flex-1">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-sm font-medium">{j.title || 'Service Job'}</span>
+                                  <span className="text-xs text-gray-500">Job #{j.id}</span>
+                                </div>
+                                <p className="text-sm text-gray-600">{j.customer_name || ''}</p>
                               </div>
-                              <span className="text-xs text-gray-500">Alvis(AJ) Miller</span>
                             </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="text-sm font-medium">2:00pm - 4:00pm</div>
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2">
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('jobs')}
-                              >
-                                Job 845
-                              </button>
-                              <span className="text-sm">•</span>
-                              <button 
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                                onClick={() => setActiveTab('customers')}
-                              >
-                                Johnson Residence
-                              </button>
-                            </div>
-                            <div className="flex items-center space-x-2 mt-1">
-                              <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                                <span className="text-xs">AM</span>
-                              </div>
-                              <span className="text-xs text-gray-500">Alvis(AJ) Miller</span>
-                            </div>
-                          </div>
-                        </div>
+                          ))
+                        })()}
                       </div>
                     </div>
                   </div>
@@ -1014,9 +968,122 @@ function App() {
         {activeTab === 'customers' && <CustomersLazy setActiveTab={setActiveTab} />}
         
         {activeTab === 'financials' && (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Financial Reports</h2>
-            <p className="text-gray-600">Financial reporting features coming soon...</p>
+          <div className="space-y-6 p-2">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Financial Overview</h2>
+              <button
+                className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                onClick={() => setActiveTab('reporting')}
+              >
+                Full Reports →
+              </button>
+            </div>
+
+            {/* Revenue Summary Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                {
+                  label: 'Total Revenue',
+                  value: '$' + invoices.filter(i => i.status === 'paid').reduce((s, i) => s + (i.amount || i.total_amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}),
+                  color: 'green',
+                  sub: 'Paid invoices',
+                },
+                {
+                  label: 'Outstanding',
+                  value: '$' + invoices.filter(i => i.status === 'pending' || i.status === 'sent').reduce((s, i) => s + (i.amount || i.total_amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}),
+                  color: 'yellow',
+                  sub: 'Pending / sent',
+                },
+                {
+                  label: 'Overdue',
+                  value: '$' + invoices.filter(i => i.status === 'overdue').reduce((s, i) => s + (i.amount || i.total_amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}),
+                  color: 'red',
+                  sub: 'Past due date',
+                },
+                {
+                  label: 'Est. Pipeline',
+                  value: '$' + estimates.filter(e => e.status === 'pending').reduce((s, e) => s + (e.total_amount || e.amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}),
+                  color: 'blue',
+                  sub: 'Open estimates',
+                },
+              ].map(({ label, value, color, sub }) => (
+                <Card key={label} className={`border-t-4 border-t-${color}-500`}>
+                  <div className="p-5">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{label}</p>
+                    <p className="text-2xl font-bold text-gray-900">{value}</p>
+                    <p className="text-xs text-gray-500 mt-1">{sub}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* Invoice Breakdown Table */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Invoice Breakdown</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-2 text-gray-500 font-medium">Invoice</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Customer</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Date</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Status</th>
+                      <th className="text-right py-2 text-gray-500 font-medium">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {invoices.map(inv => (
+                      <tr key={inv.id} className="border-b border-gray-100 hover:bg-gray-50">
+                        <td className="py-2 font-medium">{inv.invoice_number || `INV-${inv.id}`}</td>
+                        <td className="py-2 text-gray-600">{inv.customer_name || (inv.customer && inv.customer.name) || '—'}</td>
+                        <td className="py-2 text-gray-600">{inv.created_at || inv.date_issued || '—'}</td>
+                        <td className="py-2">
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                            inv.status === 'paid' ? 'bg-green-100 text-green-700' :
+                            inv.status === 'overdue' ? 'bg-red-100 text-red-700' :
+                            'bg-yellow-100 text-yellow-700'
+                          }`}>
+                            {inv.status}
+                          </span>
+                        </td>
+                        <td className="py-2 text-right font-medium">${Number(inv.amount || inv.total_amount || 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="border-t-2 border-gray-200">
+                      <td colSpan={4} className="py-2 font-semibold">Total</td>
+                      <td className="py-2 text-right font-bold">
+                        ${invoices.reduce((s, i) => s + (i.amount || i.total_amount || 0), 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </CardContent>
+            </Card>
+
+            {/* Jobs Summary */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {[
+                { label: 'Total Jobs', value: jobs.length, color: 'blue' },
+                { label: 'Completed', value: jobs.filter(j => j.status === 'completed').length, color: 'green' },
+                { label: 'In Progress', value: jobs.filter(j => j.status === 'in_progress' || j.status === 'in-progress').length, color: 'orange' },
+                { label: 'Scheduled', value: jobs.filter(j => j.status === 'scheduled').length, color: 'purple' },
+                { label: 'Total Estimates', value: estimates.length, color: 'indigo' },
+                { label: 'Approved Estimates', value: estimates.filter(e => e.status === 'approved').length, color: 'teal' },
+              ].map(({ label, value, color }) => (
+                <Card key={label} className={`border-l-4 border-l-${color}-500`}>
+                  <div className="p-4 flex items-center space-x-3">
+                    <div>
+                      <p className="text-xs text-gray-500 font-medium">{label}</p>
+                      <p className="text-2xl font-bold text-gray-900">{value}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
         )}
         

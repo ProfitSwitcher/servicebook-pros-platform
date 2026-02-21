@@ -373,6 +373,7 @@ const ScheduleCalendar = () => {
   const [scheduleForm, setScheduleForm] = useState({ customer_id: '', customerName: '', jobType: '', time: '' })
   const [customers, setCustomers] = useState([])
   const [showCalendarModal, setShowCalendarModal] = useState(false)
+  const [formErrors, setFormErrors] = useState({})
 
   const handleAddItem = (type) => {
     setShowAddMenu(false)
@@ -862,6 +863,7 @@ In production, this requires server-side CalDAV implementation.`)
                     }
                     placeholder="Search customers..."
                   />
+                  {formErrors.customer && <p className="text-red-500 text-xs mt-1">{formErrors.customer}</p>}
                 </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Job Type</label>
@@ -872,6 +874,7 @@ In production, this requires server-side CalDAV implementation.`)
                   className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="e.g. HVAC Service, Electrical"
                 />
+                {formErrors.title && <p className="text-red-500 text-xs mt-1">{formErrors.title}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
@@ -883,10 +886,21 @@ In production, this requires server-side CalDAV implementation.`)
                 />
               </div>
               <div className="flex gap-3 pt-2">
-                <button onClick={() => { setScheduleForm({ customer_id: '', customerName: '', jobType: '', time: '' }); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button onClick={() => { setScheduleForm({ customer_id: '', customerName: '', jobType: '', time: '' }); setFormErrors({}); setShowAddJobModal(false) }} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
                 <button
                   onClick={async () => {
-                    if (!scheduleForm.customer_id && !scheduleForm.customerName) return
+                    const errors = {}
+                    if (!scheduleForm.customer_id && !scheduleForm.customerName) {
+                      errors.customer = 'Please select a customer'
+                    }
+                    if (!scheduleForm.jobType) {
+                      errors.title = 'Please enter a job title or description'
+                    }
+                    if (Object.keys(errors).length > 0) {
+                      setFormErrors(errors)
+                      return
+                    }
+                    setFormErrors({})
                     try {
                       await createJob({
                         title: scheduleForm.jobType || 'Service Job',

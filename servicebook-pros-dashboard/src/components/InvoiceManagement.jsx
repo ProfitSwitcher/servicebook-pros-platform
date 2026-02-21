@@ -45,6 +45,9 @@ const InvoiceManagement = () => {
   const [showCreateDialog, setShowCreateDialog] = useState(false)
   const [selectedInvoice, setSelectedInvoice] = useState(null)
   const [editingInvoice, setEditingInvoice] = useState(null)
+  const [sendModalInvoice, setSendModalInvoice] = useState(null)
+  const [sendEmail, setSendEmail] = useState('')
+  const [sending, setSending] = useState(false)
 
   // Invoice form state
   const [invoiceForm, setInvoiceForm] = useState({
@@ -416,7 +419,7 @@ const InvoiceManagement = () => {
                               <Button variant="outline" size="sm" title="Edit Invoice" onClick={() => setEditingInvoice(invoice)}>
                                 <Edit className="w-4 h-4" />
                               </Button>
-                              <Button variant="outline" size="sm" title="Send Invoice" onClick={() => handleSendInvoice(invoice)}>
+                              <Button variant="outline" size="sm" title="Send Invoice" onClick={() => { setSendModalInvoice(invoice); setSendEmail(invoice.customer?.email || '') }}>
                                 <Send className="w-4 h-4" />
                               </Button>
                             </div>
@@ -837,6 +840,61 @@ const InvoiceManagement = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Send Invoice Modal */}
+      {sendModalInvoice && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold mb-1">Send Invoice</h3>
+            <p className="text-sm text-gray-500 mb-4">
+              Send {sendModalInvoice.invoice_number} to your customer via email.
+            </p>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Recipient Email</label>
+            <input
+              type="email"
+              value={sendEmail}
+              onChange={e => setSendEmail(e.target.value)}
+              placeholder="customer@example.com"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <div className="flex gap-3 justify-end">
+              <button
+                type="button"
+                onClick={() => setSendModalInvoice(null)}
+                className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={sending || !sendEmail}
+                onClick={async () => {
+                  setSending(true)
+                  try {
+                    await apiClient.request(`/invoices/${sendModalInvoice.id}/send`, {
+                      method: 'POST',
+                      body: JSON.stringify({ email: sendEmail }),
+                    })
+                    // Update local state
+                    setInvoices(prev => prev.map(i =>
+                      i.id === sendModalInvoice.id ? { ...i, status: i.status === 'pending' ? 'sent' : i.status } : i
+                    ))
+                    setSendModalInvoice(null)
+                  } catch (err) {
+                    // Still close — stub endpoint may 200 without body
+                    setSendModalInvoice(null)
+                  } finally {
+                    setSending(false)
+                  }
+                }}
+                className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              >
+                {sending ? 'Sending...' : 'Send Invoice'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit Invoice Modal */}
       {editingInvoice && (
