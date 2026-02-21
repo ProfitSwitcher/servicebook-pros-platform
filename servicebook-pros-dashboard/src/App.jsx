@@ -615,100 +615,52 @@ function App() {
                 <CardContent>
                   <div className="space-y-4">
                     {jobLocationView === 'today' ? (
-                      <>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">9:00am - 10:00am</span>
-                              <span className="text-xs text-gray-500">Estimate 208</span>
+                      (() => {
+                        const todayStr = new Date().toISOString().split('T')[0]
+                        const colors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-orange-500']
+                        const todayJobs = jobs.filter(j => {
+                          const d = j.scheduled_date || j.scheduledDate || ''
+                          return d && d.startsWith(todayStr)
+                        })
+                        const display = todayJobs.length > 0 ? todayJobs : jobs.filter(j => j.status !== 'completed' && j.status !== 'cancelled')
+                        if (display.length === 0) return <p className="text-sm text-gray-400">No jobs scheduled for today.</p>
+                        return display.slice(0, 3).map((j, i) => (
+                          <div key={j.id} className="flex items-center space-x-3">
+                            <div className={`w-3 h-3 ${colors[i % colors.length]} rounded-full`}></div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm font-medium">{j.title || j.job_type || 'Service Job'}</span>
+                                <span className="text-xs text-gray-500">Job #{j.id}</span>
+                              </div>
+                              <p className="text-sm text-gray-600">{j.customer_name || j.customer?.name || '—'}</p>
                             </div>
-                            <p className="text-sm text-gray-600">Susan Scarr • Westside District</p>
                           </div>
-                        </div>
-                        
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">11:00am - 12:00pm</span>
-                              <span className="text-xs text-gray-500">Job 972</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Michael Pritchard • Northside Area</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">2:00pm - 4:00pm</span>
-                              <span className="text-xs text-gray-500">Job 845</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Johnson Residence • Riverfront</p>
-                          </div>
-                        </div>
-                      </>
+                        ))
+                      })()
                     ) : (
-                      <>
-                        <div className="text-sm font-medium text-gray-700 mb-3">This Week's Jobs</div>
-                        
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">Mon - HVAC Service</span>
-                              <span className="text-xs text-gray-500">Job 901</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Davis Home • Downtown</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">Tue - Plumbing Repair</span>
-                              <span className="text-xs text-gray-500">Job 902</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Wilson Building • Eastside</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">Wed - Electrical Work</span>
-                              <span className="text-xs text-gray-500">Job 903</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Brown Office • Central</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">Thu - Emergency Call</span>
-                              <span className="text-xs text-gray-500">Job 904</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Green Corp • Industrial</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium">Fri - Maintenance</span>
-                              <span className="text-xs text-gray-500">Job 905</span>
-                            </div>
-                            <p className="text-sm text-gray-600">Smith Residence • Westside</p>
-                          </div>
-                        </div>
-                      </>
-                    )}
+                      (() => {
+                        const colors = ['bg-purple-500', 'bg-orange-500', 'bg-teal-500', 'bg-red-500', 'bg-blue-500']
+                        const weekJobs = jobs.filter(j => j.status !== 'cancelled').slice(0, 5)
+                        if (weekJobs.length === 0) return <p className="text-sm text-gray-400">No jobs this week.</p>
+                        return (
+                          <>
+                            <div className="text-sm font-medium text-gray-700 mb-3">This Week's Jobs</div>
+                            {weekJobs.map((j, i) => (
+                              <div key={j.id} className="flex items-center space-x-3">
+                                <div className={`w-3 h-3 ${colors[i % colors.length]} rounded-full`}></div>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium">{j.title || j.job_type || 'Service Job'}</span>
+                                    <span className="text-xs text-gray-500">Job #{j.id}</span>
+                                  </div>
+                                  <p className="text-sm text-gray-600">{j.customer_name || j.customer?.name || '—'}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        )
+                      })()
+                    ) /* end week view */}
                   </div>
                 </CardContent>
               </Card>
@@ -727,20 +679,25 @@ function App() {
                     {/* Job Location Markers - Conditional based on view */}
                     {jobLocationView === 'today' ? (
                       <>
-                        <div className="absolute top-8 left-12">
-                          <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
-                          <div className="text-xs text-gray-700 mt-1 font-medium">Estimate 208</div>
-                        </div>
-                        
-                        <div className="absolute top-20 right-16">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
-                          <div className="text-xs text-gray-700 mt-1 font-medium">Job 972</div>
-                        </div>
-                        
-                        <div className="absolute bottom-12 left-20">
-                          <div className="w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
-                          <div className="text-xs text-gray-700 mt-1 font-medium">Job 845</div>
-                        </div>
+                        {jobs.slice(0, 3).map((j, i) => {
+                          const positions = [
+                            'absolute top-8 left-12',
+                            'absolute top-20 right-16',
+                            'absolute bottom-12 left-20',
+                          ]
+                          const dotColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500']
+                          return (
+                            <div key={j.id} className={positions[i]}>
+                              <div className={`w-4 h-4 ${dotColors[i]} rounded-full border-2 border-white shadow-lg animate-pulse`}></div>
+                              <div className="text-xs text-gray-700 mt-1 font-medium">Job #{j.id}</div>
+                            </div>
+                          )
+                        })}
+                        {jobs.length === 0 && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <p className="text-sm text-gray-400">No jobs to display</p>
+                          </div>
+                        )}
                       </>
                     ) : (
                       <>
