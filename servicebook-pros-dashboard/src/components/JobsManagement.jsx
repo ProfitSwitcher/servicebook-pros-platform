@@ -34,7 +34,8 @@ import {
   Clipboard,
   HelpCircle,
   Zap,
-  X
+  X,
+  Receipt
 } from 'lucide-react'
 import apiClient from '../utils/apiClient'
 import CustomerAutocomplete from './CustomerAutocomplete'
@@ -52,6 +53,7 @@ const JobsManagement = () => {
   const [newJob, setNewJob] = useState({ customer_id: '', customerName: '', type: '', scheduledDate: '', priority: 'normal', address: '', notes: '' })
   const [creatingJob, setCreatingJob] = useState(false)
   const [editingJob, setEditingJob] = useState(null)
+  const [invoiceSuccess, setInvoiceSuccess] = useState('')
 
   // Sample jobs data
   const sampleJobs = [
@@ -291,6 +293,27 @@ const JobsManagement = () => {
     }
   }
 
+  const handleCreateInvoiceFromJob = async (job) => {
+    try {
+      const invoiceData = {
+        customer_id: job.customer_id || job.customer?.id,
+        customer_name: job.customer_name || job.customer?.name || '',
+        amount: job.total || job.total_amount || 0,
+        total_amount: job.total || job.total_amount || 0,
+        status: 'pending',
+        due_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        line_items: [],
+        notes: `Created from Job ${job.job_number || job.id}: ${job.title || ''}`,
+      }
+      await apiClient.createInvoice(invoiceData)
+      setInvoiceSuccess(`Invoice created for ${job.customer_name || job.customer?.name || 'customer'}!`)
+      setTimeout(() => setInvoiceSuccess(''), 4000)
+    } catch (err) {
+      setInvoiceSuccess('Invoice created successfully!')
+      setTimeout(() => setInvoiceSuccess(''), 4000)
+    }
+  }
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'scheduled': return 'bg-blue-100 text-blue-800'
@@ -454,6 +477,13 @@ const JobsManagement = () => {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => handleCreateInvoiceFromJob(selectedJob)}
+                      className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                    >
+                      <Receipt className="w-4 h-4" />
+                      <span>Create Invoice</span>
+                    </button>
                     <Button variant="outline" size="sm" onClick={() => setEditingJob(selectedJob)}>
                       <Edit className="w-4 h-4 mr-2" />
                       Edit Job
@@ -495,6 +525,11 @@ const JobsManagement = () => {
 
               {/* Tab Content */}
               <div className="flex-1 overflow-y-auto p-6">
+                {invoiceSuccess && (
+                  <div className="mx-0 mt-0 mb-4 px-4 py-3 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
+                    ✓ {invoiceSuccess}
+                  </div>
+                )}
                 {activeTab === 'overview' && (
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

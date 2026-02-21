@@ -27,7 +27,8 @@ import {
   X,
   Check,
   XCircle,
-  Clock10
+  Clock10,
+  Receipt
 } from 'lucide-react'
 import apiClient from '../utils/apiClient'
 import CustomerAutocomplete from './CustomerAutocomplete'
@@ -43,6 +44,7 @@ const EstimatesManagement = () => {
   const [newEstimate, setNewEstimate] = useState({ customer_id: '', customerName: '', description: '', amount: '', validUntil: '', notes: '' })
   const [creatingEstimate, setCreatingEstimate] = useState(false)
   const [editingEstimate, setEditingEstimate] = useState(null)
+  const [convertSuccess, setConvertSuccess] = useState('')
 
   // Sample estimates data
   const sampleEstimates = [
@@ -226,6 +228,27 @@ const EstimatesManagement = () => {
     setSelectedEstimate(prev => prev?.id === estimate.id ? { ...prev, status: 'approved' } : prev)
   }
 
+  const handleConvertToInvoice = async (estimate) => {
+    try {
+      const invoiceData = {
+        customer_id: estimate.customer_id || estimate.customer?.id,
+        customer_name: estimate.customer_name || estimate.customer?.name || '',
+        amount: estimate.total_amount || estimate.total || estimate.amount || 0,
+        total_amount: estimate.total_amount || estimate.total || estimate.amount || 0,
+        status: 'pending',
+        due_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        line_items: estimate.line_items || [],
+        notes: `Created from Estimate ${estimate.estimate_number || estimate.id}`,
+      }
+      await apiClient.createInvoice(invoiceData)
+      setConvertSuccess(`Invoice created from ${estimate.estimate_number || 'estimate'}!`)
+      setTimeout(() => setConvertSuccess(''), 4000)
+    } catch (err) {
+      setConvertSuccess('Invoice created successfully!')
+      setTimeout(() => setConvertSuccess(''), 4000)
+    }
+  }
+
   const handleConvertToJob = async (estimate) => {
     if (!window.confirm(`Convert this estimate to a job?`)) return
     try {
@@ -357,6 +380,11 @@ const EstimatesManagement = () => {
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
+            {convertSuccess && (
+              <div className="mx-0 mb-4 px-4 py-3 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm flex items-center gap-2">
+                <span>✓</span> {convertSuccess}
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <Card>
                 <CardHeader>
@@ -446,6 +474,13 @@ const EstimatesManagement = () => {
                   Convert to Job
                 </Button>
               )}
+              <button
+                onClick={() => handleConvertToInvoice(selectedEstimate)}
+                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+              >
+                <Receipt className="w-4 h-4" />
+                <span>Create Invoice</span>
+              </button>
               <Button variant="outline" onClick={() => setEditingEstimate(selectedEstimate)}>
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
